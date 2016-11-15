@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private static final boolean AUTO_HIDE = true;
