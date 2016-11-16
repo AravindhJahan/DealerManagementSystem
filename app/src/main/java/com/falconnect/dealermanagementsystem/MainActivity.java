@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        //mControlsView = findViewById(R.id.fullscreen_content_controls);
+        //mContentView = findViewById(R.id.fullscreen_content);
 
         if (mVisible) {
             ActionBar actionBar = getSupportActionBar();
