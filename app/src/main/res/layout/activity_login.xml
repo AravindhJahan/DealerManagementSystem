@@ -119,11 +119,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view1"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
         android:gravity="right"
         android:text="Forgot Password?"
-        android:textColor="#000"
         android:textSize="14dp" />
 
     <!--Submit Button-->

@@ -2,23 +2,37 @@ package com.falconnect.dealermanagementsystem;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
     private boolean mVisible;
 
-    TextView signup;
+    TextView signup, forgot_password;
+
+    TextView donthaveaccount;
+
+    Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
 
         setContentView(R.layout.activity_login);
 
@@ -35,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
         }
 
-        signup = (TextView) findViewById(R.id.sigin_up);
+        intialize();
 
         //sign up click event
         signup.setOnClickListener(new View.OnClickListener() {
@@ -44,11 +58,28 @@ public class LoginActivity extends AppCompatActivity {
                 signupclickevent();
             }
         });
+
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void signupclickevent()
-    {
+    public void intialize() {
+        signup = (TextView) findViewById(R.id.sigin_up);
+        donthaveaccount = (TextView) findViewById(R.id.dont_have_account);
+        forgot_password = (TextView) findViewById(R.id.forgot_password);
+        submit = (Button) findViewById(R.id.submit_btn);
+
+    }
+
+    public void signupclickevent() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
+
+
 }

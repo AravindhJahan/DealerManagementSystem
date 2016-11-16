@@ -7,7 +7,7 @@
         android:icon="@drawable/splashlogo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
 
         <!-- Splash activity -->
         <activity
@@ -37,6 +37,11 @@
             android:name=".RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_register"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_forgot_password"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 
