@@ -8,21 +8,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private boolean mVisible;
 
-    Button enter;
-
+    TextView signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
+        mVisible = true;
         mVisible = true;
 
         if (mVisible) {
@@ -33,27 +33,22 @@ public class MainActivity extends AppCompatActivity {
             mVisible = false;
 
         } else {
-
         }
 
-        enter = (Button) findViewById(R.id.enter_btn);
+        signup = (TextView) findViewById(R.id.sigin_up);
 
-        //Enter button click event
-        enter.setOnClickListener(new View.OnClickListener() {
+        //sign up click event
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickevent();
+                signupclickevent();
             }
         });
-
-
     }
 
-    public void clickevent()
+    public void signupclickevent()
     {
-        //Go to Login screen
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
-
     }
 }

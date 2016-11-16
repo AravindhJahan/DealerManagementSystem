@@ -11,12 +11,13 @@
 
         <!-- Splash activity -->
         <activity
-            android:name="com.falconnect.dealermanagementsystem.SplashScreen"
+            android:name=".SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,6 +28,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main"
             android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_login"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".RegisterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_register"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
