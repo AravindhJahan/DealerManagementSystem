@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -11,17 +12,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
     private boolean mVisible;
-
     TextView signup, forgot_password;
-
     TextView donthaveaccount;
-
     Button submit;
+    EditText username, pass_word;
+
+
+    //JSON DATAS
+    String user, pass;
+    private static String url = "http://52.220.105.165/dev/public/user_login?";
+    public ArrayList<HashMap<String, String>> categoryList;
+    HashMap<String, String> map;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +80,16 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user = username.getText().toString();
+                pass = pass_word.getText().toString();
+
+                new GetLoginData().execute();
+            }
+        });
     }
 
     public void intialize() {
@@ -73,13 +98,16 @@ public class LoginActivity extends AppCompatActivity {
         forgot_password = (TextView) findViewById(R.id.forgot_password);
         submit = (Button) findViewById(R.id.submit_btn);
 
+        //Edittext
+        username = (EditText) findViewById(R.id.username);
+        pass_word = (EditText) findViewById(R.id.password);
+
     }
 
     public void signupclickevent() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
-
 
     //////ONBackPressed Button Dialog Box
     public void onBackPressed() {
@@ -99,7 +127,96 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
-    ///////End Of On back pressed dialog box
 
+    class GetLoginData extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        protected String doInBackground(String... args) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String main_url = url + "fname=" + user.toString() + "&password=" + pass.toString();
+
+            String json = sh.makeServiceCall(main_url, ServiceHandler.POST);
+
+
+            if (json != null) {
+                categoryList = new ArrayList<>();
+                map = new HashMap<String, String>();
+
+                try {
+                    JSONObject obj = new JSONObject(json);
+
+                    for (int i = 0; i <= obj.length(); i++) {
+
+                        String result = obj.getString("Result");
+
+                        String message = obj.getString("message");
+
+                        map.put("REsult", result);
+
+                        map.put("Message", message);
+
+                        categoryList.add(map);
+
+                    }
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+        protected void onPostExecute(String file_url) {
+
+            if(map.get("REsult").equals("1"))
+            {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Login Sucessfull");
+
+                builder.setMessage(map.get("Message"))
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                builder.show();
+            }
+            else
+            {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Login Incorrect");
+                builder.setMessage(map.get("Message"))
+                        .setCancelable(false)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+
+                builder.show();
+            }
+        }
+    }
 
 }
