@@ -2,21 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_login"
     tools:context="com.falconnect.dealermanagementsystem.LoginActivity">
 
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
         android:src="@drawable/splashlogo" />
 
-    <TextView
+    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
         android:id="@+id/dealerplus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +28,7 @@
         android:text="DEALER PLUS"
         android:textAlignment="center"
         android:textColor="#000"
+        app:font="robotoregular.ttf"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -55,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#fff"
+            android:fontFamily="robotoregular.ttf"
             android:hint="Username/Email" />
 
     </LinearLayout>
@@ -97,6 +100,7 @@
             android:layout_gravity="center"
             android:background="#fff"
             android:hint="Password"
+            android:fontFamily="robotoregular.ttf"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -114,7 +118,7 @@
         android:background="#808080" />
 
     <!--Forgot Password-->
-    <TextView
+    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
         android:id="@+id/forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,6 +126,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="8dp"
         android:gravity="right"
+        app:font="robotoregular.ttf"
         android:text="Forgot Password?"
         android:textSize="14dp" />
 
@@ -138,6 +143,7 @@
         android:text="Submit"
         android:textAllCaps="false"
         android:textColor="#FFF"
+        android:fontFamily="robotoregular.ttf"
         android:textSize="16dp" />
 
     <!--Dont have an account-->
@@ -148,14 +154,15 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal">
 
-        <TextView
+        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
             android:id="@+id/dont_have_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dont have an account?"
+            app:font="robotoregular.ttf"
             android:textSize="16dp" />
 
-        <TextView
+        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
             android:id="@+id/sigin_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -163,6 +170,7 @@
             android:layout_marginLeft="5dp"
             android:text="Sign Up"
             android:textColor="#FA2608"
+            app:font="robotoregular.ttf"
             android:textSize="16dp" />
 
 

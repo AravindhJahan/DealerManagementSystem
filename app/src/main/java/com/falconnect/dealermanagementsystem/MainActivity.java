@@ -1,13 +1,12 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -56,11 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void clickevent()
-    {
+    public void clickevent() {
         //Go to Login screen
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+
+        //finish this activity
+        MainActivity.this.finish();
 
     }
 }

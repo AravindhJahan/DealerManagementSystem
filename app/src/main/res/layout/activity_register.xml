@@ -21,16 +21,30 @@
             android:layout_height="35dp"
             android:src="@drawable/back_icon" />
 
-        <TextView
+        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:gravity="center"
+            android:textColor="#000"
+            app:font="robotoregular.ttf"
             android:text="Register"
             android:textSize="18dp"
             android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view_title"
+            android:layout_width="75dp"
+            android:layout_height="2dp"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:background="#FA2608" />
 
     </RelativeLayout>
 
@@ -74,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
+                    android:fontFamily="robotoregular.ttf"
                     android:background="#fff"
                     android:hint="Company Name" />
 
@@ -101,7 +116,7 @@
                 android:layout_below="@+id/company_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -115,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
+                    android:fontFamily="robotoregular.ttf"
                     android:background="#fff"
                     android:hint="First Name" />
 
@@ -142,7 +158,7 @@
                 android:layout_below="@+id/first_name_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -158,6 +174,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="Last Name" />
 
             </LinearLayout>
@@ -184,7 +201,7 @@
                 android:layout_below="@+id/lastname_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -199,6 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
+                    android:fontFamily="robotoreqular.ttf"
                     android:background="#fff"
                     android:hint="Email Id" />
 
@@ -226,7 +244,7 @@
                 android:layout_below="@+id/email_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -242,6 +260,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="Contact" />
 
             </LinearLayout>
@@ -268,7 +287,7 @@
                 android:layout_below="@+id/contact_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -283,6 +302,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
+                    android:fontFamily="robotoregular.ttf"
                     android:background="#fff"
                     android:hint="Registration Number" />
 
@@ -310,7 +330,7 @@
                 android:layout_below="@+id/reg_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -326,6 +346,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="Enter Your Address" />
 
             </LinearLayout>
@@ -352,7 +373,7 @@
                 android:layout_below="@+id/address_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -390,7 +411,7 @@
                 android:layout_below="@+id/city_layout"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -406,6 +427,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="Pincode" />
 
             </LinearLayout>
@@ -426,11 +448,12 @@
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/shape_submit"
                 android:text="Register Now"
                 android:textAllCaps="false"
                 android:textColor="#FFF"
+                android:fontFamily="robotoregular.ttf"
                 android:textSize="16dp" />
 
             <!--Have an account-->
@@ -442,22 +465,24 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_horizontal">
 
-                <TextView
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                     android:id="@+id/have_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Already have an account?"
-                    android:textSize="13dp" />
+                    app:font="robotoregular.ttf"
+                    android:textSize="15dp" />
 
-                <TextView
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                     android:id="@+id/login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignRight="@+id/dont_have_account"
                     android:layout_marginLeft="5dp"
                     android:text="Login"
+                    app:font="robotoregular.ttf"
                     android:textColor="#FA2608"
-                    android:textSize="13dp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
