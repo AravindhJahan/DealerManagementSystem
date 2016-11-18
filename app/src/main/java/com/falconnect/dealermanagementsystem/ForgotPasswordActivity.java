@@ -1,6 +1,5 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -8,8 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -20,8 +17,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -51,8 +46,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_forgot_password);
 
-        mVisible = true;
-        mVisible = true;
         mVisible = true;
 
         if (mVisible) {
