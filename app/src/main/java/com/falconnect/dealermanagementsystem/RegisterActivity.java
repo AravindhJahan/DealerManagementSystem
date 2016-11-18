@@ -1,5 +1,6 @@
 package com.falconnect.dealermanagementsystem;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -70,6 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent (RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
                 RegisterActivity.this.finish();
             }
         });

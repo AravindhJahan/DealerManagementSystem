@@ -79,11 +79,26 @@
         android:background="@drawable/shape"
         android:textColor="#FFF"
         android:textSize="18dp"
-        android:text="Enter"
+        android:text="Sign In"
         android:textAllCaps="false"
         android:fontFamily="robotoregular.ttf"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="44dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/sigin_up_intro"
+        android:layout_alignStart="@+id/sigin_up_intro" />
+
+    <Button
+        android:id="@+id/sigin_up_intro"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="#38B2E7"
+        android:background="@drawable/shape_signup_intro"
+        android:textSize="18dp"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:fontFamily="robotoregular.ttf"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/enter_btn"
         android:layout_alignLeft="@+id/details_layout"
         android:layout_alignStart="@+id/details_layout" />
 

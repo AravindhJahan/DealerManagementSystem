@@ -164,7 +164,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                 builder.setMessage(forgotpasswordlist.get("Message"))
                         .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                             }

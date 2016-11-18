@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean mVisible;
 
-    Button enter;
+    Button enter, signupintro;
 
 
     @Override
@@ -43,13 +43,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         enter = (Button) findViewById(R.id.enter_btn);
+        signupintro = (Button) findViewById(R.id.sigin_up_intro);
 
         //Enter button click event
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickevent();
-                
+
+            }
+        });
+
+        signupintro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+
+                MainActivity.this.finish();
             }
         });
 

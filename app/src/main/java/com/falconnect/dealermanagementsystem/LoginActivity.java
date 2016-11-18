@@ -195,7 +195,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 builder.setMessage(loginlistmap.get("Message"))
                         .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                             }
@@ -209,7 +209,7 @@ public class LoginActivity extends AppCompatActivity {
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(loginlistmap.get("Message"))
                         .setCancelable(false)
-                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
                             }
