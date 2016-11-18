@@ -34,8 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     //JSON DATAS
     String user, pass;
     private static String url = "http://52.220.105.165/dev/public/user_login?";
-    public ArrayList<HashMap<String, String>> categoryList;
-    HashMap<String, String> map;
+
+    public ArrayList<HashMap<String, String>> LoginList;
+    HashMap<String, String> loginlistmap;
 
 
     @Override
@@ -146,8 +147,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
             if (json != null) {
-                categoryList = new ArrayList<>();
-                map = new HashMap<String, String>();
+                LoginList = new ArrayList<>();
+                loginlistmap = new HashMap<String, String>();
 
                 try {
                     JSONObject obj = new JSONObject(json);
@@ -158,11 +159,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         String message = obj.getString("message");
 
-                        map.put("REsult", result);
+                        loginlistmap.put("REsult", result);
 
-                        map.put("Message", message);
+                        loginlistmap.put("Message", message);
 
-                        categoryList.add(map);
+                        LoginList.add(loginlistmap);
 
                     }
                 } catch (final JSONException e) {
@@ -187,12 +188,12 @@ public class LoginActivity extends AppCompatActivity {
 
         protected void onPostExecute(String file_url) {
 
-            if(map.get("REsult").equals("1"))
+            if(loginlistmap.get("REsult").equals("1"))
             {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Sucessfull");
 
-                builder.setMessage(map.get("Message"))
+                builder.setMessage(loginlistmap.get("Message"))
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -206,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");
-                builder.setMessage(map.get("Message"))
+                builder.setMessage(loginlistmap.get("Message"))
                         .setCancelable(false)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

@@ -57,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#fff"
+            android:layout_marginLeft="10dp"
             android:fontFamily="robotoregular.ttf"
             android:hint="Username/Email" />
 
@@ -100,6 +101,7 @@
             android:layout_gravity="center"
             android:background="#fff"
             android:hint="Password"
+            android:layout_marginLeft="10dp"
             android:fontFamily="robotoregular.ttf"
             android:inputType="textPassword" />
 
@@ -123,12 +125,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view1"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="right"
         app:font="robotoregular.ttf"
         android:text="Forgot Password?"
-        android:textSize="14dp" />
+        android:textSize="16dp" />
 
     <!--Submit Button-->
     <Button
@@ -175,6 +177,5 @@
 
 
     </LinearLayout>
-
 
 </RelativeLayout>
