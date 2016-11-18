@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/intro"
     tools:context="com.falconnect.dealermanagementsystem.MainActivity">
 
@@ -16,8 +16,8 @@
         android:textAlignment="center"
         android:textColor="#FFF"
         android:textSize="20dp"
-        app:font="robotoregular.ttf"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:font="robotoregular.ttf" />
 
 
     <ImageView
@@ -39,8 +39,8 @@
         android:text="My Car"
         android:textColor="#000"
         android:textSize="20dp"
-        app:font="robotoregular.ttf"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:font="robotoregular.ttf" />
 
     <View
         android:id="@+id/view"
@@ -56,10 +56,10 @@
         android:id="@+id/details_layout"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/mycar"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/mycar">
+        android:layout_marginTop="5dp">
 
         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
             android:id="@+id/details"
@@ -76,31 +76,31 @@
         android:id="@+id/enter_btn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sigin_up_intro"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/sigin_up_intro"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/shape"
-        android:textColor="#FFF"
-        android:textSize="18dp"
+        android:fontFamily="robotoregular.ttf"
         android:text="Sign In"
         android:textAllCaps="false"
-        android:fontFamily="robotoregular.ttf"
-        android:layout_marginBottom="44dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/sigin_up_intro"
-        android:layout_alignStart="@+id/sigin_up_intro" />
+        android:textColor="#FFF"
+        android:textSize="18dp" />
 
     <Button
         android:id="@+id/sigin_up_intro"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:textColor="#38B2E7"
-        android:background="@drawable/shape_signup_intro"
-        android:textSize="18dp"
-        android:text="Sign Up"
-        android:textAllCaps="false"
-        android:fontFamily="robotoregular.ttf"
-        android:layout_marginBottom="10dp"
         android:layout_above="@+id/enter_btn"
         android:layout_alignLeft="@+id/details_layout"
-        android:layout_alignStart="@+id/details_layout" />
+        android:layout_alignStart="@+id/details_layout"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_signup_intro"
+        android:fontFamily="robotoregular.ttf"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="#38B2E7"
+        android:textSize="18dp" />
 
 
 </RelativeLayout>

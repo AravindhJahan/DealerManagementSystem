@@ -188,8 +188,7 @@ public class LoginActivity extends AppCompatActivity {
 
         protected void onPostExecute(String file_url) {
 
-            if(loginlistmap.get("REsult").equals("1"))
-            {
+            if (loginlistmap.get("REsult").equals("1")) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Sucessfull");
 
@@ -202,9 +201,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
 
                 builder.show();
-            }
-            else
-            {
+            } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(loginlistmap.get("Message"))

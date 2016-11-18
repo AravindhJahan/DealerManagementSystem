@@ -28,11 +28,11 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:textColor="#000"
-            app:font="robotoregular.ttf"
             android:text="Register"
+            android:textColor="#000"
             android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:font="robotoregular.ttf" />
 
         <View
             android:id="@+id/view_title"
@@ -88,8 +88,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:fontFamily="robotoregular.ttf"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="Company Name" />
 
             </LinearLayout>
@@ -123,15 +123,16 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/user"/>
+                    android:src="@drawable/user" />
+
                 <EditText
                     android:id="@+id/first_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:fontFamily="robotoregular.ttf"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="First Name" />
 
             </LinearLayout>
@@ -165,7 +166,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/user2"/>
+                    android:src="@drawable/user2" />
 
                 <EditText
                     android:id="@+id/last_name"
@@ -216,8 +217,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:fontFamily="robotoreqular.ttf"
                     android:background="#fff"
+                    android:fontFamily="robotoreqular.ttf"
                     android:hint="Email Id" />
 
             </LinearLayout>
@@ -302,8 +303,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
-                    android:fontFamily="robotoregular.ttf"
                     android:background="#fff"
+                    android:fontFamily="robotoregular.ttf"
                     android:hint="Registration Number" />
 
             </LinearLayout>
@@ -450,10 +451,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_submit"
+                android:fontFamily="robotoregular.ttf"
                 android:text="Register Now"
                 android:textAllCaps="false"
                 android:textColor="#FFF"
-                android:fontFamily="robotoregular.ttf"
                 android:textSize="16dp" />
 
             <!--Have an account-->
@@ -470,8 +471,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Already have an account?"
-                    app:font="robotoregular.ttf"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    app:font="robotoregular.ttf" />
 
                 <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                     android:id="@+id/login"
@@ -480,9 +481,9 @@
                     android:layout_alignRight="@+id/dont_have_account"
                     android:layout_marginLeft="5dp"
                     android:text="Login"
-                    app:font="robotoregular.ttf"
                     android:textColor="#FA2608"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    app:font="robotoregular.ttf" />
 
             </LinearLayout>
 

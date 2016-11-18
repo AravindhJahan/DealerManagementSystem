@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
                 RegisterActivity.this.finish();
             }
@@ -80,31 +80,28 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void intialize() {
         spinner = (Spinner) findViewById(R.id.city_spinner);
-        back = (ImageView)findViewById(R.id.back);
+        back = (ImageView) findViewById(R.id.back);
     }
 
     public void spinnerdata() {
         cityList = new ArrayList<>(Arrays.asList(cities));
-        spinnerArrayAdapter = new ArrayAdapter<String>( RegisterActivity.this,R.layout.spinner_single_item,cityList){
+        spinnerArrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, R.layout.spinner_single_item, cityList) {
             @Override
-            public boolean isEnabled(int position){
-                if(position == 0)
-                {
+            public boolean isEnabled(int position) {
+                if (position == 0) {
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
             }
+
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if(position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
-                }
-                else {
+                } else {
                     tv.setTextColor(Color.BLACK);
                 }
                 return view;
@@ -119,12 +116,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
 
-                if(position > 0){
+                if (position > 0) {
                     Toast.makeText
                             (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                             .show();
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 

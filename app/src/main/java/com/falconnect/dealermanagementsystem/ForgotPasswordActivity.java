@@ -89,7 +89,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     }
 
-    public void intialize(){
+    public void intialize() {
         back_forgot = (ImageView) findViewById(R.id.backbtn);
 
         email = (EditText) findViewById(R.id.username);
@@ -157,8 +157,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         protected void onPostExecute(String file_url) {
 
-            if(forgotpasswordlist.get("REsult").equals("1"))
-            {
+            if (forgotpasswordlist.get("REsult").equals("1")) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPasswordActivity.this);
                 builder.setTitle("Login Sucessfull");
 
@@ -171,9 +170,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         });
 
                 builder.show();
-            }
-            else
-            {
+            } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPasswordActivity.this);
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(forgotpasswordlist.get("Message"))
