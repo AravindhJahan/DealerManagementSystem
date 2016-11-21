@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mVisible = true;
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 
         if (mVisible) {
             ActionBar actionBar = getSupportActionBar();
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickevent() {
         //Go to Login screen
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, DashBoard.class);
         startActivity(intent);
 
         //finish this activity

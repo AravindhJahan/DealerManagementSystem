@@ -23,6 +23,8 @@ public class SplashScreen extends Activity {
 
         setContentView(R.layout.activity_splash);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         new Handler().postDelayed(new Runnable() {
 
             @Override

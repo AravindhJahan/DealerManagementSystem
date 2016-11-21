@@ -51,7 +51,8 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        mVisible = true;
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         mVisible = true;
 
         if (mVisible) {
@@ -197,6 +198,8 @@ public class LoginActivity extends AppCompatActivity {
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
+                                Intent i = new Intent (LoginActivity.this, DashBoard.class);
+                                startActivity(i);
                             }
                         });
 
