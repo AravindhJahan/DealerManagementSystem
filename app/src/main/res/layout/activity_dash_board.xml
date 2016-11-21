@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+
+    <!--Header-->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#173E84">
+
+        <ImageView
+            android:id="@+id/nav_icon_drawer"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/nav_icon" />
+
+        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Search"
+            android:textColor="#FFF"
+            android:textSize="18dp"
+            app:font="robotoregular.ttf" />
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/header"
         android:src="@drawable/car_iamge" />
 
     <LinearLayout
@@ -23,16 +53,18 @@
             android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical">
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Search the right car"
                 android:textAllCaps="true"
                 android:textColor="#000"
-                android:layout_marginTop="30dp"
                 android:textSize="16dp" />
 
             <!--Buttons-->
@@ -97,8 +129,8 @@
                     android:id="@+id/search_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
                     android:layout_marginBottom="30dp"
+                    android:layout_marginTop="45dp"
                     android:background="@drawable/shape_submit"
                     android:text="Search"
                     android:textColor="#FFF" />
@@ -109,4 +141,4 @@
 
     </LinearLayout>
 
-<
+</RelativeLayout>
