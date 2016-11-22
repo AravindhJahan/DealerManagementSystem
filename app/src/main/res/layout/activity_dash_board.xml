@@ -114,8 +114,7 @@
                             <Spinner
                                 android:id="@+id/search_city_spinner"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp" />
+                                android:layout_height="wrap_content" />
 
                             <!--Budget-->
                             <EditText
@@ -142,6 +141,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:layout_marginRight="25dp"
+                            android:layout_marginTop="5dp"
                             android:orientation="vertical">
 
                             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
