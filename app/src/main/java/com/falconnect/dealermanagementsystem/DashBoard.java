@@ -1,23 +1,28 @@
 package com.falconnect.dealermanagementsystem;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.falconnect.dealermanagementsystem.Adapter.CustomListViewAdapter;
+import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
+import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.navdrawer.SimpleSideDrawer;
 
 import java.util.ArrayList;
@@ -33,27 +38,18 @@ public class DashBoard extends AppCompatActivity {
     ImageView nav;
 
     private SimpleSideDrawer mNav;
-
-
-    public static int [] prgmImages={
-            R.drawable.search_blue,
-            R.drawable.savecar_blue,
-            R.drawable.queries_blue,
-            R.drawable.bids_blue,
-            R.drawable.funding_blue};
-
-    public static String [] prgmNameList = {
-            "Search",
-            "Saved Cars",
-            "My Queries",
-            "Bids Posted",
-            "Funding"};
+    private static RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private static RecyclerView recyclerView;
+    private static ArrayList<DataModel> data;
 
     List<String> cityList;
     Spinner spinner;
     ArrayAdapter<String> spinnerArrayAdapter;
 
-    // Initializing a String Array
+    TextView sites;
+
+    // Initializing a Spinner Array
     String[] cities = new String[]{
             "Select City...",
             "Chennai",
@@ -70,6 +66,8 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_dash_board);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -89,11 +87,6 @@ public class DashBoard extends AppCompatActivity {
 
         intialize();
         spinnerdata();
-       /* lv =(GridView) findViewById(R.id.list);
-
-        lv.setAdapter(new CustomListViewAdapter(DashBoard.this, prgmNameList, prgmImages));*/
-
-
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
         mNav = new SimpleSideDrawer(this);
         mNav.setLeftBehindContentView(R.layout.activity_behind_left_simple);
@@ -104,10 +97,69 @@ public class DashBoard extends AppCompatActivity {
                 mNav.toggleLeftDrawer();
             }
         });
+
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(DashBoard.this, LinearLayoutManager.HORIZONTAL, false));
+
+
+        data = new ArrayList<DataModel>();
+        for (int i = 0; i < MyData.nameArray.length; i++) {
+            data.add(new DataModel(
+                    MyData.nameArray[i],
+                    MyData.id_[i],
+                    MyData.drawableArray[i]
+            ));
+        }
+
+        adapter = new CustomAdapter(data);
+        recyclerView.setAdapter(adapter);
+
+
+        sites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CharSequence[] items = {"Quicker","Carwale","Cardekho","OLX"};
+
+                final ArrayList seletedItems = new ArrayList();
+                AlertDialog dialog = new AlertDialog.Builder(DashBoard.this)
+                        .setTitle("Select Sites")
+                        .setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
+                                if (isChecked) {
+                                    seletedItems.add(indexSelected);
+
+                                } else if (seletedItems.contains(indexSelected)) {
+                                    seletedItems.remove(Integer.valueOf(indexSelected));
+                                }
+                            }
+                        }).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                if (((CheckBox) dialog).isChecked()) {
+                                    Toast.makeText(DashBoard.this,
+                                            "Bro, try Android :)", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                //  Your code when user clicked on Cancel
+                            }
+                        }).create();
+                dialog.show();
+            }
+        });
     }
+
 
     public void intialize() {
         spinner = (Spinner) findViewById(R.id.search_city_spinner);
+
+        sites = (TextView) findViewById(R.id.search_sites);
     }
 
     public void spinnerdata() {
@@ -156,4 +208,6 @@ public class DashBoard extends AppCompatActivity {
             }
         });
     }
+
+
 }

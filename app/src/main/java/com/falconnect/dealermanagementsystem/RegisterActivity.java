@@ -50,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_register);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mVisible = true;
