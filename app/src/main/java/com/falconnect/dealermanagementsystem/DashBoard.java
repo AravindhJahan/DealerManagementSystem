@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -34,9 +35,8 @@ public class DashBoard extends AppCompatActivity {
 
     private boolean mVisible;
     Context context;
-
+    AlertDialog.Builder alertdialogbuilder;
     ImageView nav;
-
     private SimpleSideDrawer mNav;
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -58,6 +58,23 @@ public class DashBoard extends AppCompatActivity {
             "Vellore",
             "Cuddalore",
             "Pondicherry"
+    };
+
+    String[] AlertDialogItems = new String[]{
+            "Android",
+            "PHP",
+            "WordPress",
+            "Blogger"
+    };
+
+    List<String> ItemsIntoList;
+
+    boolean[] Selectedtruefalse = new boolean[]{
+            false,
+            false,
+            false,
+            false,
+            false
     };
 
 
@@ -119,42 +136,45 @@ public class DashBoard extends AppCompatActivity {
         sites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final CharSequence[] items = {"Quicker","Carwale","Cardekho","OLX"};
+                alertdialogbuilder = new AlertDialog.Builder(DashBoard.this);
 
-                final ArrayList seletedItems = new ArrayList();
-                AlertDialog dialog = new AlertDialog.Builder(DashBoard.this)
-                        .setTitle("Select Sites")
-                        .setMultiChoiceItems(items, null, new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int indexSelected, boolean isChecked) {
-                                if (isChecked) {
-                                    seletedItems.add(indexSelected);
+                ItemsIntoList = Arrays.asList(AlertDialogItems);
 
-                                } else if (seletedItems.contains(indexSelected)) {
-                                    seletedItems.remove(Integer.valueOf(indexSelected));
-                                }
-                            }
-                        }).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
+                alertdialogbuilder.setMultiChoiceItems(AlertDialogItems, Selectedtruefalse, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
-                                if (((CheckBox) dialog).isChecked()) {
-                                    Toast.makeText(DashBoard.this,
-                                            "Bro, try Android :)", Toast.LENGTH_LONG).show();
-                                }
 
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                //  Your code when user clicked on Cancel
-                            }
-                        }).create();
+
+                    }
+                });
+
+                alertdialogbuilder.setCancelable(false);
+
+                alertdialogbuilder.setTitle("Select Sites");
+
+                alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                    }
+                });
+
+                alertdialogbuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                AlertDialog dialog = alertdialogbuilder.create();
+
                 dialog.show();
             }
         });
-    }
 
+    }
 
     public void intialize() {
         spinner = (Spinner) findViewById(R.id.search_city_spinner);
