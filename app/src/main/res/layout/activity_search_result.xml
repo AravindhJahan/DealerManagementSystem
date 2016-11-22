@@ -10,13 +10,14 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#173E84">
+        android:background="@drawable/titlebar">
 
         <ImageView
             android:id="@+id/nav_icon_drawer"
             android:layout_width="30dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/nav_icon" />
 
         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView

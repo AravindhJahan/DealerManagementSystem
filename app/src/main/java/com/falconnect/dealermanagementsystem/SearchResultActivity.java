@@ -12,7 +12,7 @@ public class SearchResultActivity extends AppCompatActivity {
     Context context;
 
     ListView listView;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
