@@ -49,7 +49,12 @@
         <activity
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".SearchResultActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_search_result"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
