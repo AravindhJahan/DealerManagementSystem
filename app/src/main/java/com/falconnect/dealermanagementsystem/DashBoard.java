@@ -1,9 +1,11 @@
 package com.falconnect.dealermanagementsystem;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +13,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -93,14 +97,6 @@ public class DashBoard extends AppCompatActivity {
             "Wagon"
     };
 
-    // Initializing a Sites Spinner Array
-    String[] AlertDialogItems = new String[]{
-            "Quickr",
-            "Carwale",
-            "Cardekho",
-            "OLX"
-    };
-
     // Initializing a Brand Spinner Array
     String[] brand = new String[]{
             "Select Brand...",
@@ -122,14 +118,14 @@ public class DashBoard extends AppCompatActivity {
             "C-Class"
     };
 
-    List<String> ItemsIntoList;
+    Dialog dialog;
+    final String[] items = {
+            "Quickr",
+            "Carwale",
+            "Cardekho",
+            "OLX"};
 
-    boolean[] Selectedtruefalse = new boolean[]{
-            false,
-            false,
-            false,
-            false
-    };
+    final ArrayList itemsSelected = new ArrayList();
 
 
     @Override
@@ -205,42 +201,39 @@ public class DashBoard extends AppCompatActivity {
         sites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertdialogbuilder = new AlertDialog.Builder(DashBoard.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(DashBoard.this);
+                builder.setTitle("Select Sites");
+                builder.setMultiChoiceItems(items, null,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedItemId, boolean isSelected) {
+                                if (isSelected) {
+                                    itemsSelected.add(selectedItemId);
+                                } else if (itemsSelected.contains(selectedItemId)) {
+                                    itemsSelected.remove(Integer.valueOf(selectedItemId));
+                                }
+                            }
+                        })
+                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Your logic when OK button is clicked
+                                for (int i = 0; i < items.length; i++)
+                                    Log.e("Sizzz", String.valueOf(items[i]));
 
-                ItemsIntoList = Arrays.asList(AlertDialogItems);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
 
-                alertdialogbuilder.setMultiChoiceItems(AlertDialogItems, Selectedtruefalse, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                    }
-                });
-
-                alertdialogbuilder.setCancelable(false);
-
-                alertdialogbuilder.setTitle("Select Sites");
-
-                alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-
-                    }
-                });
-
-                alertdialogbuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                AlertDialog dialog = alertdialogbuilder.create();
-
+                            }
+                        });
+                dialog = builder.create();
                 dialog.show();
+
             }
         });
-
-
         //Button By Model
         by_mod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -263,7 +256,9 @@ public class DashBoard extends AppCompatActivity {
         });
 
         //Button Budget Model
-        bud_mod.setOnClickListener(new View.OnClickListener() {
+        bud_mod.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
                 by_mod.setBackgroundResource(R.drawable.by_model);
@@ -281,8 +276,9 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
+        search.setOnClickListener(new View.OnClickListener()
 
-        search.setOnClickListener(new View.OnClickListener() {
+        {
             @Override
             public void onClick(View v) {
                 Intent j = new Intent(DashBoard.this, SearchResultActivity.class);

@@ -53,6 +53,11 @@
     </style>
 
 
-    <!--ActionBar-->
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#FFCC00</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:background">#778899</item>
+    </style>
+
 
 </resources>
