@@ -42,7 +42,7 @@
         android:layout_below="@+id/header_search_list"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:background="#FFF"
         app:cardCornerRadius="5dp"
@@ -70,9 +70,9 @@
         android:id="@+id/list_search_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/card" />
-
-
+    
     <!--Footet ListView (Recycler Viewer)-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler"
