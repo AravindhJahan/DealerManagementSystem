@@ -119,6 +119,7 @@ public class DashBoard extends AppCompatActivity {
     };
 
     Dialog dialog;
+
     final String[] items = {
             "Quickr",
             "Carwale",
@@ -126,7 +127,6 @@ public class DashBoard extends AppCompatActivity {
             "OLX"};
 
     final ArrayList itemsSelected = new ArrayList();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,8 +218,7 @@ public class DashBoard extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 //Your logic when OK button is clicked
-                                for (int i = 0; i < items.length; i++)
-                                    Log.e("Sizzz", String.valueOf(items[i]));
+
 
                             }
                         })

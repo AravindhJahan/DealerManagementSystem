@@ -31,6 +31,8 @@ public class SearchResultActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_search_result);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
