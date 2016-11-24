@@ -59,7 +59,7 @@
             android:layout_marginLeft="10dp"
             android:background="#fff"
             android:fontFamily="robotoregular.ttf"
-            android:hint="Username/Email" />
+            android:hint="Email ID" />
 
     </LinearLayout>
 

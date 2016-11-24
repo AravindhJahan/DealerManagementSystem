@@ -118,13 +118,21 @@ public class DashBoard extends AppCompatActivity {
             "C-Class"
     };
 
-    Dialog dialog;
-
     final String[] items = {
             "Quickr",
             "Carwale",
             "Cardekho",
             "OLX"};
+
+
+    List<String> ItemsIntoList;
+
+    boolean[] Selectedtruefalse = new boolean[]{
+            false,
+            false,
+            false,
+            false
+    };
 
     final ArrayList itemsSelected = new ArrayList();
 
@@ -201,36 +209,47 @@ public class DashBoard extends AppCompatActivity {
         sites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(DashBoard.this);
-                builder.setTitle("Select Sites");
-                builder.setMultiChoiceItems(items, null,
-                        new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedItemId, boolean isSelected) {
-                                if (isSelected) {
-                                    itemsSelected.add(selectedItemId);
-                                } else if (itemsSelected.contains(selectedItemId)) {
-                                    itemsSelected.remove(Integer.valueOf(selectedItemId));
-                                }
-                            }
-                        })
-                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
-                                //Your logic when OK button is clicked
+                alertdialogbuilder = new AlertDialog.Builder(DashBoard.this);
 
+                ItemsIntoList = Arrays.asList(items);
 
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int id) {
+                alertdialogbuilder.setMultiChoiceItems(items, Selectedtruefalse, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
+                    }
+                });
+
+                alertdialogbuilder.setCancelable(false);
+
+                alertdialogbuilder.setTitle("Select Sites");
+
+                alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        int a = 0;
+                        while (a < Selectedtruefalse.length) {
+                            boolean value = Selectedtruefalse[a];
+
+                            if (value) {
+                                sites.setText(sites.getText() + ItemsIntoList.get(a) + "\n");
                             }
-                        });
-                dialog = builder.create();
+                            a++;
+                        }
+
+                    }
+                });
+
+                alertdialogbuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = alertdialogbuilder.create();
+
                 dialog.show();
-
             }
         });
         //Button By Model

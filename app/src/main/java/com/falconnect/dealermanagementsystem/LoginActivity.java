@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
 
             ServiceHandler sh = new ServiceHandler();
 
-            String main_url = Constant.LOGIN_API + "fname=" + user.toString() + "&password=" + pass.toString();
+            String main_url = Constant.LOGIN_API + "email=" + user.toString() + "&password=" + pass.toString();
 
             String json = sh.makeServiceCall(main_url, ServiceHandler.POST);
 
