@@ -191,21 +191,10 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String file_url) {
 
             if (loginlistmap.get("REsult").equals("1")) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle("Login Sucessfull");
-
-                builder.setMessage(loginlistmap.get("Message"))
-                        .setCancelable(false)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-
-                                Intent i = new Intent (LoginActivity.this, DashBoard.class);
-                                startActivity(i);
-                            }
-                        });
-
-                builder.show();
-            } else {
+                Intent i = new Intent(LoginActivity.this, DashBoard.class);
+                startActivity(i);
+            }
+            else{
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(loginlistmap.get("Message"))
@@ -220,5 +209,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
 }
+

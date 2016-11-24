@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickevent() {
         //Go to Login screen
-        Intent intent = new Intent(MainActivity.this, DashBoard.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
 
         //finish this activity
