@@ -31,7 +31,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     TextView back_to_login;
 
     String email_id;
-    public static String forgot_password_url = "http://52.220.105.165/dev/public/forgot_password?";
 
     public ArrayList<HashMap<String, String>> ForgotList;
     HashMap<String, String> forgotpasswordlist;
@@ -111,7 +110,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
             ServiceHandler sh = new ServiceHandler();
 
-            String forgot_password_main_url = forgot_password_url + "mailid=" + email_id.toString();
+            String forgot_password_main_url = Constant.FORGOT_PASSWORD_API + "mailid=" + email_id.toString();
 
             String json = sh.makeServiceCall(forgot_password_main_url, ServiceHandler.POST);
 
