@@ -11,14 +11,14 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
-        card_view:cardElevation="4dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        card_view:cardElevation="4dp">
 
 
         <RelativeLayout
@@ -35,25 +35,36 @@
                 android:layout_marginTop="8dp"
                 android:src="@drawable/image1" />
 
-            <!--Car Name-->
-            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                android:id="@+id/car_name"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/cartitlelayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_image"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="Ferrari - ZR 65 DX"
-                android:textColor="#000"
-                android:textSize="18dp"
-                app:font="robotoregular.ttf" />
+                android:orientation="horizontal">
+
+
+                <!--Car Name-->
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/car_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ferrari - ZR 65 DX"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    app:font="robotoregular.ttf" />
+
+
+            </LinearLayout>
 
             <!--Car Rate-->
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:id="@+id/car_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/car_name"
+                android:layout_below="@+id/cartitlelayout"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:text="40,000,000"
@@ -104,12 +115,12 @@
                 android:id="@+id/car_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
-                app:font="robotoregular.ttf"
-                android:layout_marginLeft="10dp"
                 android:layout_below="@+id/details"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="2nd cross street, Adayar, Chennai, India"/>
+                android:text="2nd cross street, Adayar, Chennai, India"
+                android:textSize="12dp"
+                app:font="robotoregular.ttf" />
 
         </RelativeLayout>
 

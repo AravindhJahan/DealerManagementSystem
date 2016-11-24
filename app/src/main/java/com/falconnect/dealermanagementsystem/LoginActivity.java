@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //JSON DATAS
     String user, pass;
-    private static String url = "http://52.220.105.165/dev/public/user_login?";
 
     public ArrayList<HashMap<String, String>> LoginList;
     HashMap<String, String> loginlistmap;
@@ -144,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
 
             ServiceHandler sh = new ServiceHandler();
 
-            String main_url = url + "fname=" + user.toString() + "&password=" + pass.toString();
+            String main_url = Constant.LOGIN_API + "fname=" + user.toString() + "&password=" + pass.toString();
 
             String json = sh.makeServiceCall(main_url, ServiceHandler.POST);
 

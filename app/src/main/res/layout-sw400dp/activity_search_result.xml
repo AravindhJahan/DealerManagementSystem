@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/card" />
-    
+
     <!--Footet ListView (Recycler Viewer)-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler"
