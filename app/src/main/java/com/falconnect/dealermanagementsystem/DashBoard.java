@@ -229,17 +229,25 @@ public class DashBoard extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         int a = 0;
-                        while (a < Selectedtruefalse.length) {
-                            boolean value = Selectedtruefalse[a];
+                        while(a < Selectedtruefalse.length)
+                        {
+                          boolean value = Selectedtruefalse[a];
 
-                            if (value) {
-                                sites.setText(sites.getText() + ItemsIntoList.get(a) + "\n");
-                            }
+                          if(value)
+                          {
+                              sites.setText(sites.getText() + ItemsIntoList.get(a) + " ");
+                          }
+
                             a++;
                         }
 
                     }
                 });
+
+                if(sites.isClickable())
+                {
+                    sites.setText("");
+                }
 
                 alertdialogbuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -252,8 +260,13 @@ public class DashBoard extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+
+
         //Button By Model
-        by_mod.setOnClickListener(new View.OnClickListener() {
+        by_mod.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
                 by_mod.setBackgroundResource(R.drawable.budget_model);
@@ -276,33 +289,37 @@ public class DashBoard extends AppCompatActivity {
         //Button Budget Model
         bud_mod.setOnClickListener(new View.OnClickListener()
 
-        {
-            @Override
-            public void onClick(View v) {
-                by_mod.setBackgroundResource(R.drawable.by_model);
-                bud_mod.setBackgroundResource(R.drawable.budget_model);
-                by_mod.setTextColor(Color.BLACK);
-                bud_mod.setTextColor(Color.WHITE);
+                                   {
+                                       @Override
+                                       public void onClick(View v) {
+                                           by_mod.setBackgroundResource(R.drawable.by_model);
+                                           bud_mod.setBackgroundResource(R.drawable.budget_model);
+                                           by_mod.setTextColor(Color.BLACK);
+                                           bud_mod.setTextColor(Color.WHITE);
 
-                //Visibility GONE spinner
-                mod_spinner.setVisibility(View.GONE);
-                bran_spinner.setVisibility(View.GONE);
+                                           //Visibility GONE spinner
+                                           mod_spinner.setVisibility(View.GONE);
+                                           bran_spinner.setVisibility(View.GONE);
 
-                //VISIBLE SPINNER
-                bud_spinner.setVisibility(View.VISIBLE);
-                vehi_spinner.setVisibility(View.VISIBLE);
-            }
-        });
+                                           //VISIBLE SPINNER
+                                           bud_spinner.setVisibility(View.VISIBLE);
+                                           vehi_spinner.setVisibility(View.VISIBLE);
+                                       }
+                                   }
+
+        );
 
         search.setOnClickListener(new View.OnClickListener()
 
-        {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                startActivity(j);
-            }
-        });
+                                  {
+                                      @Override
+                                      public void onClick(View v) {
+                                          Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                                          startActivity(j);
+                                      }
+                                  }
+
+        );
 
     }
 
