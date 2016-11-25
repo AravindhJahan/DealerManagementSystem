@@ -96,7 +96,7 @@
                 <View
                     android:id="@+id/view1"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:layout_below="@+id/search_sites"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
@@ -111,6 +111,18 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view1"
                     android:layout_marginTop="10dp" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/search_city_spinner"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="1dp"
+                    android:background="#808080" />
 
                 <!--Buttons-->
                 <RelativeLayout
@@ -160,7 +172,20 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone" />
 
+
                 </FrameLayout>
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/first_frame"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="1dp"
+                    android:background="#808080" />
 
                 <FrameLayout
                     android:id="@+id/second_frame"
@@ -185,6 +210,18 @@
                         android:visibility="gone" />
 
                 </FrameLayout>
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/second_frame"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="1dp"
+                    android:background="#808080" />
 
                 <!--Button Search-->
                 <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus

@@ -157,7 +157,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
             if (forgotpasswordlist.get("REsult").equals("1")) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPasswordActivity.this);
-                builder.setTitle("Login Sucessfull");
+                builder.setTitle("Check Email");
 
                 builder.setMessage(forgotpasswordlist.get("Message"))
                         .setCancelable(false)
@@ -170,8 +170,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 builder.show();
             } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ForgotPasswordActivity.this);
-                builder.setTitle("Login Incorrect");
-                builder.setMessage(forgotpasswordlist.get("Message"))
+                builder.setTitle("Invaild User");
+                builder.setMessage("Enter the valid email id")
                         .setCancelable(false)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

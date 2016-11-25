@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -68,13 +69,6 @@ public class LoginActivity extends AppCompatActivity {
 
         intialize();
 
-        //sign up click event
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signupclickevent();
-            }
-        });
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +84,31 @@ public class LoginActivity extends AppCompatActivity {
                 user = username.getText().toString();
                 pass = pass_word.getText().toString();
 
-                new GetLoginData().execute();
+                if (user.equals("") && pass.equals("")) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setTitle("Invalid User");
+                    builder.setMessage("Enter the valid username and password")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            });
+
+                    builder.show();
+                } else {
+                    new GetLoginData().execute();
+                }
+            }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(j);
+
+                LoginActivity.this.finish();
             }
         });
     }
@@ -107,12 +125,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void signupclickevent() {
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(intent);
-    }
 
-    //////ONBackPressed Button Dialog Box
+    /////ONBackPressed Button Dialog Box
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to exit?")
@@ -190,11 +204,11 @@ public class LoginActivity extends AppCompatActivity {
 
         protected void onPostExecute(String file_url) {
 
+
             if (loginlistmap.get("REsult").equals("1")) {
                 Intent i = new Intent(LoginActivity.this, DashBoard.class);
                 startActivity(i);
-            }
-            else{
+            } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(loginlistmap.get("Message"))
@@ -202,6 +216,8 @@ public class LoginActivity extends AppCompatActivity {
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
+                                username.setText("");
+                                pass_word.setText("");
                             }
                         });
 

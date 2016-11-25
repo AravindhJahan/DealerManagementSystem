@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
             "Pondicherry"
     };
 
+    TextView login_register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +77,17 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
+
+                RegisterActivity.this.finish();
+            }
+        });
+
+        login_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(k);
+
                 RegisterActivity.this.finish();
             }
         });
@@ -84,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
     public void intialize() {
         spinner = (Spinner) findViewById(R.id.city_spinner);
         back = (ImageView) findViewById(R.id.back);
+
+        login_register = (TextView) findViewById(R.id.login_registration);
     }
 
     public void spinnerdata() {
