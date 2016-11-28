@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
@@ -19,6 +20,7 @@ public class SearchResultActivity extends AppCompatActivity {
     Context context;
 
     ListView listView;
+
 
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -68,6 +70,9 @@ public class SearchResultActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(data);
         recyclerView_search.setAdapter(adapter);
+
+        listView = (ListView) findViewById(R.id.list_view);
+
 
     }
 

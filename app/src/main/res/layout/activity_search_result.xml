@@ -58,6 +58,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:cardCornerRadius="5dp"
+            android:background="#FFF"
             card_view:cardElevation="4dp">
 
 
@@ -65,6 +66,7 @@
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
                 android:background="#FFF"
                 android:hint="Search Car..."
                 android:textSize="15dp" />
