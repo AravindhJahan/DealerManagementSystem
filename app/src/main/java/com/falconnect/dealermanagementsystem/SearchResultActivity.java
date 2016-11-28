@@ -33,15 +33,17 @@ public class SearchResultActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_search_result);
 
+        //Keyboard Hide
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        //Status Bar Hide
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
         mVisible = true;
         context = this;
 
 
+        //Full Screen Activity
         if (mVisible) {
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             if (actionBar != null) {
@@ -53,12 +55,13 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
 
-
+        //Footer List View
         recyclerView_search = (RecyclerView) findViewById(R.id.my_recycler);
+        //List View Fixed size
         recyclerView_search.setHasFixedSize(true);
+        //List View Horizontal
         recyclerView_search.setLayoutManager(new LinearLayoutManager(SearchResultActivity.this, LinearLayoutManager.HORIZONTAL, false));
-
-
+        //Footer List View Get Data
         data = new ArrayList<DataModel>();
         for (int i = 0; i < MyData.nameArray.length; i++) {
             data.add(new DataModel(
@@ -67,10 +70,12 @@ public class SearchResultActivity extends AppCompatActivity {
                     MyData.drawableArray[i]
             ));
         }
-
+        //Footer List View Adapter
         adapter = new CustomAdapter(data);
         recyclerView_search.setAdapter(adapter);
+        //End Of Footer List View
 
+        //Search List ListView ID
         listView = (ListView) findViewById(R.id.list_view);
 
 
