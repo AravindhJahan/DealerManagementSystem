@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="3"
+    android:layout_weight="4"
     android:background="#FFF"
     android:orientation="vertical">
 
@@ -12,33 +12,39 @@
     <LinearLayout
         android:id="@+id/header_search_list"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/titlebar">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/nav_icon_drawer"
-            android:layout_width="30dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/nav_icon" />
-
-        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Search List"
-            android:textColor="#FFF"
-            android:textSize="18dp"
-            app:font="robotoregular.ttf" />
+            android:layout_height="40dp"
+            android:background="@drawable/titlebar">
+
+            <ImageView
+                android:id="@+id/nav_icon_drawer"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/nav_icon" />
+
+            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Search List"
+                android:textColor="#FFF"
+                android:textSize="18dp"
+                app:font="robotoregular.ttf" />
+        </LinearLayout>
 
     </LinearLayout>
 
+    <!--Search Bar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,8 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
             app:cardCornerRadius="5dp"
             card_view:cardElevation="4dp">
 
@@ -60,109 +64,54 @@
             <EditText
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:background="#FFF"
                 android:hint="Search Car..."
-                android:textSize="18dp" />
+                android:textSize="15dp" />
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="right"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/search_blue" />
 
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
 
+    <!--ListView-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_height="300dp"
+        android:layout_weight="3"
+        android:gravity="bottom"
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/list_search_result"
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="402dp" />
-
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
+    <!--Footer-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"></LinearLayout>
+        android:layout_weight="0.02"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"></LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="6"></LinearLayout>
+        <!--Footet ListView (Recycler Viewer)-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="7"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="8"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="11"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="12"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="13"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="14"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="15"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="16"></LinearLayout>
-
-    <!--Footet ListView (Recycler Viewer)-->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_vertical"
-        android:scrollbars="none" />
+    </LinearLayout>
 
 </LinearLayout>
