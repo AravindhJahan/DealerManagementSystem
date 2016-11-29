@@ -824,10 +824,10 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                j.putExtra("City", selected_city);
+               /* j.putExtra("City", selected_city);
                 j.putExtra("Make", selected_make);
                 j.putExtra("Model", selected_model);
-                j.putExtra("Sites", sites.getText().toString());
+                j.putExtra("Sites", sites.getText().toString());*/
                 startActivity(j);
             }
         });
