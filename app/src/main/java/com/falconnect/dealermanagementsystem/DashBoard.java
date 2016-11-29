@@ -63,6 +63,9 @@ public class DashBoard extends AppCompatActivity {
     List<String> vehilist;
     // List<String> model_list;
 
+
+    String selected_city, selected_make, selected_model, selected_vehi, selected_budget;
+
     public ArrayList<HashMap<String, String>> city_spinner_list;
 
     HashMap<String, String> citylist;
@@ -317,15 +320,8 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
-        search.setOnClickListener(new View.OnClickListener()
 
-        {
-            @Override
-            public void onClick(View v) {
-                Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                startActivity(j);
-            }
-        });
+        search_button();
 
     }
 
@@ -518,7 +514,6 @@ public class DashBoard extends AppCompatActivity {
 
             pDialog.dismiss();
 
-
             ////City Data Get
             spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, R.layout.spinner_single_item, spinner_datas) {
                 @Override
@@ -556,6 +551,8 @@ public class DashBoard extends AppCompatActivity {
                         Toast.makeText
                                 (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                                 .show();
+
+                        selected_city = selectedItemText;
                     }
                 }
 
@@ -670,14 +667,16 @@ public class DashBoard extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                    String selectedItemText = (String) parent.getItemAtPosition(position);
+                    String selectedItem_Text = (String) parent.getItemAtPosition(position);
 
                     if (position > 0) {
                         Toast.makeText
-                                (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                                (getApplicationContext(), "Selected : " + selectedItem_Text, Toast.LENGTH_SHORT)
                                 .show();
 
                         value = position;
+
+                        selected_make = selectedItem_Text;
 
                         new Sub_model().execute();
                     }
@@ -695,6 +694,7 @@ public class DashBoard extends AppCompatActivity {
             });
 
         }
+
     }
 
     private class Sub_model extends AsyncTask<Void, Void, Void> {
@@ -721,6 +721,8 @@ public class DashBoard extends AppCompatActivity {
 
                 try {
                     JSONObject jsonObj = new JSONObject(json);
+
+                    model_datas.add("Select Model");
 
                     JSONArray model = jsonObj.getJSONArray("model_makeid");
 
@@ -760,7 +762,6 @@ public class DashBoard extends AppCompatActivity {
             return null;
         }
 
-
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
@@ -796,13 +797,14 @@ public class DashBoard extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                    String selectedItemText = (String) parent.getItemAtPosition(position);
+                    String selected_Item_Text = (String) parent.getItemAtPosition(position);
 
                     if (position > 0) {
                         Toast.makeText
-                                (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                                (getApplicationContext(), "Selected : " + selected_Item_Text, Toast.LENGTH_SHORT)
                                 .show();
 
+                        selected_model = selected_Item_Text;
                     }
                 }
 
@@ -815,4 +817,19 @@ public class DashBoard extends AppCompatActivity {
         }
     }
 
+    public void search_button(){
+        search.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v) {
+                Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                j.putExtra("City", selected_city);
+                j.putExtra("Make", selected_make);
+                j.putExtra("Model", selected_model);
+                j.putExtra("Sites", sites.getText().toString());
+                startActivity(j);
+            }
+        });
+    }
 }
