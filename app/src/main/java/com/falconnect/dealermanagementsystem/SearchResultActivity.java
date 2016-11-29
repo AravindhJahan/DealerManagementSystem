@@ -21,7 +21,6 @@ public class SearchResultActivity extends AppCompatActivity {
 
     ListView listView;
 
-
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView_search;
@@ -61,6 +60,7 @@ public class SearchResultActivity extends AppCompatActivity {
         recyclerView_search.setHasFixedSize(true);
         //List View Horizontal
         recyclerView_search.setLayoutManager(new LinearLayoutManager(SearchResultActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
         //Footer List View Get Data
         data = new ArrayList<DataModel>();
         for (int i = 0; i < MyData.nameArray.length; i++) {
