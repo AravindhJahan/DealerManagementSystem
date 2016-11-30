@@ -1,36 +1,30 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
+import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.navdrawer.SimpleSideDrawer;
@@ -45,7 +39,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DashBoard extends AppCompatActivity {
-
 
     private boolean mVisible;
     Context context;
@@ -147,7 +140,34 @@ public class DashBoard extends AppCompatActivity {
     private ArrayList<String> spinner_datas, make_datas, model_datas;
 
 
-    String get_city_id, get_city_name, get_brand_id, get_brand_name , get_model_id, get_model_name;
+    String get_city_id, get_city_name, get_brand_id, get_brand_name, get_model_id, get_model_name;
+
+
+    ///Navigation Drawer ListView Content
+    ListView list;
+
+    String[] web = {
+            "Home",
+            "Compare",
+            "Buy",
+            "Sell",
+            "Manage",
+            "Communication",
+            "Reports",
+            "Contact",
+            "Logout"
+    };
+    Integer[] imageId = {
+            R.drawable.search_white,
+            R.drawable.bids_white,
+            R.drawable.funding_white,
+            R.drawable.queries_white,
+            R.drawable.savecar_white,
+            R.drawable.queries_white,
+            R.drawable.savecar_white,
+            R.drawable.search_white,
+            R.drawable.funding_white
+    };
 
 
     @Override
@@ -222,6 +242,7 @@ public class DashBoard extends AppCompatActivity {
 
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
+
 
         //Site checkbox
         sites.setOnClickListener(new View.OnClickListener() {
@@ -321,6 +342,21 @@ public class DashBoard extends AppCompatActivity {
         });
 
 
+        //NAVIGATION DRAWER LIST VIEW
+
+        CustomList adapter = new CustomList(DashBoard.this, web, imageId);
+        list = (ListView) findViewById(R.id.nav_list_view);
+        list.setAdapter(adapter);
+        //list.setDivider(null);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(DashBoard.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Button Event
         search_button();
 
     }
@@ -681,8 +717,7 @@ public class DashBoard extends AppCompatActivity {
                         new Sub_model().execute();
                     }
 
-                    if(bran_spinner.isClickable())
-                    {
+                    if (bran_spinner.isClickable()) {
                         model_datas.clear();
                     }
                 }
@@ -713,7 +748,7 @@ public class DashBoard extends AppCompatActivity {
 
             String json = sh.makeServiceCall(sub_make, ServiceHandler.POST);
 
-           // datas = new ArrayList<City_Make_Spinner_Model>();
+            // datas = new ArrayList<City_Make_Spinner_Model>();
 
             if (json != null) {
 
@@ -817,7 +852,7 @@ public class DashBoard extends AppCompatActivity {
         }
     }
 
-    public void search_button(){
+    public void search_button() {
         search.setOnClickListener(new View.OnClickListener()
 
         {
@@ -832,4 +867,5 @@ public class DashBoard extends AppCompatActivity {
             }
         });
     }
+
 }

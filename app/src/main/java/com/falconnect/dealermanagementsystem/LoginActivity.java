@@ -1,10 +1,14 @@
 package com.falconnect.dealermanagementsystem;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +72,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         intialize();
+
+        ConnectivityManager cm = (ConnectivityManager) LoginActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        boolean isWiFi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
 
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +220,7 @@ public class LoginActivity extends AppCompatActivity {
             if (loginlistmap.get("REsult").equals("1")) {
                 Intent i = new Intent(LoginActivity.this, DashBoard.class);
                 startActivity(i);
+                LoginActivity.this.finish();
             } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");

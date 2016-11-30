@@ -20,7 +20,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewName;
-        TextView textViewVersion;
         ImageView imageViewIcon;
 
         public MyViewHolder(View itemView) {
