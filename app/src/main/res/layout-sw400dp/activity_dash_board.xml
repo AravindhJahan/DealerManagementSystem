@@ -138,7 +138,7 @@
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
                         android:id="@+id/budget_model"
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:layout_height="30dp"
                         android:background="@drawable/budget_model"
                         android:text="Budget Model"
@@ -147,7 +147,7 @@
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
                         android:id="@+id/by_model"
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:layout_height="30dp"
                         android:layout_toRightOf="@+id/budget_model"
                         android:background="@drawable/by_model"
