@@ -11,11 +11,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -23,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.doodle.android.chips.ChipsView;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
@@ -85,7 +88,10 @@ public class DashBoard extends AppCompatActivity {
 
     TextView sites;
 
+    boolean value_new, value_sample;
+
     int value = 0;
+
     // Initializing a Budget Spinner Array
     String[] budget = new String[]{
             "Select Budget Range...",
@@ -134,6 +140,10 @@ public class DashBoard extends AppCompatActivity {
             false
     };
 
+    AutoCompleteTextView text;
+
+    int a = 0;
+
     final ArrayList itemsSelected = new ArrayList();
 
     private ProgressDialog pDialog;
@@ -168,7 +178,6 @@ public class DashBoard extends AppCompatActivity {
             R.drawable.search_white,
             R.drawable.funding_white
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,14 +276,13 @@ public class DashBoard extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        int a = 0;
                         while (a < Selectedtruefalse.length) {
-                            boolean value = Selectedtruefalse[a];
 
-                            if (value) {
+                            value_new = Selectedtruefalse[a];
+
+                            if (value_new) {
                                 sites.setText(sites.getText() + ItemsIntoList.get(a) + " ");
                             }
-
                             a++;
                         }
 
@@ -354,7 +362,6 @@ public class DashBoard extends AppCompatActivity {
                 Toast.makeText(DashBoard.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
             }
         });
-
 
         //Button Event
         search_button();
@@ -473,7 +480,6 @@ public class DashBoard extends AppCompatActivity {
         });
 
     }
-
 
     private class City_Datas extends AsyncTask<Void, Void, Void> {
         @Override
@@ -597,6 +603,7 @@ public class DashBoard extends AppCompatActivity {
 
                 }
             });
+
             ////End City Data Get
 
         }
@@ -853,16 +860,13 @@ public class DashBoard extends AppCompatActivity {
     }
 
     public void search_button() {
-        search.setOnClickListener(new View.OnClickListener()
-
-        {
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-               /* j.putExtra("City", selected_city);
+                j.putExtra("City", selected_city);
                 j.putExtra("Make", selected_make);
                 j.putExtra("Model", selected_model);
-                j.putExtra("Sites", sites.getText().toString());*/
                 startActivity(j);
             }
         });

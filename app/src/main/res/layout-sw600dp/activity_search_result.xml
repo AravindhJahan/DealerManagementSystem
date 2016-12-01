@@ -13,19 +13,21 @@
         android:id="@+id/header_search_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.26"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/titlebar">
+            android:layout_height="79dp"
+            android:background="@drawable/titlebar"
+            android:weightSum="1">
 
             <ImageView
                 android:id="@+id/nav_icon_drawer"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="54dp"
                 android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
                 android:src="@drawable/back_icon" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -39,7 +41,8 @@
                 android:text="Search List"
                 android:textColor="#FFF"
                 android:textSize="18dp"
-                app:font="robotoregular.ttf" />
+                app:font="robotoregular.ttf"
+                android:id="@+id/customTextView2" />
         </LinearLayout>
 
     </LinearLayout>
@@ -48,7 +51,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="0.43"
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
@@ -80,6 +83,36 @@
                 android:src="@drawable/search_blue" />
 
         </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <com.doodle.android.chips.ChipsView
+            android:id="@+id/chipsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cv_max_height="120dp"
+            app:cv_vertical_spacing="2dp"
+            app:cv_bg_color="#f00"
+            app:cv_bg_color_clicked="#0f0"
+            app:cv_bg_color_error_clicked="#0f0"
+            app:cv_color="#00f"
+            app:cv_color_clicked="#721"
+            app:cv_color_error_clicked="#f00"
+            app:cv_text_color="#199"
+            app:cv_text_color_clicked="#180"
+            app:cv_text_color_error_clicked="#000"
+            app:cv_icon_delete="@drawable/ic_close_24dp"
+            app:cv_dialog_title="This is the title"
+            app:cv_dialog_et_placeholder="email2"
+            app:cv_dialog_confirm="confirm2"
+            app:cv_dialog_cancel="cancel2"/>
+
 
     </LinearLayout>
 

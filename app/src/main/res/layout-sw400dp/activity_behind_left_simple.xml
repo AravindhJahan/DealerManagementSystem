@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/leftmenu"
         android:orientation="vertical">
 
