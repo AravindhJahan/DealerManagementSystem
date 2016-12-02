@@ -126,8 +126,9 @@
                     android:background="#fff"
                     android:fontFamily="robotoregular.ttf"
                     android:hint="Password"
-                    android:text="shobax"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="shobax" />
+
 
             </LinearLayout>
 

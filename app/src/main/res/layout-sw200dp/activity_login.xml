@@ -11,10 +11,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <!--Header Image LOGO and Dealer -->
@@ -22,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_weight="1.03"
+            android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
@@ -56,8 +56,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:layout_gravity="center"
+            android:layout_weight="2"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -83,9 +83,10 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:background="#fff"
-                    android:text="ahilajjjj@falconnect.in"
                     android:fontFamily="robotoregular.ttf"
-                    android:hint="Email ID" />
+                    android:hint="Email ID"
+                    android:text="ahilajjjj@falconnect.in" />
+
 
             </LinearLayout>
 
@@ -126,8 +127,9 @@
                     android:background="#fff"
                     android:fontFamily="robotoregular.ttf"
                     android:hint="Password"
-                    android:text="shobax"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:text="shobax" />
+
 
             </LinearLayout>
 
@@ -146,9 +148,9 @@
                 android:id="@+id/forgot_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:gravity="right"
                 android:text="Forgot Password?"
-                android:layout_marginTop="10dp"
                 android:textSize="16dp"
                 app:font="robotoregular.ttf" />
 
@@ -158,8 +160,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:layout_gravity="center"
+            android:layout_weight="3"
             android:gravity="center"
             android:orientation="vertical">
 

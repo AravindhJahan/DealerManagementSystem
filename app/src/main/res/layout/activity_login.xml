@@ -99,7 +99,7 @@
             <!--Password-->
             <LinearLayout
                 android:id="@+id/password_layout"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dealerplus"
                 android:layout_marginTop="10dp"
@@ -111,6 +111,12 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:src="@drawable/password" />
+
+                <ImageView
+                    android:id="@+id/eye"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/passwordview" />
 
                 <EditText
                     android:id="@+id/password"

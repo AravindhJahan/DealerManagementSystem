@@ -163,6 +163,7 @@ public class DashBoard extends AppCompatActivity {
             "Manage",
             "Communication",
             "Reports",
+            "Profile Settings",
             "Contact",
             "Logout"
     };
@@ -172,6 +173,7 @@ public class DashBoard extends AppCompatActivity {
             R.drawable.funding_white,
             R.drawable.queries_white,
             R.drawable.savecar_white,
+            R.drawable.search_white,
             R.drawable.queries_white,
             R.drawable.savecar_white,
             R.drawable.search_white,
@@ -350,7 +352,6 @@ public class DashBoard extends AppCompatActivity {
 
 
         //NAVIGATION DRAWER LIST VIEW
-
         CustomList adapter = new CustomList(DashBoard.this, web, imageId);
         list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
@@ -358,7 +359,16 @@ public class DashBoard extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(DashBoard.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+
+                if (web[+position].equals("Profile Settings")) {
+                    Intent intent = new Intent(DashBoard.this, ChangePassword.class);
+                    startActivity(intent);
+                    mNav.closeLeftSide();
+
+                } else {
+                    Toast.makeText(DashBoard.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
+                    mNav.closeLeftSide();
+                }
             }
         });
 

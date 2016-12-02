@@ -54,6 +54,11 @@
             android:name=".SearchResultActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_search_result"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".ChangePassword"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_change_password"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 
