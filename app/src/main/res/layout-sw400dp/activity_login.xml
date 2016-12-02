@@ -83,6 +83,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:background="#fff"
+                    android:text="ahilajjjj@falconnect.in"
                     android:fontFamily="robotoregular.ttf"
                     android:hint="Email ID" />
 
@@ -125,6 +126,7 @@
                     android:background="#fff"
                     android:fontFamily="robotoregular.ttf"
                     android:hint="Password"
+                    android:text="shobax"
                     android:inputType="textPassword" />
 
             </LinearLayout>

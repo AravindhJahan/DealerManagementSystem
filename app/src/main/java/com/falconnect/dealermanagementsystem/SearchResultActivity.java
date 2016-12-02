@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 import android.widget.ListView;
 
-import com.doodle.android.chips.ChipsView;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 
@@ -18,7 +17,6 @@ public class SearchResultActivity extends AppCompatActivity {
 
     private boolean mVisible;
     Context context;
-    ChipsView mChipsView;
 
     ListView listView;
 
@@ -81,13 +79,6 @@ public class SearchResultActivity extends AppCompatActivity {
         adapter = new CustomAdapter(data);
         recyclerView_search.setAdapter(adapter);
         //End Of Footer List View
-
-
-        //Chip View
-
-        TokenTextView tokenTextView = (TokenTextView) findViewById(R.id.name);
-
-        //tokenTextView.setText();
 
 
         //Search List ListView ID
