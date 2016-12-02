@@ -1,33 +1,18 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.MultiAutoCompleteTextView;
 
-import com.android.ex.chips.BaseRecipientAdapter;
-import com.android.ex.chips.RecipientEditTextView;
-import com.android.ex.chips.recipientchip.DrawableRecipientChip;
 import com.doodle.android.chips.ChipsView;
-import com.doodle.android.chips.model.Contact;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
-import com.falconnect.dealermanagementsystem.Adapter.TokenTextView;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-
-import static java.security.AccessController.getContext;
 
 public class SearchResultActivity extends AppCompatActivity {
 
