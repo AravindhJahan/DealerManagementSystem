@@ -60,4 +60,15 @@
     </style>
 
 
+
+    <style name="AppCompatAlertDialogNewStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">#202020</item>
+        <item name="android:textColorPrimary">#000</item>
+        <item name="android:background">#FFF</item>
+    </style>
+
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#4B0082</item>
+        <item name="colorControlActivated">#FF1493</item>
+    </style>
 </resources>

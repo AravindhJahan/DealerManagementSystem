@@ -14,7 +14,7 @@
        android:textSize="18dp"
        android:text="Quickr"/>
 
-    <com.falconnect.dealermanagementsystem.FontAdapter.MyCheckBox
+    <!--<com.falconnect.dealermanagementsystem.FontAdapter.MyCheckBox
         android:id="@+id/checkbox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +36,6 @@
         android:layout_height="wrap_content"
         app:font="robotoregular.ttf"
         android:textSize="18dp"
-        android:text="OLX"/>
+        android:text="OLX"/>-->
 
 </LinearLayout>

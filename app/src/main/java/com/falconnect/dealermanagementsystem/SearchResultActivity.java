@@ -20,7 +20,7 @@ public class SearchResultActivity extends AppCompatActivity {
 
     ListView listView;
 
-    String City,Make,Model;
+    String City, Make, Model;
 
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -83,7 +83,6 @@ public class SearchResultActivity extends AppCompatActivity {
 
         //Search List ListView ID
         listView = (ListView) findViewById(R.id.list_view);
-
 
     }
 
