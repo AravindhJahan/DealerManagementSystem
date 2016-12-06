@@ -115,7 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view1"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="10dp" />
 
                 <View
                     android:id="@+id/view2"
@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/search_city_spinner"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
@@ -197,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/first_frame"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="10dp">
 
                     <!--Vehi type-->
                     <Spinner
@@ -235,7 +235,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/shape_submit"
                     android:text="Search"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="#FFF"
                     android:layout_below="@+id/view7"
                     android:layout_alignParentLeft="true"

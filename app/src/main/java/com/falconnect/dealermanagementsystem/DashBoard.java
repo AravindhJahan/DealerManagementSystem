@@ -52,27 +52,24 @@ public class DashBoard extends AppCompatActivity {
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
 
-    //List<String> cityList;
 
     List<String> budget_list;
     List<String> vehilist;
-    // List<String> model_list;
 
 
-    String selected_city, selected_make, selected_model, selected_vehi, selected_budget;
+    String selected_city, selected_make, selected_model;
 
     public ArrayList<HashMap<String, String>> city_spinner_list;
-
     HashMap<String, String> citylist;
 
     public ArrayList<HashMap<String, String>> make_spinner_list;
-
     HashMap<String, String> makelist;
 
     public ArrayList<HashMap<String, String>> model_spinner_list;
-
     HashMap<String, String> modelist;
 
+    public ArrayList<HashMap<String, String>> budget_spinner_list;
+    HashMap<String, String> budgetlist;
 
     ArrayList<City_Make_Spinner_Model> datas;
 
@@ -87,7 +84,7 @@ public class DashBoard extends AppCompatActivity {
 
     TextView sites;
 
-    boolean value_new, value_sample;
+    boolean value_new;
 
     int value = 0;
 
@@ -118,6 +115,7 @@ public class DashBoard extends AppCompatActivity {
             "Cardekho",
             "OLX"};
 
+
    /* // Initializing a Brand Spinner Array
     String[] model = new String[]{
             "Select Model...",
@@ -146,10 +144,12 @@ public class DashBoard extends AppCompatActivity {
     final ArrayList itemsSelected = new ArrayList();
 
     private ProgressDialog pDialog;
-    private ArrayList<String> spinner_datas, make_datas, model_datas;
+    private ArrayList<String> spinner_datas, make_datas, model_datas, site_datas, budget_datas;
 
 
     String get_city_id, get_city_name, get_brand_id, get_brand_name, get_model_id, get_model_name;
+
+    String site_id, site_name, budget_id, budget_name;
 
 
     ///Navigation Drawer ListView Content
@@ -185,14 +185,11 @@ public class DashBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_dash_board);
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mVisible = true;
         context = this;
-
 
         if (mVisible) {
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
@@ -208,22 +205,16 @@ public class DashBoard extends AppCompatActivity {
 
         new City_Datas().execute();
         new Make_Datas().execute();
-
-
-        //Budget Datas to Spinner
-        Budget_Datas();
+        new Budget_Datas().execute();
 
         //Vehicle Datas to Spinner
         Vehi_Datas();
 
-        //Model Datas to Spinner
-        // Model_Datas();
-
         spinner_datas = new ArrayList<String>();
-
         make_datas = new ArrayList<String>();
-
         model_datas = new ArrayList<String>();
+        budget_datas = new ArrayList<String>();
+
 
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
         mNav = new SimpleSideDrawer(this);
@@ -305,6 +296,7 @@ public class DashBoard extends AppCompatActivity {
                 dialog.show();
             }
         });
+
 
 
         //Button By Model
@@ -392,53 +384,6 @@ public class DashBoard extends AppCompatActivity {
         bud_mod = (Button) findViewById(R.id.budget_model);
         by_mod = (Button) findViewById(R.id.by_model);
         search = (Button) findViewById(R.id.search_btn);
-    }
-
-    public void Budget_Datas() {
-        budget_list = new ArrayList<>(Arrays.asList(budget));
-        spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, R.layout.spinner_single_item, budget_list) {
-            @Override
-            public boolean isEnabled(int position) {
-                if (position == 0) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if (position == 0) {
-                    tv.setTextColor(Color.GRAY);
-                } else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_single_item);
-
-        bud_spinner.setAdapter(spinnerArrayAdapter);
-
-        bud_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-
-                if (position > 0) {
-                    Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     public void Vehi_Datas() {
@@ -866,6 +811,124 @@ public class DashBoard extends AppCompatActivity {
             });
 
         }
+    }
+
+    private class Budget_Datas extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String budget_url = Constant.DASH_BOARD_SPINNER_API;
+
+            String json = sh.makeServiceCall(budget_url, ServiceHandler.GET);
+
+            datas = new ArrayList<City_Make_Spinner_Model>();
+
+            if (json != null) {
+
+                budget_spinner_list = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    budget_datas.add("Select Budget");
+
+                    JSONArray budget = jsonObj.getJSONArray("car_budget");
+
+                    for (int j = 0; j <= budget.length(); j++) {
+                        budget_id = budget.getJSONObject(j).getString("id");
+                        budget_name = budget.getJSONObject(j).getString("budget_varient_name");
+
+                        budgetlist = new HashMap<>();
+
+                        budgetlist.put("ID", budget_id);
+                        budgetlist.put("BUDGET", budget_name);
+
+                        budget_spinner_list.add(budgetlist);
+
+                        budget_datas.add(budget_name);
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, R.layout.spinner_single_item, budget_datas) {
+                @Override
+                public boolean isEnabled(int position) {
+                    if (position == 0) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+                @Override
+                public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getDropDownView(position, convertView, parent);
+                    TextView tv = (TextView) view;
+                    if (position == 0) {
+                        tv.setTextColor(Color.GRAY);
+                    } else {
+                        tv.setTextColor(Color.BLACK);
+                    }
+                    return view;
+                }
+            };
+            spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_single_item);
+
+            bud_spinner.setAdapter(spinnerArrayAdapter);
+
+            bud_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                    if (position > 0) {
+                        Toast.makeText
+                                (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+        }
+
     }
 
     public void search_button() {

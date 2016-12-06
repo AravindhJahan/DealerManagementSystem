@@ -234,7 +234,7 @@
                     android:layout_below="@+id/second_frame"
                     android:background="@drawable/shape_submit"
                     android:text="Search"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textColor="#FFF" />
 
             </RelativeLayout>
