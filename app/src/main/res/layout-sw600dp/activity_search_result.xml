@@ -3,29 +3,25 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="4"
     android:background="#FFF"
     android:orientation="vertical">
-
 
     <!--Header-->
     <LinearLayout
         android:id="@+id/header_search_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.26"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="79dp"
-            android:background="@drawable/titlebar"
-            android:weightSum="1">
+            android:layout_height="80dp"
+            android:background="@drawable/titlebar">
 
             <ImageView
                 android:id="@+id/nav_icon_drawer"
                 android:layout_width="50dp"
-                android:layout_height="54dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:src="@drawable/back_icon" />
@@ -40,7 +36,8 @@
                 android:gravity="center"
                 android:text="Search List"
                 android:textColor="#FFF"
-                android:textSize="18dp"
+                android:textSize="28dp"
+                android:layout_marginRight="55dp"
                 app:font="robotoregular.ttf"
                 android:id="@+id/customTextView2" />
         </LinearLayout>
@@ -48,50 +45,24 @@
     </LinearLayout>
 
     <!--Search Bar-->
-    <LinearLayout
+    <SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.43"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardCornerRadius="5dp"
-            android:background="#FFF"
-            card_view:cardElevation="4dp">
-
-
-            <EditText
-                android:id="@+id/search_view"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="#FFF"
-                android:hint="Search Car..."
-                android:textSize="15dp" />
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/search_blue" />
-
-        </android.support.v7.widget.CardView>
-
-    </LinearLayout>
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:actionViewClass="android.widget.SearchView"
+        android:background="@drawable/search_shape"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:showAsAction="collapseActionView" />
 
     <!--ListView-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_weight="3"
-        android:gravity="bottom"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ListView
@@ -105,10 +76,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.02"
         android:gravity="bottom"
         android:orientation="vertical">
-
 
         <!--Footet ListView (Recycler Viewer)-->
         <android.support.v7.widget.RecyclerView
