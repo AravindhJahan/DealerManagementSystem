@@ -73,19 +73,20 @@
     </LinearLayout>
 
     <!--Footer-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom">
 
         <!--Footet ListView (Recycler Viewer)-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
+
             android:scrollbars="none" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

@@ -215,7 +215,6 @@ public class DashBoard extends AppCompatActivity {
         model_datas = new ArrayList<String>();
         budget_datas = new ArrayList<String>();
 
-
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
         mNav = new SimpleSideDrawer(this);
         mNav.setLeftBehindContentView(R.layout.activity_behind_left_simple);
@@ -226,6 +225,7 @@ public class DashBoard extends AppCompatActivity {
                 mNav.toggleLeftDrawer();
             }
         });
+
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -317,6 +317,10 @@ public class DashBoard extends AppCompatActivity {
                 //VISIBLE SPINNER
                 mod_spinner.setVisibility(View.VISIBLE);
                 bran_spinner.setVisibility(View.VISIBLE);
+
+                model_datas.add("Select Model");
+                spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, R.layout.spinner_single_item, model_datas);
+                mod_spinner.setAdapter(spinnerArrayAdapter);
 
             }
         });
@@ -676,6 +680,7 @@ public class DashBoard extends AppCompatActivity {
                         selected_make = selectedItem_Text;
 
                         new Sub_model().execute();
+
                     }
 
                     if (bran_spinner.isClickable()) {
@@ -697,6 +702,8 @@ public class DashBoard extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+
 
         }
 
@@ -935,6 +942,7 @@ public class DashBoard extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                 j.putExtra("City", selected_city);
                 j.putExtra("Make", selected_make);

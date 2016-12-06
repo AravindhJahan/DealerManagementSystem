@@ -1,17 +1,31 @@
 package com.falconnect.dealermanagementsystem;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchResultActivity extends AppCompatActivity {
 
@@ -21,6 +35,8 @@ public class SearchResultActivity extends AppCompatActivity {
     ListView listView;
 
     String City, Make, Model;
+
+    SearchView search;
 
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -58,7 +74,6 @@ public class SearchResultActivity extends AppCompatActivity {
         } else {
         }
 
-
         //Footer List View
         recyclerView_search = (RecyclerView) findViewById(R.id.my_recycler);
         //List View Fixed size
@@ -84,6 +99,34 @@ public class SearchResultActivity extends AppCompatActivity {
         //Search List ListView ID
         listView = (ListView) findViewById(R.id.list_view);
 
+
+        search = (SearchView) findViewById(R.id.searchView);
+        search.setQueryHint("Search Car...");
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //String encodedUrl = null;
+                search.clearFocus();
+               /* Intent intent = new Intent(getActivity(), Product_List_Activity.class);
+                intent.putExtra("fromActivity", "search");
+
+                intent.putExtra("search_query", encodedUrl);
+                startActivity(intent);*/
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
+
+
     }
+
+
 
 }

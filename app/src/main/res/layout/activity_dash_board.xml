@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="3"
+    android:layout_weight="2"
     android:background="#FFF"
     android:orientation="vertical">
 
@@ -11,7 +11,6 @@
         android:id="@+id/header_search_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -45,7 +44,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
 
         <FrameLayout
@@ -56,15 +56,15 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="356dp"
+                android:layout_height="360dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/car_bg" />
 
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/car_iamge" />
 
             <RelativeLayout
@@ -78,7 +78,7 @@
                     android:id="@+id/customTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="80dp"
                     android:gravity="center"
                     android:text="Search the right car"
                     android:textAllCaps="true"
@@ -135,12 +135,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/search_city_spinner"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
                         android:id="@+id/budget_model"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="30dp"
                         android:background="@drawable/budget_model"
                         android:text="Budget Model"
@@ -149,7 +149,7 @@
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
                         android:id="@+id/by_model"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="30dp"
                         android:layout_toRightOf="@+id/budget_model"
                         android:background="@drawable/by_model"
@@ -233,8 +233,8 @@
                     android:id="@+id/search_btn"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_below="@+id/second_frame"
-                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/view7"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/shape_submit"
                     android:text="Search"
                     android:textColor="#FFF" />
@@ -246,22 +246,21 @@
     </LinearLayout>
 
     <!--Footer-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
+        android:gravity="bottom">
 
         <!--Footet ListView (Recycler Viewer)-->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
+
             android:scrollbars="none" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
 

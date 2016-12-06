@@ -244,22 +244,21 @@
     </LinearLayout>
 
     <!--Footer-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
+        android:gravity="bottom">
 
         <!--Footet ListView (Recycler Viewer)-->
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_view"
-            android:layout_width="fill_parent"
+            android:id="@+id/my_recycler"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
+
             android:scrollbars="none" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
 
