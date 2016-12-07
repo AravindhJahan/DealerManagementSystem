@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
+import com.falconnect.dealermanagementsystem.FontAdapter.MultiSelectSpinner;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.navdrawer.SimpleSideDrawer;
@@ -44,7 +45,6 @@ public class DashBoard extends AppCompatActivity {
 
     private boolean mVisible;
     Context context;
-    AlertDialog.Builder alertdialogbuilder;
     ImageView nav;
     private SimpleSideDrawer mNav;
     private static RecyclerView.Adapter adapter;
@@ -52,15 +52,15 @@ public class DashBoard extends AppCompatActivity {
     private static RecyclerView recyclerView;
     private static ArrayList<DataModel> data;
 
-
-    List<String> budget_list;
     List<String> vehilist;
 
-
-    String selected_city, selected_make, selected_model;
+    String selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
 
     public ArrayList<HashMap<String, String>> city_spinner_list;
     HashMap<String, String> citylist;
+
+    public ArrayList<HashMap<String, String>> site_spinner_list;
+    HashMap<String, String> sitelist;
 
     public ArrayList<HashMap<String, String>> make_spinner_list;
     HashMap<String, String> makelist;
@@ -82,22 +82,9 @@ public class DashBoard extends AppCompatActivity {
 
     ArrayAdapter<String> spinnerArrayAdapter;
 
-    TextView sites;
-
-    boolean value_new;
+    MultiSelectSpinner sites;
 
     int value = 0;
-
-    // Initializing a Budget Spinner Array
-    String[] budget = new String[]{
-            "Select Budget Range...",
-            "Below 1 Lakh",
-            "1 Lakh - 2 Lakh",
-            "2 Lakh - 3 Lakh",
-            "3 Lakh - 4 Lakh",
-            "5 Lakh - Above"
-    };
-
     // Initializing a Vehicle Spinner Array
     String[] vehi = new String[]{
             "Select Vehicle type...",
@@ -109,24 +96,11 @@ public class DashBoard extends AppCompatActivity {
             "Wagon"
     };
 
-    final String[] items = {
+   /* final String[] items = {
             "Quickr",
             "Carwale",
             "Cardekho",
-            "OLX"};
-
-
-   /* // Initializing a Brand Spinner Array
-    String[] model = new String[]{
-            "Select Model...",
-            "X1012",
-            "Xuv",
-            "Duster",
-            "R8",
-            "A6",
-            "C-Class"
-    };
-*/
+            "OLX"};*/
 
     List<String> ItemsIntoList;
 
@@ -206,14 +180,20 @@ public class DashBoard extends AppCompatActivity {
         new City_Datas().execute();
         new Make_Datas().execute();
         new Budget_Datas().execute();
+        new Site_Datas().execute();
+
 
         //Vehicle Datas to Spinner
         Vehi_Datas();
+
+        //Sites Datas to Spinner
+       // Sites_Datas();
 
         spinner_datas = new ArrayList<String>();
         make_datas = new ArrayList<String>();
         model_datas = new ArrayList<String>();
         budget_datas = new ArrayList<String>();
+        site_datas = new ArrayList<String>();
 
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
         mNav = new SimpleSideDrawer(this);
@@ -243,61 +223,6 @@ public class DashBoard extends AppCompatActivity {
 
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
-
-
-        //Site checkbox
-        sites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertdialogbuilder = new AlertDialog.Builder(DashBoard.this);
-
-                ItemsIntoList = Arrays.asList(items);
-
-                alertdialogbuilder.setMultiChoiceItems(items, Selectedtruefalse, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-
-                    }
-                });
-
-                alertdialogbuilder.setCancelable(false);
-
-                alertdialogbuilder.setTitle("Select Sites");
-
-                alertdialogbuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        while (a < Selectedtruefalse.length) {
-
-                            value_new = Selectedtruefalse[a];
-
-                            if (value_new) {
-                                sites.setText(sites.getText() + ItemsIntoList.get(a) + " ");
-                            }
-                            a++;
-                        }
-
-                    }
-                });
-
-                if (sites.isClickable()) {
-                    sites.setText("");
-                }
-
-                alertdialogbuilder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-
-                AlertDialog dialog = alertdialogbuilder.create();
-
-                dialog.show();
-            }
-        });
-
-
 
         //Button By Model
         by_mod.setOnClickListener(new View.OnClickListener()
@@ -382,7 +307,8 @@ public class DashBoard extends AppCompatActivity {
         mod_spinner = (Spinner) findViewById(R.id.model_spinner);
 
         //TextView
-        sites = (TextView) findViewById(R.id.search_sites);
+        //sites = (TextView) findViewById(R.id.search_sites);
+        sites = (MultiSelectSpinner) findViewById(R.id.search_sites);
 
         //Buttons
         bud_mod = (Button) findViewById(R.id.budget_model);
@@ -704,7 +630,6 @@ public class DashBoard extends AppCompatActivity {
             super.onPreExecute();
 
 
-
         }
 
         @Override
@@ -937,6 +862,88 @@ public class DashBoard extends AppCompatActivity {
         }
 
     }
+
+    private class Site_Datas extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String city_url = Constant.DASH_BOARD_SPINNER_API;
+
+            String json = sh.makeServiceCall(city_url, ServiceHandler.GET);
+
+            if (json != null) {
+
+                site_spinner_list = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    JSONArray city = jsonObj.getJSONArray("site_names");
+
+                    for (int k = 0; k <= city.length(); k++) {
+
+                        site_id = city.getJSONObject(k).getString("id");
+                        site_name = city.getJSONObject(k).getString("sitename");
+
+                        sitelist = new HashMap<>();
+
+                        sitelist.put("city_id", site_id);
+                        sitelist.put("city_name", site_name);
+
+                        site_spinner_list.add(sitelist);
+                        site_datas.add(site_name);
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_checked, site_datas);
+
+            sites.setListAdapter(spinnerArrayAdapter).setListener(new MultiSelectSpinner.MultiSpinnerListener() {
+                @Override
+                public void onItemsSelected(boolean[] selected) {
+
+                }
+            })
+                    .setAllCheckedText("All types")
+                    .setAllUncheckedText("Select Sites")
+                    .setTitle("Select Sites");
+
+        }
+    }
+
 
     public void search_button() {
         search.setOnClickListener(new View.OnClickListener() {

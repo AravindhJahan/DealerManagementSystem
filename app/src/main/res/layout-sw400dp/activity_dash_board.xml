@@ -84,17 +84,15 @@
                     android:textSize="20dp"
                     app:font="robotoregular.ttf" />
 
-                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                <com.falconnect.dealermanagementsystem.FontAdapter.MultiSelectSpinner
                     android:id="@+id/search_sites"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/customTextView"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:hint="Select Sites"
-                    android:textSize="14dp"
-                    app:font="robotoregular.ttf" />
+                    android:layout_marginTop="6dp"
+                    app:choiceDialogTheme="@style/AnotherCustomAlertDialogTheme" />
+
 
                 <View
                     android:id="@+id/view1"
