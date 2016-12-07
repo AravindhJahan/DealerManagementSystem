@@ -63,6 +63,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.car_address = (TextView) convertView.findViewById(R.id.car_address);
             holder.car_year = (TextView) convertView.findViewById(R.id.car_details_year);
             holder.car_owner = (TextView) convertView.findViewById(R.id.car_details_owner);
+            holder.no_of_images = (TextView) convertView.findViewById(R.id.noofimages);
             holder.favoriteImg = (ImageView) convertView.findViewById(R.id.chola);
 
 
@@ -86,7 +87,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         holder.car_year.setText(product.getYear());
         holder.car_owner.setText(product.getOwner());
         holder.car_address.setText(product.getAddress());
-
+        holder.no_of_images.setText(product.getNum_of_image());
 
         Glide.with(getContext()).load(product.getSite_image()).placeholder(R.drawable.chola).into(holder.favoriteImg);
 
@@ -98,7 +99,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         ImageView car_image;
         TextView car_name;
         TextView car_rate, car_date;
-        TextView car_kms, car_fuel, car_year, car_owner, car_address;
+        TextView car_kms, car_fuel, car_year, car_owner, car_address, no_of_images;
         ImageView favoriteImg;
 
     }

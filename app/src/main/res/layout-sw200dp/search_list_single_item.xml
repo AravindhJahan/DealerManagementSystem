@@ -43,6 +43,32 @@
                             android:scaleType="fitCenter"
                             android:src="@drawable/image1" />
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/camera" />
+
+                            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                                android:id="@+id/noofimages"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="4"
+                                android:gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="#FFF"
+                                android:layout_gravity="center"
+                                android:textSize="18dp"/>
+                        </LinearLayout>
+
                     </FrameLayout>
 
                     <LinearLayout
@@ -215,12 +241,12 @@
                             android:id="@+id/car_compare"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_gravity="end"
-                            android:layout_marginRight="28dp"
-                            android:src="@drawable/compare"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="28dp" />
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="28dp"
+                            android:layout_marginRight="28dp"
+                            android:src="@drawable/compare" />
 
 
                     </RelativeLayout>
