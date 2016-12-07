@@ -1,10 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
     android:orientation="vertical">
+
 
     <!--Header-->
     <LinearLayout
@@ -15,16 +15,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:background="@drawable/titlebar">
 
             <ImageView
                 android:id="@+id/nav_icon_drawer"
-                android:layout_width="50dp"
-                android:layout_height="70dp"
-                android:layout_marginLeft="10dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/back_icon" />
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/back_arrow" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:layout_width="match_parent"
@@ -33,13 +33,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:layout_marginRight="30dp"
                 android:gravity="center"
                 android:text="Search List"
                 android:textColor="#FFF"
-                android:textSize="28dp"
-                android:layout_marginRight="55dp"
-                app:font="robotoregular.ttf"
-                android:id="@+id/customTextView2" />
+                android:textSize="20dp"
+                app:font="robotoregular.ttf" />
         </LinearLayout>
 
     </LinearLayout>
@@ -49,6 +48,7 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/header_search_list"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
@@ -59,34 +59,20 @@
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:showAsAction="collapseActionView" />
 
-    <!--ListView-->
-    <LinearLayout
+
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@+id/searchView"
+        android:divider="#fff"
+        android:dividerHeight="8dp" />
 
-        <ListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_alignParentBottom="true"/>
 
-    </LinearLayout>
-
-    <!--Footer-->
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="bottom">
-
-        <!--Footet ListView (Recycler Viewer)-->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-
-            android:scrollbars="none" />
-
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

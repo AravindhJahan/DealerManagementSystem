@@ -96,10 +96,6 @@ public class DashBoard extends AppCompatActivity {
             "Wagon"
     };
 
-    AutoCompleteTextView text;
-
-    final ArrayList itemsSelected = new ArrayList();
-
     private ProgressDialog pDialog;
     private ArrayList<String> spinner_datas, make_datas, model_datas, site_datas, budget_datas;
 
@@ -165,13 +161,8 @@ public class DashBoard extends AppCompatActivity {
         new Budget_Datas().execute();
         new Site_Datas().execute();
 
-
         //Vehicle Datas to Spinner
         Vehi_Datas();
-
-        //Sites Datas to Spinner
-        // Sites_Datas();
-
         spinner_datas = new ArrayList<String>();
         make_datas = new ArrayList<String>();
         model_datas = new ArrayList<String>();
@@ -189,11 +180,9 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
-
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(DashBoard.this, LinearLayoutManager.HORIZONTAL, false));
-
 
         data = new ArrayList<DataModel>();
         for (int i = 0; i < MyData.nameArray.length; i++) {
@@ -254,12 +243,11 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
-
         //NAVIGATION DRAWER LIST VIEW
         CustomList adapter = new CustomList(DashBoard.this, web, imageId);
         list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
-        //list.setDivider(null);
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -371,6 +359,7 @@ public class DashBoard extends AppCompatActivity {
 
             datas = new ArrayList<City_Make_Spinner_Model>();
 
+
             if (json != null) {
 
                 city_spinner_list = new ArrayList<>();
@@ -458,24 +447,19 @@ public class DashBoard extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String selectedItemText = (String) parent.getItemAtPosition(position);
 
-                   if (position > 0) {
+                    if (position > 0) {
                         Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                                 .show();
 
                         selected_city = selectedItemText;
                     }
-
-
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
 
                 }
             });
-
             ////End City Data Get
-
         }
     }
 
@@ -627,7 +611,7 @@ public class DashBoard extends AppCompatActivity {
 
             String json = sh.makeServiceCall(sub_make, ServiceHandler.POST);
 
-            // datas = new ArrayList<City_Make_Spinner_Model>();
+             //datas = new ArrayList<City_Make_Spinner_Model>();
 
             if (json != null) {
 
@@ -937,28 +921,17 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(selected_city == null)
-                {
+                if (selected_city == null) {
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else if (selected_city != null && selected_make == null && selected_model == null
+                        && selected_vehicle_type == null && selected_budget == null) {
+                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city + "&page_name=searchpage";
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
-                    j.putExtra("Make", selected_make);
-                    j.putExtra("Model", selected_model);
-                    j.putExtra("Budget", selected_budget);
-                    j.putExtra("Vehicle", selected_vehicle_type);
-
-                    Log.e("City: ", selected_city);
-                    Log.e("Make: ", selected_make);
-                    Log.e("Model: ", selected_model);
-                    Log.e("Budget: ", selected_budget);
-                    Log.e("Vehicle: ", selected_vehicle_type);
-
+                    j.putExtra("City_Url", city_search_url);
+                    Log.e("URL", city_search_url);
                     startActivity(j);
                 }
-
 
             }
         });
