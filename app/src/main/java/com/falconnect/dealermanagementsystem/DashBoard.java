@@ -923,8 +923,8 @@ public class DashBoard extends AppCompatActivity {
 
                 if (selected_city == null) {
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
-                } else if (selected_city != null && selected_make == null && selected_model == null
-                        && selected_vehicle_type == null && selected_budget == null) {
+                }
+                else{
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city + "&page_name=searchpage";
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
