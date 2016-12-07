@@ -96,24 +96,7 @@ public class DashBoard extends AppCompatActivity {
             "Wagon"
     };
 
-   /* final String[] items = {
-            "Quickr",
-            "Carwale",
-            "Cardekho",
-            "OLX"};*/
-
-    List<String> ItemsIntoList;
-
-    boolean[] Selectedtruefalse = new boolean[]{
-            false,
-            false,
-            false,
-            false
-    };
-
     AutoCompleteTextView text;
-
-    int a = 0;
 
     final ArrayList itemsSelected = new ArrayList();
 
@@ -187,7 +170,7 @@ public class DashBoard extends AppCompatActivity {
         Vehi_Datas();
 
         //Sites Datas to Spinner
-       // Sites_Datas();
+        // Sites_Datas();
 
         spinner_datas = new ArrayList<String>();
         make_datas = new ArrayList<String>();
@@ -348,12 +331,14 @@ public class DashBoard extends AppCompatActivity {
         vehi_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
+                String selectedItemText1 = (String) parent.getItemAtPosition(position);
 
                 if (position > 0) {
                     Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                            (getApplicationContext(), "Selected : " + selectedItemText1, Toast.LENGTH_SHORT)
                             .show();
+
+                    selected_vehicle_type = selectedItemText1;
                 }
             }
 
@@ -473,13 +458,14 @@ public class DashBoard extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String selectedItemText = (String) parent.getItemAtPosition(position);
 
-                    if (position > 0) {
-                        Toast.makeText
-                                (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+                   if (position > 0) {
+                        Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                                 .show();
 
                         selected_city = selectedItemText;
                     }
+
+
                 }
 
                 @Override
@@ -850,6 +836,8 @@ public class DashBoard extends AppCompatActivity {
                         Toast.makeText
                                 (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
                                 .show();
+
+                        selected_budget = selectedItemText;
                     }
                 }
 
@@ -935,26 +923,43 @@ public class DashBoard extends AppCompatActivity {
                 @Override
                 public void onItemsSelected(boolean[] selected) {
 
+
                 }
             })
                     .setAllCheckedText("All types")
                     .setAllUncheckedText("Select Sites")
                     .setTitle("Select Sites");
-
         }
     }
-
 
     public void search_button() {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                j.putExtra("City", selected_city);
-                j.putExtra("Make", selected_make);
-                j.putExtra("Model", selected_model);
-                startActivity(j);
+                if(selected_city == null)
+                {
+                    Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                    j.putExtra("City", selected_city);
+                    j.putExtra("Make", selected_make);
+                    j.putExtra("Model", selected_model);
+                    j.putExtra("Budget", selected_budget);
+                    j.putExtra("Vehicle", selected_vehicle_type);
+
+                    Log.e("City: ", selected_city);
+                    Log.e("Make: ", selected_make);
+                    Log.e("Model: ", selected_model);
+                    Log.e("Budget: ", selected_budget);
+                    Log.e("Vehicle: ", selected_vehicle_type);
+
+                    startActivity(j);
+                }
+
+
             }
         });
     }

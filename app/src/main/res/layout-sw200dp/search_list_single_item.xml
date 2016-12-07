@@ -84,7 +84,7 @@
                                 android:id="@+id/rupee"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="7dp"
                                 android:text="&#x20B9;"
                                 android:textSize="14dp" />
 
@@ -93,7 +93,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="7dp"
                                 android:layout_toEndOf="@+id/rupee"
                                 android:text="40,000,000"
                                 android:textSize="14dp" />
@@ -103,9 +103,10 @@
                             android:id="@+id/like"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
+                            android:layout_marginTop="5dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="40dp"
-                            android:src="@drawable/bids_blue" />
+                            android:src="@drawable/deal" />
 
                     </RelativeLayout>
 
@@ -165,7 +166,7 @@
                             android:layout_height="30dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="40dp"
-                            android:src="@drawable/funding_blue" />
+                            android:src="@drawable/chola" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -174,26 +175,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="#C0C0C0"
                     android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#c0c0c0"/>
 
                     <ImageView
                         android:id="@+id/car_saved"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/bids_white" />
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/like_white" />
 
                     <ImageView
-                        android:id="@+id/car_bid"
+                        android:id="@+id/car_alert"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/savecar_white" />
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/alert_white"/>
 
                     <ImageView
                         android:id="@+id/car_compare"
@@ -203,8 +208,8 @@
                         android:layout_gravity="end"
                         android:layout_marginBottom="5dp"
                         android:layout_marginRight="20dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/queries_white" />
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/compare" />
 
 
                 </RelativeLayout>

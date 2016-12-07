@@ -75,15 +75,6 @@ public class LoginActivity extends AppCompatActivity {
 
         intialize();
 
-        ConnectivityManager cm = (ConnectivityManager) LoginActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-
-        boolean isWiFi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
-
-
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
