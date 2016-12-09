@@ -19,9 +19,9 @@
             android:background="@drawable/titlebar">
 
             <ImageView
-                android:id="@+id/nav_icon_drawer"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/nav_back_drawer"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/back_arrow" />
@@ -55,6 +55,7 @@
         android:actionViewClass="android.widget.SearchView"
         android:background="@drawable/search_shape"
         android:focusable="false"
+        app:font="robotoregular.ttf"
         android:iconifiedByDefault="false"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:showAsAction="collapseActionView" />

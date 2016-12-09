@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
@@ -47,13 +48,14 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        final ViewHolder holder ;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.search_list_single_item, null);
 
             holder = new ViewHolder();
+
             holder.car_image = (ImageView) convertView.findViewById(R.id.car_image);
             holder.car_name = (TextView) convertView.findViewById(R.id.car_name);
             holder.car_rate = (TextView) convertView.findViewById(R.id.car_rate);
@@ -65,6 +67,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.car_owner = (TextView) convertView.findViewById(R.id.car_details_owner);
             holder.no_of_images = (TextView) convertView.findViewById(R.id.noofimages);
             holder.favoriteImg = (ImageView) convertView.findViewById(R.id.chola);
+            holder.saved_car = (ImageView) convertView.findViewById(R.id.car_saved);
 
 
             convertView.setTag(holder);
@@ -73,10 +76,12 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         }
         final SingleProductModel product = (SingleProductModel) getItem(position);
 
-       /* Glide.with(getContext())
+        Glide.with(getContext())
                 .load(product.getImage())
                 .placeholder(R.drawable.image1)
-                .into(holder.car_image);*/
+                .into(holder.car_image);
+
+        holder.car_image.setMaxHeight(300);
 
         holder.car_image.setScaleType(ImageView.ScaleType.FIT_XY);
         holder.car_name.setText(product.getName());
@@ -89,11 +94,28 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         holder.car_address.setText(product.getAddress());
         holder.no_of_images.setText(product.getNum_of_image());
 
-        Glide.with(getContext()).load(product.getSite_image()).placeholder(R.drawable.chola).into(holder.favoriteImg);
+        Glide.with(getContext())
+                .load(product.getSite_image())
+                .into(holder.favoriteImg);
+
+        if (product.getSaved_car().equals("1")) {
+
+            Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
+            holder.saved_car.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+                    Toast.makeText(getContext(), "Remove from your saved car"+" " + product.getName(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        } else {
+            Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+        }
 
         return convertView;
     }
-
 
     private class ViewHolder {
         ImageView car_image;
@@ -101,6 +123,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         TextView car_rate, car_date;
         TextView car_kms, car_fuel, car_year, car_owner, car_address, no_of_images;
         ImageView favoriteImg;
+        ImageView saved_car;
 
     }
 

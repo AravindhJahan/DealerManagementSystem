@@ -4,6 +4,7 @@ package com.falconnect.dealermanagementsystem;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -37,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView donthaveaccount;
     Button submit;
     EditText username, pass_word;
-    ImageView password_eye;
     //JSON DATAS
     String user, pass;
 
@@ -129,6 +129,9 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         pass_word = (EditText) findViewById(R.id.password);
 
+        username.setTypeface(Typeface.SANS_SERIF);
+        pass_word.setTypeface(Typeface.SANS_SERIF);
+
 
     }
 
@@ -182,9 +185,25 @@ public class LoginActivity extends AppCompatActivity {
 
                         String message = obj.getString("message");
 
+                        String user_id = obj.getString("user_id");
+
+                        String dealer_name = obj.getString("dealer_name");
+
+                        String dealer_img = obj.getString("dealer_img");
+
+                        String dealer_address = obj.getString("dealer_address");
+
                         loginlistmap.put("REsult", result);
 
                         loginlistmap.put("Message", message);
+
+                        loginlistmap.put("user_id", user_id);
+
+                        loginlistmap.put("dealer_name", dealer_name);
+
+                        loginlistmap.put("dealer_img", dealer_img);
+
+                        loginlistmap.put("dealer_address", dealer_address);
 
                         LoginList.add(loginlistmap);
 

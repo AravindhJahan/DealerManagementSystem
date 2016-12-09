@@ -1,6 +1,7 @@
 package com.falconnect.dealermanagementsystem;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -91,6 +92,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         back_forgot = (ImageView) findViewById(R.id.backbtn);
 
         email = (EditText) findViewById(R.id.username);
+
+        email.setTypeface(Typeface.SANS_SERIF);
 
         forgot_submit = (Button) findViewById(R.id.forgot_submit);
 

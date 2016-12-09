@@ -1,6 +1,7 @@
 package com.falconnect.dealermanagementsystem;
 
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -95,6 +96,10 @@ public class ChangePassword extends AppCompatActivity {
         oldpass = (EditText) findViewById(R.id.old_password);
         newpass = (EditText) findViewById(R.id.new_password);
         confirmpass = (EditText) findViewById(R.id.confirm_password);
+
+        oldpass.setTypeface(Typeface.SANS_SERIF);
+        newpass.setTypeface(Typeface.SANS_SERIF);
+        confirmpass.setTypeface(Typeface.SANS_SERIF);
 
         //Button Id
         change_btn = (Button) findViewById(R.id.change_submit);
@@ -196,7 +201,7 @@ public class ChangePassword extends AppCompatActivity {
 
                 TextView title = (TextView) dialogLayout.findViewById(R.id.text_title);
                 TextView access = (TextView) dialogLayout.findViewById(R.id.text_access);
-                Button ok = (Button) dialogLayout.findViewById(R.id.button_ok);
+                TextView ok = (TextView) dialogLayout.findViewById(R.id.button_ok);
 
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override

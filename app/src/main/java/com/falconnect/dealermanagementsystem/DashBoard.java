@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -36,6 +37,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -83,6 +86,9 @@ public class DashBoard extends AppCompatActivity {
     ArrayAdapter<String> spinnerArrayAdapter;
 
     MultiSelectSpinner sites;
+
+    String encodedUrl = null;
+
 
     int value = 0;
     // Initializing a Vehicle Spinner Array
@@ -193,8 +199,9 @@ public class DashBoard extends AppCompatActivity {
             ));
         }
 
-        adapter = new CustomAdapter(data);
+        adapter = new CustomAdapter(DashBoard.this, data);
         recyclerView.setAdapter(adapter);
+
 
         //Button By Model
         by_mod.setOnClickListener(new View.OnClickListener()
@@ -248,6 +255,7 @@ public class DashBoard extends AppCompatActivity {
         list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
 
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -257,9 +265,9 @@ public class DashBoard extends AppCompatActivity {
                     startActivity(intent);
                     mNav.closeLeftSide();
 
-                } else {
-                    Toast.makeText(DashBoard.this, "You Clicked at " + web[+position], Toast.LENGTH_SHORT).show();
-                    mNav.closeLeftSide();
+                }
+                else {
+
                 }
             }
         });
@@ -697,6 +705,8 @@ public class DashBoard extends AppCompatActivity {
 
                     String selected_Item_Text = (String) parent.getItemAtPosition(position);
 
+                    selected_Item_Text = selected_Item_Text.replaceAll(" ", "%20");
+
                     if (position > 0) {
                         Toast.makeText
                                 (getApplicationContext(), "Selected : " + selected_Item_Text, Toast.LENGTH_SHORT)
@@ -814,7 +824,16 @@ public class DashBoard extends AppCompatActivity {
             bud_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                     String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                    selectedItemText = selectedItemText.replaceAll(" ", "%20");
+
+
+                    /*try {
+                        encodedUrl = URLEncoder.encode(selectedItemText, "UTF-8");
+                    } catch (UnsupportedEncodingException ignored) {
+                    }*/
 
                     if (position > 0) {
                         Toast.makeText
@@ -924,15 +943,51 @@ public class DashBoard extends AppCompatActivity {
                 if (selected_city == null) {
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else if(selected_site == null && selected_budget == null && selected_vehicle_type == null &&
+                        selected_model == null && selected_make == null){
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city + "&page_name=searchpage";
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
                     j.putExtra("City_Url", city_search_url);
-                    Log.e("URL", city_search_url);
+                    startActivity(j);
+                } else if(selected_site == null && selected_vehicle_type == null &&
+                        selected_model == null && selected_make == null){
+                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
+                            + "&car_budget=" + selected_budget +"&page_name=searchpage";
+
+                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                    j.putExtra("City", selected_city);
+                    j.putExtra("City_Url", city_search_url);
+                    startActivity(j);
+                } else if(selected_site == null && selected_model == null && selected_make == null){
+                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
+                            + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type
+                            +"&page_name=searchpage";
+
+                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                    j.putExtra("City", selected_city);
+                    j.putExtra("City_Url", city_search_url);
+                    startActivity(j);
+                } else if(selected_site == null && selected_make == null){
+                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
+                            + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type +
+                            "&vehicle_model="+ selected_model +"&page_name=searchpage";
+                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                    j.putExtra("City", selected_city);
+                    j.putExtra("City_Url", city_search_url);
+                    startActivity(j);
+                } else if(selected_site == null){
+                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
+                            + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type +
+                            "&vehicle_model="+ selected_model +"&vehicle_make="+ selected_make +"&page_name=searchpage";
+
+                    Log.e("city_url_search", city_search_url);
+
+                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
+                    j.putExtra("City", selected_city);
+                    j.putExtra("City_Url", city_search_url);
                     startActivity(j);
                 }
-
             }
         });
     }

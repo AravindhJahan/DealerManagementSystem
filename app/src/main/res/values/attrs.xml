@@ -16,14 +16,14 @@
 
     <declare-styleable name="MultiSelectSpinner">
 
-        <attr name="choiceDialogTheme" format="reference"/>
-        <attr name="titleDividerDrawable" format="reference"/>
-        <attr name="titleDividerColor" format="color"/>
+        <attr name="choiceDialogTheme" format="reference" />
+        <attr name="titleDividerDrawable" format="reference" />
+        <attr name="titleDividerColor" format="color" />
 
     </declare-styleable>
     <!-- style reference -->
     <declare-styleable name="MultiSelectSpinnerTheme">
-        <attr name="multiSelectSpinnerStyle" format="reference"/>
+        <attr name="multiSelectSpinnerStyle" format="reference" />
     </declare-styleable>
 
 </resources>

@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="3"
     android:background="#FFF"
     android:orientation="vertical">
 
@@ -15,26 +14,28 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:background="@drawable/titlebar">
 
             <ImageView
                 android:id="@+id/nav_icon_drawer"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
                 android:src="@drawable/nav_icon" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
                 android:text="Search List"
-                android:layout_marginRight="10dp"
                 android:textColor="#FFF"
-                android:textSize="20dp"
+                android:textSize="25dp"
                 app:font="robotoregular.ttf" />
         </LinearLayout>
 
@@ -43,27 +44,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_below="@+id/header_search_list"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <FrameLayout
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/car_bg" />
-
-            <ImageView
-                android:id="@+id/image_view"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/car_iamge" />
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -76,13 +71,13 @@
                     android:id="@+id/customTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="100dp"
                     android:gravity="center"
                     android:text="Search the right car"
                     android:textAllCaps="true"
                     android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textSize="16dp"
                     app:font="robotoregular.ttf" />
+
 
                 <com.falconnect.dealermanagementsystem.FontAdapter.MultiSelectSpinner
                     android:id="@+id/search_sites"
@@ -90,9 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/customTextView"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="15dp"
                     app:choiceDialogTheme="@style/AnotherCustomAlertDialogTheme" />
-
 
                 <View
                     android:id="@+id/view1"
@@ -111,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view1"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="15dp" />
 
                 <View
                     android:id="@+id/view2"
@@ -158,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/bt_layout"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="15dp">
 
                     <!--Budget-->
                     <Spinner
@@ -193,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/first_frame"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="15dp">
 
                     <!--Vehi type-->
                     <Spinner
@@ -228,32 +222,31 @@
                 <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
                     android:id="@+id/search_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/second_frame"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view7"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/shape_submit"
                     android:text="Search"
-                    android:layout_marginTop="20dp"
                     android:textColor="#FFF" />
 
             </RelativeLayout>
 
-        </FrameLayout>
+        </android.support.v7.widget.CardView>
+
 
     </LinearLayout>
 
-    <!--Footer-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom">
+        android:layout_height="wrap_content">
 
-        <!--Footet ListView (Recycler Viewer)-->
+
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler"
+            android:id="@+id/my_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
-
+            android:layout_alignParentBottom="true"
             android:scrollbars="none" />
 
     </RelativeLayout>

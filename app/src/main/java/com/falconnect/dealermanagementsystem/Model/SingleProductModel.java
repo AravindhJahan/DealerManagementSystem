@@ -15,9 +15,12 @@ public class SingleProductModel {
     private String posted_date;
     private String num_of_image;
     private String site_image;
+    private String saved_car;
 
 
-    public SingleProductModel(String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image)
+
+
+    public SingleProductModel(String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image, String saved_car)
     {
         super();
 
@@ -32,34 +35,46 @@ public class SingleProductModel {
         this.posted_date = posted_date;
         this.num_of_image = num_of_image;
         this.site_image = site_image;
+        this.saved_car = saved_car;
 
     }
     public String getImage() {
         return image;
     }
+
     public String getName() {
         return name;
     }
+
     public String getRate() {
         return rate;
     }
+
     public String getKms() {
         return kms;
     }
+
     public String getFuel() {
         return fuel;
     }
+
     public String getYear() {
         return year;
     }
     public String getOwner() {
         return owner;
     }
+
     public String getAddress() {
         return address;
     }
+
     public String getPosted_date() {
         return posted_date;
+    }
+
+    public String getSaved_car() {
+        return saved_car;
     }
 
     public String getNum_of_image() {
@@ -114,6 +129,9 @@ public class SingleProductModel {
         this.posted_date = posted_date;
     }
 
+    public void setSaved_car(String saved_car) {
+        this.saved_car = saved_car;
+    }
 }
 
 

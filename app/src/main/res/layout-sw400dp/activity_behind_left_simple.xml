@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -31,6 +32,7 @@
                 android:layout_gravity="center"
                 android:text="Johnson Johnson"
                 android:layout_marginTop="5dp"
+                app:font="robotoregular.ttf"
                 android:gravity="center"
                 android:textColor="#FFF"
                 android:textSize="20dp" />
@@ -42,6 +44,7 @@
                 android:text="Chennai, TamilNadu"
                 android:textColor="#FFF"
                 android:gravity="center"
+                app:font="robotoregular.ttf"
                 android:textSize="16dp" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -50,6 +53,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="My Account"
+                app:font="robotoregular.ttf"
                 android:textColor="#FFF"
                 android:textSize="16dp" />
 

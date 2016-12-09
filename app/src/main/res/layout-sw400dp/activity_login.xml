@@ -166,7 +166,7 @@
 
 
             <!--Submit Button-->
-            <Button
+            <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
                 android:id="@+id/submit_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
