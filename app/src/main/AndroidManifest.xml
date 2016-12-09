@@ -71,6 +71,11 @@
             android:name=".SavedCarActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_saved_car"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".CityActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_city"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

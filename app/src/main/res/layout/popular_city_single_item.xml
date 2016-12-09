@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/popular_city_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/cityimage"
+        android:layout_marginRight="10dp"/>
+
+    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+        android:id="@+id/popular_city_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chennai"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:font = "robotoregular.ttf"
+        android:textSize="16dp"/>
+
+
+</LinearLayout>

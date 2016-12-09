@@ -3,11 +3,11 @@ package com.falconnect.dealermanagementsystem.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +23,8 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
     List<SingleProductModel> products;
     private Context context;
-
+    private boolean clicked = false;
+    public MyBounceInterpolator interpolator;
 
     public ProductListAdapter(Context context, List<SingleProductModel> products) {
         super(context, R.layout.search_list_single_item, products);
@@ -48,7 +49,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final ViewHolder holder ;
+        final ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -78,10 +79,8 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
         Glide.with(getContext())
                 .load(product.getImage())
-                .placeholder(R.drawable.image1)
+                .placeholder(R.drawable.carimageplaceholder)
                 .into(holder.car_image);
-
-        holder.car_image.setMaxHeight(300);
 
         holder.car_image.setScaleType(ImageView.ScaleType.FIT_XY);
         holder.car_name.setText(product.getName());
@@ -101,18 +100,34 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         if (product.getSaved_car().equals("1")) {
 
             Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
-            holder.saved_car.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
-                    Toast.makeText(getContext(), "Remove from your saved car"+" " + product.getName(), Toast.LENGTH_SHORT).show();
-
-                }
-            });
         } else {
             Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
         }
+
+        holder.saved_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (clicked == true) {
+                    Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
+                    Toast.makeText(getContext(), "Added your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
+
+                    //Animation
+                    final Animation myAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
+                    interpolator = new MyBounceInterpolator(0.2, 20);
+                    myAnim.setInterpolator(interpolator);
+                    holder.saved_car.startAnimation(myAnim);
+
+                    clicked = false;
+
+                } else if(clicked == false){
+
+                    Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+                    Toast.makeText(getContext(), "Remove from your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
+                    clicked = true;
+                }
+            }
+        });
 
         return convertView;
     }

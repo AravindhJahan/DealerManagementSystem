@@ -59,9 +59,6 @@ public class DashBoard extends AppCompatActivity {
 
     String selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
 
-    public ArrayList<HashMap<String, String>> city_spinner_list;
-    HashMap<String, String> citylist;
-
     public ArrayList<HashMap<String, String>> site_spinner_list;
     HashMap<String, String> sitelist;
 
@@ -78,7 +75,7 @@ public class DashBoard extends AppCompatActivity {
 
 
     Button search;
-    Spinner spinner;
+    TextView spinner;
     Spinner bud_spinner, vehi_spinner, mod_spinner, bran_spinner;
 
     Button bud_mod, by_mod;
@@ -102,17 +99,18 @@ public class DashBoard extends AppCompatActivity {
             "Wagon"
     };
 
-    private ProgressDialog pDialog;
-    private ArrayList<String> spinner_datas, make_datas, model_datas, site_datas, budget_datas;
+    private ArrayList<String> make_datas, model_datas, site_datas, budget_datas;
 
 
-    String get_city_id, get_city_name, get_brand_id, get_brand_name, get_model_id, get_model_name;
+    String get_brand_id, get_brand_name, get_model_id, get_model_name;
 
     String site_id, site_name, budget_id, budget_name;
 
 
     ///Navigation Drawer ListView Content
     ListView list;
+
+    String selectedcity;
 
     String[] web = {
             "Home",
@@ -162,18 +160,30 @@ public class DashBoard extends AppCompatActivity {
 
         intialize();
 
-        new City_Datas().execute();
+        selectedcity = getIntent().getStringExtra("Selected_Item");
+
+        if (selectedcity == null) {
+
+            spinner.setText("Select City");
+
+        } else {
+
+            spinner.setText(selectedcity);
+
+        }
+
+        // new City_Datas().execute();
         new Make_Datas().execute();
         new Budget_Datas().execute();
         new Site_Datas().execute();
 
         //Vehicle Datas to Spinner
         Vehi_Datas();
-        spinner_datas = new ArrayList<String>();
         make_datas = new ArrayList<String>();
         model_datas = new ArrayList<String>();
         budget_datas = new ArrayList<String>();
         site_datas = new ArrayList<String>();
+
 
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
         mNav = new SimpleSideDrawer(this);
@@ -265,10 +275,17 @@ public class DashBoard extends AppCompatActivity {
                     startActivity(intent);
                     mNav.closeLeftSide();
 
-                }
-                else {
+                } else {
 
                 }
+            }
+        });
+
+        spinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard.this, CityActivity.class);
+                startActivity(i);
             }
         });
 
@@ -279,7 +296,7 @@ public class DashBoard extends AppCompatActivity {
 
     public void intialize() {
         //Spinners
-        spinner = (Spinner) findViewById(R.id.search_city_spinner);
+        spinner = (TextView) findViewById(R.id.search_city_spinner);
         bud_spinner = (Spinner) findViewById(R.id.budget_spinner);
         vehi_spinner = (Spinner) findViewById(R.id.vehi_type);
         bran_spinner = (Spinner) findViewById(R.id.brand_spinner);
@@ -346,6 +363,7 @@ public class DashBoard extends AppCompatActivity {
 
     }
 
+/*
     private class City_Datas extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -470,6 +488,7 @@ public class DashBoard extends AppCompatActivity {
             ////End City Data Get
         }
     }
+*/
 
     private class Make_Datas extends AsyncTask<Void, Void, Void> {
         @Override
@@ -619,7 +638,7 @@ public class DashBoard extends AppCompatActivity {
 
             String json = sh.makeServiceCall(sub_make, ServiceHandler.POST);
 
-             //datas = new ArrayList<City_Make_Spinner_Model>();
+            //datas = new ArrayList<City_Make_Spinner_Model>();
 
             if (json != null) {
 
@@ -940,46 +959,47 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                selected_city = spinner.getText().toString();
+
                 if (selected_city == null) {
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
-                }
-                else if(selected_site == null && selected_budget == null && selected_vehicle_type == null &&
-                        selected_model == null && selected_make == null){
+                } else if (selected_site == null && selected_budget == null && selected_vehicle_type == null &&
+                        selected_model == null && selected_make == null) {
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city + "&page_name=searchpage";
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
                     j.putExtra("City_Url", city_search_url);
                     startActivity(j);
-                } else if(selected_site == null && selected_vehicle_type == null &&
-                        selected_model == null && selected_make == null){
+                } else if (selected_site == null && selected_vehicle_type == null &&
+                        selected_model == null && selected_make == null) {
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
-                            + "&car_budget=" + selected_budget +"&page_name=searchpage";
+                            + "&car_budget=" + selected_budget + "&page_name=searchpage";
 
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
                     j.putExtra("City_Url", city_search_url);
                     startActivity(j);
-                } else if(selected_site == null && selected_model == null && selected_make == null){
+                } else if (selected_site == null && selected_model == null && selected_make == null) {
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
                             + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type
-                            +"&page_name=searchpage";
+                            + "&page_name=searchpage";
 
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
                     j.putExtra("City_Url", city_search_url);
                     startActivity(j);
-                } else if(selected_site == null && selected_make == null){
+                } else if (selected_site == null && selected_make == null) {
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
                             + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type +
-                            "&vehicle_model="+ selected_model +"&page_name=searchpage";
+                            "&vehicle_model=" + selected_model + "&page_name=searchpage";
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
                     j.putExtra("City_Url", city_search_url);
                     startActivity(j);
-                } else if(selected_site == null){
+                } else if (selected_site == null) {
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
                             + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type +
-                            "&vehicle_model="+ selected_model +"&vehicle_make="+ selected_make +"&page_name=searchpage";
+                            "&vehicle_model=" + selected_model + "&vehicle_make=" + selected_make + "&page_name=searchpage";
 
                     Log.e("city_url_search", city_search_url);
 
