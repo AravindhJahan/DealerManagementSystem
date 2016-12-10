@@ -312,6 +312,24 @@ public class DashBoard extends AppCompatActivity {
         search = (Button) findViewById(R.id.search_btn);
     }
 
+   /* @Override
+    public void onBackPressed() {
+
+        AlertDialog alertbox = new AlertDialog.Builder(this)
+                .setMessage("Do you want to exit application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        DashBoard.this.finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                })
+                .show();
+
+    }*/
+
     public void Vehi_Datas() {
 
         vehilist = new ArrayList<>(Arrays.asList(vehi));
@@ -362,133 +380,6 @@ public class DashBoard extends AppCompatActivity {
         });
 
     }
-
-/*
-    private class City_Datas extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(DashBoard.this);
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            ServiceHandler sh = new ServiceHandler();
-
-            String city_url = Constant.DASH_BOARD_SPINNER_API;
-
-            String json = sh.makeServiceCall(city_url, ServiceHandler.GET);
-
-            datas = new ArrayList<City_Make_Spinner_Model>();
-
-
-            if (json != null) {
-
-                city_spinner_list = new ArrayList<>();
-
-                try {
-                    JSONObject jsonObj = new JSONObject(json);
-
-                    spinner_datas.add("Select City");
-
-                    JSONArray city = jsonObj.getJSONArray("model_city");
-
-                    for (int k = 0; k <= city.length(); k++) {
-
-                        get_city_id = city.getJSONObject(k).getString("city_id");
-                        get_city_name = city.getJSONObject(k).getString("city_name");
-
-                        citylist = new HashMap<>();
-
-                        citylist.put("city_id", get_city_id);
-                        citylist.put("city_name", get_city_name);
-
-                        city_spinner_list.add(citylist);
-                        spinner_datas.add(get_city_name);
-                    }
-
-                } catch (final JSONException e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-
-            } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            pDialog.dismiss();
-
-            ////City Data Get
-            spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, R.layout.spinner_single_item, spinner_datas) {
-                @Override
-                public boolean isEnabled(int position) {
-                    if (position == 0) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-
-                @Override
-                public View getDropDownView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getDropDownView(position, convertView, parent);
-                    TextView tv = (TextView) view;
-                    if (position == 0) {
-                        tv.setTextColor(Color.GRAY);
-                    } else {
-                        tv.setTextColor(Color.BLACK);
-                    }
-                    return view;
-                }
-            };
-
-            spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_single_item);
-
-            spinner.setAdapter(spinnerArrayAdapter);
-
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedItemText = (String) parent.getItemAtPosition(position);
-
-                    if (position > 0) {
-                        Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                                .show();
-
-                        selected_city = selectedItemText;
-                    }
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-            ////End City Data Get
-        }
-    }
-*/
 
     private class Make_Datas extends AsyncTask<Void, Void, Void> {
         @Override

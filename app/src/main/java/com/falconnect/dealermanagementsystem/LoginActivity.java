@@ -183,16 +183,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         String result = obj.getString("Result");
 
-                        String message = obj.getString("message");/*
+                        String message = obj.getString("message");
 
-                        String user_id = obj.getString("user_id");
-
-                        String dealer_name = obj.getString("dealer_name");
-
-                        String dealer_img = obj.getString("dealer_img");
-
-                        String dealer_address = obj.getString("dealer_address");
-*/
                         loginlistmap.put("REsult", result);
 
                         loginlistmap.put("Message", message);
