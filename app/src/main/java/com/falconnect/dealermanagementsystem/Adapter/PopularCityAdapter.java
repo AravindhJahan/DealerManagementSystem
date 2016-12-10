@@ -58,7 +58,7 @@ public class PopularCityAdapter extends RecyclerView.Adapter<PopularCityAdapter.
                 intent.putExtra("Selected_Item", singleItemdata.getName());
                 mContext.startActivity(intent);
 
-               // ((Activity)mContext).finish();
+               ((Activity)mContext).finish();
 
 
             }

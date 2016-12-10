@@ -70,7 +70,6 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.favoriteImg = (ImageView) convertView.findViewById(R.id.chola);
             holder.saved_car = (ImageView) convertView.findViewById(R.id.car_saved);
 
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -96,6 +95,13 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         Glide.with(getContext())
                 .load(product.getSite_image())
                 .into(holder.favoriteImg);
+
+        if (product.getSaved_car().equals("1")) {
+
+            Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
+        } else {
+            Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+        }
 
         if (product.getSaved_car().equals("1")) {
 

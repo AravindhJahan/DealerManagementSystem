@@ -235,6 +235,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent i = new Intent(LoginActivity.this, DashBoard.class);
                 startActivity(i);
                 LoginActivity.this.finish();
+
             } else {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");

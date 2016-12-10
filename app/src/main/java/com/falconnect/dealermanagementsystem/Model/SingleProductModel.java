@@ -20,6 +20,7 @@ public class SingleProductModel {
 
 
 
+
     public SingleProductModel(String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image, String saved_car)
     {
         super();
@@ -61,6 +62,7 @@ public class SingleProductModel {
     public String getYear() {
         return year;
     }
+
     public String getOwner() {
         return owner;
     }

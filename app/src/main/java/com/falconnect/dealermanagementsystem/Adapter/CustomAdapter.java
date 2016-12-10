@@ -57,9 +57,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-                    Glide.with(mContext).load(R.drawable.search_white).into(holder.imageViewIcon);
-                    holder.textViewName.setTextColor(Color.WHITE);
-
 
                 } else if (singleItem.getId() == 1) {
 
@@ -69,31 +66,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-                    Glide.with(mContext).load(R.drawable.savecar_white).into(holder.imageViewIcon);
-                    holder.textViewName.setTextColor(Color.WHITE);
 
                 } else if (singleItem.getId() == 2) {
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-                    Glide.with(mContext).load(R.drawable.queries_white).into(holder.imageViewIcon);
-                    holder.textViewName.setTextColor(Color.WHITE);
 
 
                 } else if (singleItem.getId() == 3) {
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-                    Glide.with(mContext).load(R.drawable.bids_white).into(holder.imageViewIcon);
-                    holder.textViewName.setTextColor(Color.WHITE);
-
 
                 } else if (singleItem.getId() == 4) {
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-                    Glide.with(mContext).load(R.drawable.funding_white).into(holder.imageViewIcon);
-                    holder.textViewName.setTextColor(Color.WHITE);
 
                 } else {
 

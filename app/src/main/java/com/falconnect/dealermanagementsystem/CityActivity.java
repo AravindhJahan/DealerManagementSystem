@@ -1,5 +1,6 @@
 package com.falconnect.dealermanagementsystem;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -183,8 +184,13 @@ public class CityActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // make Toast when click
                     String selected_city =(parent.getItemAtPosition(position).toString());
-
                     Toast.makeText(getApplicationContext(), "Position " + selected_city, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(CityActivity.this, DashBoard.class);
+                    intent.putExtra("Selected_Item", selected_city);
+                    startActivity(intent);
+                    CityActivity.this.finish();
+
+
                 }
             });
 
