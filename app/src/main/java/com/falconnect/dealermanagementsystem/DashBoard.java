@@ -125,16 +125,16 @@ public class DashBoard extends AppCompatActivity {
             "Logout"
     };
     Integer[] imageId = {
-            R.drawable.search_white,
-            R.drawable.bids_white,
-            R.drawable.funding_white,
-            R.drawable.queries_white,
-            R.drawable.savecar_white,
-            R.drawable.search_white,
-            R.drawable.queries_white,
-            R.drawable.savecar_white,
-            R.drawable.search_white,
-            R.drawable.funding_white
+            R.drawable.home_sidemenu,
+            R.drawable.buy_sidemenu,
+            R.drawable.buy_sidemenu,
+            R.drawable.sell_sidemenu,
+            R.drawable.manage_sidemenu,
+            R.drawable.communication_sidemenu,
+            R.drawable.report_sidemenu,
+            R.drawable.contact_sidemenu,
+            R.drawable.contact_sidemenu,
+            R.drawable.logout_sidemenu
     };
 
     @Override
@@ -961,7 +961,7 @@ public class DashBoard extends AppCompatActivity {
 
                 selected_city = spinner.getText().toString();
 
-                if (selected_city == null) {
+                if (selected_city == "Select City") {
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
                 } else if (selected_site == null && selected_budget == null && selected_vehicle_type == null &&
                         selected_model == null && selected_make == null) {

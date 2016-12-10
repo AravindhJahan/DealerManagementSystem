@@ -18,11 +18,11 @@
             android:background="@drawable/titlebar">
 
             <ImageView
-                android:id="@+id/nav_icon_drawer"
-                android:layout_width="20dp"
+                android:id="@+id/close_icon"
+                android:layout_width="15dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/back_arrow" />
+                android:src="@drawable/close" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="Search City"
                 android:textColor="#FFF"

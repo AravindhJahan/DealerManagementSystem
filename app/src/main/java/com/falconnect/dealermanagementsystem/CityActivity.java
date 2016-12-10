@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class CityActivity extends AppCompatActivity {
     private boolean mVisible;
     TextView searcheditlist;
     ListView searchlistview;
+    ImageView back_close;
 
 
     private static RecyclerView.Adapter adapter;
@@ -96,12 +98,21 @@ public class CityActivity extends AppCompatActivity {
         adapter = new PopularCityAdapter(CityActivity.this, data);
         popular_city_recycleview.setAdapter(adapter);
 
+        back_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CityActivity.this.finish();
+            }
+        });
+
         new City_Datas().execute();
     }
 
     public void intialize() {
         searcheditlist = (TextView) findViewById(R.id.searchlistedittext);
         searchlistview = (ListView) findViewById(R.id.citylistview);
+
+        back_close = (ImageView) findViewById(R.id.close_icon);
 
     }
 

@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         String result = obj.getString("Result");
 
-                        String message = obj.getString("message");
+                        String message = obj.getString("message");/*
 
                         String user_id = obj.getString("user_id");
 
@@ -192,18 +192,10 @@ public class LoginActivity extends AppCompatActivity {
                         String dealer_img = obj.getString("dealer_img");
 
                         String dealer_address = obj.getString("dealer_address");
-
+*/
                         loginlistmap.put("REsult", result);
 
                         loginlistmap.put("Message", message);
-
-                        loginlistmap.put("user_id", user_id);
-
-                        loginlistmap.put("dealer_name", dealer_name);
-
-                        loginlistmap.put("dealer_img", dealer_img);
-
-                        loginlistmap.put("dealer_address", dealer_address);
 
                         LoginList.add(loginlistmap);
 
@@ -236,7 +228,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
                 LoginActivity.this.finish();
 
-            } else {
+            } else if (loginlistmap.get("REsult").equals("0")){
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(loginlistmap.get("Message"))
