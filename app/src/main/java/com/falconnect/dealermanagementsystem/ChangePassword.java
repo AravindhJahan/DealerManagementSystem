@@ -121,7 +121,7 @@ public class ChangePassword extends AppCompatActivity {
             String change_password_url = Constant.CHANGE_PASSWORD_API + "oldpassword="
                     + old_pass.toString() + "&newpassword="
                     + new_pass.toString() + "&confirm_password="
-                    + confirm_pass.toString() + "&id=621";
+                    + confirm_pass.toString() + "&id=549";
 
             String json = sh.makeServiceCall(change_password_url, ServiceHandler.POST);
 
@@ -148,7 +148,7 @@ public class ChangePassword extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                          //  Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -157,7 +157,7 @@ public class ChangePassword extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -168,54 +168,29 @@ public class ChangePassword extends AppCompatActivity {
 
             if (changepassmaplist.get("REsult").equals("1")) {
 
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ChangePassword.this);
-                AlertDialog alertDialog = dialogBuilder.create();
-                LayoutInflater inflater = getLayoutInflater();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassword.this);
+                builder.setTitle("Password Changed");
+                builder.setMessage(changepassmaplist.get("Message"));
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
 
-                View dialogLayout = inflater.inflate(R.layout.alert_dialog, null);
-
-                TextView title = (TextView) dialogLayout.findViewById(R.id.text_title);
-                TextView access = (TextView) dialogLayout.findViewById(R.id.text_access);
-                Button ok = (Button) dialogLayout.findViewById(R.id.button_ok);
-
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
+                        ChangePassword.this.finish();
                     }
                 });
-                title.setText("Password Changed");
-                access.setText(changepassmaplist.get("Message"));
-                alertDialog.setView(dialogLayout);
-                alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                alertDialog.show();
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
             } else {
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(ChangePassword.this);
-
-                AlertDialog alertDialog = dialogBuilder.create();
-
-                LayoutInflater inflater = getLayoutInflater();
-
-                View dialogLayout = inflater.inflate(R.layout.alert_dialog, null);
-
-                TextView title = (TextView) dialogLayout.findViewById(R.id.text_title);
-                TextView access = (TextView) dialogLayout.findViewById(R.id.text_access);
-                TextView ok = (TextView) dialogLayout.findViewById(R.id.button_ok);
-
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassword.this);
+                builder.setTitle("Error");
+                builder.setMessage(changepassmaplist.get("Message"));
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
                     }
                 });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
-                title.setText("Error");
-                access.setText(changepassmaplist.get("Message"));
-
-                alertDialog.setView(dialogLayout);
-                alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                alertDialog.show();
             }
         }
     }
