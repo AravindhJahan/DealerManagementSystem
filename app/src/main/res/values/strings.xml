@@ -3,7 +3,7 @@
 
     <string name="title_activity_main">MainActivity</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_content">BIDS\nPOSTED</string>
 
     <string name="title_activity_login">LoginActivity</string>
 
@@ -36,6 +36,10 @@
     <string name="title_activity_city">CityActivity</string>
 
     <string name="title_activity_my_queries">MyQueriesActivity</string>
+
+    <string name="title_activity_bids_posted">BidsPostedActivity</string>
+
+    <string name="title_activity_funding">FundingActivity</string>
 
 
 </resources>

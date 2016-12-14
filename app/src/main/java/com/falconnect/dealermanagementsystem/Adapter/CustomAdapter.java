@@ -13,8 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.falconnect.dealermanagementsystem.BidsPostedActivity;
 import com.falconnect.dealermanagementsystem.Constant;
 import com.falconnect.dealermanagementsystem.DashBoard;
+import com.falconnect.dealermanagementsystem.FundingActivity;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.MyQueriesActivity;
 import com.falconnect.dealermanagementsystem.R;
@@ -55,31 +57,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View v) {
 
                 if (singleItem.getId() == 0) {
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
                 } else if (singleItem.getId() == 1) {
-
                     Intent intent = new Intent(mContext.getApplicationContext(), SavedCarActivity.class);
                     mContext.startActivity(intent);
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
                 } else if (singleItem.getId() == 2) {
-
                     Intent intent = new Intent(mContext.getApplicationContext(), MyQueriesActivity.class);
                     mContext.startActivity(intent);
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
                 } else if (singleItem.getId() == 3) {
-
+                    Intent intent = new Intent(mContext.getApplicationContext(), BidsPostedActivity.class);
+                    mContext.startActivity(intent);
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
                 } else if (singleItem.getId() == 4) {
-
+                    Intent intent = new Intent(mContext.getApplicationContext(), FundingActivity.class);
+                    mContext.startActivity(intent);
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
                 } else {
 
                 }

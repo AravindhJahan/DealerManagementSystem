@@ -20,6 +20,7 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -82,6 +83,16 @@
             android:name=".MyQueriesActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_my_queries"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".BidsPostedActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_bids_posted"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".FundingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_funding"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

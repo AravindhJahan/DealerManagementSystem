@@ -55,7 +55,7 @@ public class MyQueriesActivity extends AppCompatActivity {
             }
             mVisible = false;
         } else {
-            
+
         }
 
 
