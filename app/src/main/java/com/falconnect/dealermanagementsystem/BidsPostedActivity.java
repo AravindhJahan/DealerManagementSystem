@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.WindowManager;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
@@ -26,6 +27,11 @@ public class BidsPostedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_bids_posted);
+
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         if (mVisible) {
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
