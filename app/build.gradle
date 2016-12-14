@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.falconnect.dealermanagementsystem"
-        minSdkVersion 17
+        minSdkVersion 10
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
