@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Constant;
 import com.falconnect.dealermanagementsystem.DashBoard;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.MyQueriesActivity;
 import com.falconnect.dealermanagementsystem.R;
 import com.falconnect.dealermanagementsystem.SavedCarActivity;
 import com.falconnect.dealermanagementsystem.SearchResultActivity;
@@ -57,31 +58,27 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-
                 } else if (singleItem.getId() == 1) {
 
                     Intent intent = new Intent(mContext.getApplicationContext(), SavedCarActivity.class);
-
                     mContext.startActivity(intent);
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-
                 } else if (singleItem.getId() == 2) {
 
+                    Intent intent = new Intent(mContext.getApplicationContext(), MyQueriesActivity.class);
+                    mContext.startActivity(intent);
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
-
 
                 } else if (singleItem.getId() == 3) {
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
 
-
                 } else if (singleItem.getId() == 4) {
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
-
 
                 } else {
 

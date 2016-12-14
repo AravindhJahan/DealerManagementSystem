@@ -24,5 +24,12 @@ public class MyData {
             R.drawable.bids_blue,
             R.drawable.funding_blue};
 
+    static Integer[] drawableArrayWhite2 = {
+            R.drawable.search_blue,
+            R.drawable.savecar_blue,
+            R.drawable.queries_white,
+            R.drawable.bids_blue,
+            R.drawable.funding_blue};
+
     static Integer[] id_ = {0, 1, 2, 3, 4};
 }

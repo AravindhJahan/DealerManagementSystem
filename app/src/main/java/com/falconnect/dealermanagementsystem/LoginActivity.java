@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView donthaveaccount;
     Button submit;
     EditText username, pass_word;
+
     //JSON DATAS
     String user, pass;
 
