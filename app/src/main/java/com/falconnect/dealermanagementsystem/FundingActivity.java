@@ -48,7 +48,7 @@ public class FundingActivity extends AppCompatActivity {
             data.add(new DataModel(
                     MyData.nameArray[i],
                     MyData.id_[i],
-                    MyData.drawableArrayWhite3[i]
+                    MyData.drawableArrayWhite4[i]
             ));
         }
 

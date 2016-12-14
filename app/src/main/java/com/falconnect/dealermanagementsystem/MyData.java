@@ -45,7 +45,7 @@ public class MyData {
             R.drawable.bids_white,
             R.drawable.funding_blue};
 
-    static Integer[] drawableArrayWhite5 = {
+    static Integer[] drawableArrayWhite4 = {
             R.drawable.search_blue,
             R.drawable.savecar_blue,
             R.drawable.queries_blue,
