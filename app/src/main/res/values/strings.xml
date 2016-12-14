@@ -35,5 +35,7 @@
 
     <string name="title_activity_city">CityActivity</string>
 
+    <string name="title_activity_my_queries">MyQueriesActivity</string>
+
 
 </resources>
