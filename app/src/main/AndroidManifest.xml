@@ -98,6 +98,11 @@
             android:name=".ApplyFundingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_apply_funding"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".BidsPostingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_bids_posting"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

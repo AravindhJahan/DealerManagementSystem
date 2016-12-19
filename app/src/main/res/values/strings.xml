@@ -43,5 +43,7 @@
 
     <string name="title_activity_apply_funding">ApplyFundingActivity</string>
 
+    <string name="title_activity_bids_posting">BidsPostingActivity</string>
+
 
 </resources>
