@@ -132,7 +132,6 @@
     </LinearLayout>
 
     <!--Body2-->
-
     <RelativeLayout
         android:id="@+id/image_display2"
         android:layout_width="match_parent"
