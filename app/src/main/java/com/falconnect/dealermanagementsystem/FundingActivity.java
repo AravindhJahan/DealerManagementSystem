@@ -1,11 +1,14 @@
 package com.falconnect.dealermanagementsystem;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
@@ -20,6 +23,8 @@ public class FundingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView fundingrecyclerView;
     private static ArrayList<DataModel> data;
+
+    TextView plus;
 
 
     @Override
@@ -60,6 +65,18 @@ public class FundingActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(FundingActivity.this, data);
         fundingrecyclerView.setAdapter(adapter);
+
+
+        plus = (TextView) findViewById(R.id.plus);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FundingActivity.this, ApplyFundingActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
 
     }
 

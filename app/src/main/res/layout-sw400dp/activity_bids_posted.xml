@@ -41,7 +41,7 @@
                 android:textColor="#FFF"
                 android:textSize="28dp"
                 android:id="@+id/title_saved_cars"
-                app:font="robotoregular.ttf" />
+                app:font="sanz.ttf" />
         </LinearLayout>
 
     </LinearLayout>

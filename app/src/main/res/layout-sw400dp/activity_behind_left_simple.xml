@@ -32,7 +32,7 @@
                 android:layout_gravity="center"
                 android:text="Johnson Johnson"
                 android:layout_marginTop="5dp"
-                app:font="robotoregular.ttf"
+                app:font="sanz.ttf"
                 android:gravity="center"
                 android:textColor="#FFF"
                 android:textSize="20dp" />
@@ -44,7 +44,7 @@
                 android:text="Chennai, TamilNadu"
                 android:textColor="#FFF"
                 android:gravity="center"
-                app:font="robotoregular.ttf"
+                app:font="sanz.ttf"
                 android:textSize="16dp" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -53,7 +53,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="My Account"
-                app:font="robotoregular.ttf"
+                app:font="sanz.ttf"
                 android:textColor="#FFF"
                 android:textSize="16dp" />
 

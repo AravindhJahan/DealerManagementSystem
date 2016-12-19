@@ -38,7 +38,7 @@
                 android:text="Search List"
                 android:textColor="#FFF"
                 android:textSize="20dp"
-                app:font="robotoregular.ttf" />
+                app:font="sanz.ttf" />
         </LinearLayout>
 
     </LinearLayout>
@@ -55,7 +55,7 @@
         android:actionViewClass="android.widget.SearchView"
         android:background="@drawable/search_shape"
         android:focusable="false"
-        app:font="robotoregular.ttf"
+        app:font="sanz.ttf"
         android:iconifiedByDefault="false"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:showAsAction="collapseActionView" />

@@ -93,6 +93,11 @@
             android:name=".FundingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_funding"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".ApplyFundingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_apply_funding"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

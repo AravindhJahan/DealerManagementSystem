@@ -53,23 +53,26 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Aravindh Kumar"
+                app:font="sanz.ttf"
                 android:textSize="20dp"/>
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:id="@+id/query_car_name"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Audi 3s"
-                android:textSize="18dp"/>
+                app:font="sanz.ttf"
+                android:textSize="16dp"/>
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:id="@+id/query_car_details"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
+                app:font="sanz.ttf"
                 android:text="Is there  2016 model available with you"
-                android:textSize="14dp"/>
+                android:textSize="16dp"/>
 
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -77,9 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="26.11.2016 12:56:09"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
+                app:font="sanz.ttf"
                 android:layout_marginBottom="10dp"
-                android:textSize="14dp"/>
+                android:textSize="16dp"/>
 
         </LinearLayout>
 

@@ -102,10 +102,22 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CityActivity.this.finish();
+
+                Intent intent = new Intent(CityActivity.this, DashBoard.class);
+                startActivity(intent);
+
             }
         });
 
         new City_Datas().execute();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        Toast.makeText(CityActivity.this, "Please select any one city", Toast.LENGTH_SHORT).show();
+
     }
 
     public void intialize() {
@@ -194,7 +206,7 @@ public class CityActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // make Toast when click
-                    String selected_city =(parent.getItemAtPosition(position).toString());
+                    String selected_city = (parent.getItemAtPosition(position).toString());
                     Toast.makeText(getApplicationContext(), "Position " + selected_city, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(CityActivity.this, DashBoard.class);
                     intent.putExtra("Selected_Item", selected_city);

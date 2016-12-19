@@ -10,7 +10,7 @@
        android:id="@+id/checkbox1"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       app:font="robotoregular.ttf"
+       app:font="sans.ttf"
        android:textSize="18dp"
        android:text="Quickr"/>
 
@@ -18,7 +18,7 @@
         android:id="@+id/checkbox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:font="robotoregular.ttf"
+        app:font="sans.ttf"
         android:textSize="18dp"
         android:text="Carwale"/>
 
@@ -26,7 +26,7 @@
         android:id="@+id/checkbox3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:font="robotoregular.ttf"
+        app:font="sans.ttf"
         android:textSize="18dp"
         android:text="Cardekho"/>
 
@@ -34,7 +34,7 @@
         android:id="@+id/checkbox4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:font="robotoregular.ttf"
+        app:font="sans.ttf"
         android:textSize="18dp"
         android:text="OLX"/>
 -->

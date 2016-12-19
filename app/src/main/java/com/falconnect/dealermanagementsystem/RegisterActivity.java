@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     // Initializing a String Array
     String[] cities = new String[]{
             "Select City...",
-            "Chennai",
+            "chennai",
             "Thanjavur",
             "Thiruvarur",
             "Vellore",

@@ -36,7 +36,7 @@
             android:textAlignment="center"
             android:textColor="#C0C0C0"
             android:textSize="13dp"
-            app:font="robotoregular.ttf" />
+            app:font="sanz.ttf" />
 
 
     </LinearLayout>

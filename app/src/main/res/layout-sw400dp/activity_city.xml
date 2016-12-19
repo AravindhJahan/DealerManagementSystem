@@ -36,7 +36,7 @@
                 android:text="Search City"
                 android:textColor="#FFF"
                 android:textSize="16dp"
-                app:font="robotoregular.ttf" />
+                app:font="sanz.ttf" />
         </LinearLayout>
 
     </LinearLayout>
@@ -89,7 +89,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="All Cities"
-            app:font="robotoregular.ttf"
+            app:font="sanz.ttf"
             android:textSize="16dp" />
 
     </LinearLayout>

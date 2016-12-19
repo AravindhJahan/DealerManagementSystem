@@ -58,7 +58,7 @@
                             android:text="3"
                             android:layout_marginLeft="6dp"
                             android:textColor="#FFF"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:layout_gravity="center"
                             android:textSize="16dp"/>
                     </LinearLayout>
@@ -82,7 +82,7 @@
                             android:layout_marginTop="5dp"
                             android:maxLines="3"
                             android:text="Ferrari - ZR 65 DX"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:textSize="23dp"
                             android:textStyle="bold" />
 
@@ -94,7 +94,7 @@
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:text="posted 8 days ago"
                             android:textSize="14dp" />
 
@@ -116,7 +116,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="&#x20B9;"
-                                app:font="robotoregular.ttf"
+                                app:font="sanz.ttf"
                                 android:textSize="20dp" />
 
                             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -125,7 +125,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
                                 android:layout_marginTop="5dp"
-                                app:font="robotoregular.ttf"
+                                app:font="sanz.ttf"
                                 android:layout_toEndOf="@+id/rupee"
                                 android:text="40,000,000"
                                 android:textSize="20dp" />
@@ -154,7 +154,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2000kms"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:textSize="18dp" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -162,7 +162,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:text="Petrol"
                             android:textSize="18dp" />
 
@@ -172,14 +172,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="2015"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:textSize="18dp" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                             android:id="@+id/car_details_owner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:font="robotoregular.ttf"
+                            app:font="sanz.ttf"
                             android:layout_marginLeft="5dp"
                             android:text="owner"
                             android:textSize="18dp" />
@@ -207,7 +207,7 @@
                                     android:layout_marginTop="5dp"
                                     android:text="2nd cross street adayar chennai"
                                     android:textSize="16dp"
-                                    app:font="robotoregular.ttf" />
+                                    app:font="sanz.ttf" />
 
                             </LinearLayout>
 

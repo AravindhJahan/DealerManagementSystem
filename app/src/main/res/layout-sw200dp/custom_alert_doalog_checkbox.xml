@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Quickr"
         android:textSize="18dp"
-        app:font="robotoregular.ttf" />
+        app:font="sanz.ttf" />
 
 <!--
 

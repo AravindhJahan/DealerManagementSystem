@@ -27,11 +27,11 @@ public class BidsPostedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_bids_posted);
-
-
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        mVisible = true;
 
         if (mVisible) {
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();

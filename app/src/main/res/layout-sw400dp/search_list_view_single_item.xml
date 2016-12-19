@@ -13,6 +13,6 @@
         android:text="Sample"
         android:textSize="26dp"
         android:layout_gravity="center"
-        app:font="robotoregular.ttf" />
+        app:font="sanz.ttf" />
 
 </LinearLayout>

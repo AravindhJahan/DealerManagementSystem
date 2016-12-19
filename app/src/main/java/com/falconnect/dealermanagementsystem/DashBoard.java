@@ -286,6 +286,8 @@ public class DashBoard extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(DashBoard.this, CityActivity.class);
                 startActivity(i);
+
+                DashBoard.this.finish();
             }
         });
 
@@ -312,7 +314,7 @@ public class DashBoard extends AppCompatActivity {
         search = (Button) findViewById(R.id.search_btn);
     }
 
-   /* @Override
+    @Override
     public void onBackPressed() {
 
         AlertDialog alertbox = new AlertDialog.Builder(this)
@@ -328,7 +330,7 @@ public class DashBoard extends AppCompatActivity {
                 })
                 .show();
 
-    }*/
+    }
 
     public void Vehi_Datas() {
 

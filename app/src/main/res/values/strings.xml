@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DealerManagementSystem</string>
+    <string name="app_name">Dealer\nManagement\nSystem</string>
 
     <string name="title_activity_main">MainActivity</string>
     <string name="dummy_button">Dummy Button</string>
@@ -40,6 +40,8 @@
     <string name="title_activity_bids_posted">BidsPostedActivity</string>
 
     <string name="title_activity_funding">FundingActivity</string>
+
+    <string name="title_activity_apply_funding">ApplyFundingActivity</string>
 
 
 </resources>

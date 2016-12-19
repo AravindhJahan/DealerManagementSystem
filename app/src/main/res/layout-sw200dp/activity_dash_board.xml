@@ -36,7 +36,7 @@
                 android:text="Search List"
                 android:textColor="#FFF"
                 android:textSize="20dp"
-                app:font="robotoregular.ttf" />
+                app:font="sanz.ttf" />
 
         </LinearLayout>
 
@@ -83,17 +83,6 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="1dp"
                         android:background="#808080" />
-
-                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/search_city_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/view1"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="15dp"
-                        android:text="Select City"
-                        android:textSize="13dp"
-                        app:font="robotoregular.ttf" />
 
                     <!--<Spinner
                         android:id="@+id/search_city_spinner"
@@ -227,18 +216,16 @@
                         android:id="@+id/search_sites"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_below="@+id/customTextView"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         app:choiceDialogTheme="@style/AnotherCustomAlertDialogTheme"
-                        app:font="robotoregular.ttf" />
+                        app:font="sanz.ttf"/>
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                         android:id="@+id/customTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="53dp"
                         android:gravity="center"
@@ -246,7 +233,20 @@
                         android:textAllCaps="true"
                         android:textColor="#000"
                         android:textSize="16dp"
-                        app:font="robotoregular.ttf" />
+                        app:font="sanz.ttf" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/search_city_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Select City"
+                        android:textSize="15dp"
+                        android:layout_marginLeft="10dp"
+                        app:font="sanz.ttf"
+                        android:layout_below="@+id/view1"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 

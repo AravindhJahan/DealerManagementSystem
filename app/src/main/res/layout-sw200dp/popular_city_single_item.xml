@@ -19,7 +19,7 @@
 
     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
         android:id="@+id/popular_city_title"
-        app:font="robotoregular.ttf"
+        app:font="sanz.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
