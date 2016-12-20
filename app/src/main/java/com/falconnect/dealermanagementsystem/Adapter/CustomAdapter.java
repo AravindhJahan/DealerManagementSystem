@@ -1,5 +1,6 @@
 package com.falconnect.dealermanagementsystem.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -37,7 +38,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer_list_view_single, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer_list_view_single, null);
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
@@ -57,22 +58,34 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View v) {
 
                 if (singleItem.getId() == 0) {
+                    Intent intent = new Intent(mContext.getApplicationContext(), DashBoard.class);
+                    mContext.startActivity(intent);
+                    ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 1) {
                     Intent intent = new Intent(mContext.getApplicationContext(), SavedCarActivity.class);
                     mContext.startActivity(intent);
+                    ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 2) {
                     Intent intent = new Intent(mContext.getApplicationContext(), MyQueriesActivity.class);
                     mContext.startActivity(intent);
+                    ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 3) {
                     Intent intent = new Intent(mContext.getApplicationContext(), BidsPostedActivity.class);
                     mContext.startActivity(intent);
+                    ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 4) {
                     Intent intent = new Intent(mContext.getApplicationContext(), FundingActivity.class);
                     mContext.startActivity(intent);
+                    ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else {
 

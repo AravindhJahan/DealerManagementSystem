@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -112,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent j = new Intent(LoginActivity.this, RegisterActivity.class);
+                j.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(j);
 
                 LoginActivity.this.finish();
@@ -238,5 +240,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
 }
 

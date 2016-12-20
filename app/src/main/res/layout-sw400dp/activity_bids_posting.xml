@@ -50,6 +50,7 @@
         android:id="@+id/image_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_below="@+id/header_search_list"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -92,7 +93,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:background="@drawable/circle"
-            android:src="@drawable/splashlogo" />
+            android:src="@drawable/oldpassword" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -130,12 +131,12 @@
     </LinearLayout>
 
     <!--Body2-->
-
     <RelativeLayout
         android:id="@+id/image_display2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/image_display"
+        android:gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp">
 
@@ -161,18 +162,141 @@
     </RelativeLayout>
 
     <!--Body3-->
-    <ListView
-        android:id="@+id/bids_posting_list"
+    <!-- <ListView
+         android:id="@+id/bids_posting_list"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/image_display2"
+         android:layout_marginTop="5dp"
+         android:divider="#fff"
+         android:dividerHeight="8dp" />-->
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/image_display2"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:divider="#fff"
-        android:dividerHeight="8dp" />
+        android:layout_marginRight="5dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:id="@+id/bids_posted_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Johnxxxx"
+                android:textSize="18dp"
+                android:gravity="left|end"
+                app:font="sanz.ttf" />
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/bids_posted_rupee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\u20B9"
+                    android:textSize="18dp"
+                    app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/bids_posted_rated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/bids_posted_rupee"
+                    android:text="9,00,000.00"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="18dp"
+                    app:font="sanz.ttf" />
+
+            </LinearLayout>
+
+            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:id="@+id/bids_posted_date"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="30 Nov 2015 00:00:20"
+                android:layout_toRightOf="@+id/linear"
+                app:font="sanz.ttf"
+                android:textSize="18dp"
+                android:gravity="right|end"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:id="@+id/bids_posted_nam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Johnxxxx"
+                android:textSize="18dp"
+                android:gravity="left|end"
+                app:font="sanz.ttf" />
+
+            <LinearLayout
+                android:id="@+id/linea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/bids_posted_rupe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\u20B9"
+                    android:textSize="18dp"
+                    app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/bids_posted_raed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/bids_posted_rupee"
+                    android:text="9,00,000.00"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="18dp"
+                    app:font="sanz.ttf" />
+
+            </LinearLayout>
+
+            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:id="@+id/bids_posted_dte"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="30 Nov 2015 00:00:20"
+                android:layout_toRightOf="@+id/linea"
+                app:font="sanz.ttf"
+                android:textSize="18dp"
+                android:gravity="right|end"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
 
     <!--Footer-->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_bids"
+        android:id="@+id/my_recycler_bids_posting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

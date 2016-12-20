@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
     android:orientation="vertical">
-
 
 
     <!--Header-->
@@ -21,7 +21,7 @@
             android:background="@drawable/titlebar">
 
             <ImageView
-                android:id="@+id/nav_back_drawer"
+                android:id="@+id/my_queries_back"
                 android:layout_width="30dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -29,6 +29,7 @@
                 android:src="@drawable/back_arrow" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:id="@+id/title_saved_cars"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -40,25 +41,221 @@
                 android:text="My Queries"
                 android:textColor="#FFF"
                 android:textSize="25dp"
-                android:id="@+id/title_saved_cars"
                 app:font="sanz.ttf" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <ListView
+    <!--<ListView
         android:id="@+id/queries_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/header_search_list"
         android:divider="#fff"
-        android:dividerHeight="8dp" />
+        android:dividerHeight="8dp" />-->
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_search_list"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/card_id"
+        android:orientation="horizontal"
+        app:cardCornerRadius="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/category_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/car_iamge" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/splashlogo" />
+
+
+            <LinearLayout
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_owner_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Aravindh Kumar"
+                    android:textSize="20dp"
+                    app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_car_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Audi 3s"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_car_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Is there  2016 model available with you"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf" />
+
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="26.11.2016 12:56:09"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/replay" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_id"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        app:cardCornerRadius="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/category_ite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/car_iamge" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/splashlogo" />
+
+
+            <LinearLayout
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_owner_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Aravindh Kumar"
+                    android:textSize="20dp"
+                    app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_car_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Audi 3s"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_car_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Is there  2016 model available with you"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf" />
+
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_tie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="26.11.2016 12:56:09"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/replay" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_queries"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:scrollbars="none" />
 
 </RelativeLayout>

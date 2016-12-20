@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
@@ -26,6 +27,8 @@ public class ApplyFundingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView applyfundingrecyclerView;
     private static ArrayList<DataModel> data;
+
+    ImageView applyfundingback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,15 @@ public class ApplyFundingActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(ApplyFundingActivity.this, data);
         applyfundingrecyclerView.setAdapter(adapter);
+
+        applyfundingback = (ImageView) findViewById(R.id.apply_funding_back);
+
+        applyfundingback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApplyFundingActivity.this.finish();
+            }
+        });
 
 
     }

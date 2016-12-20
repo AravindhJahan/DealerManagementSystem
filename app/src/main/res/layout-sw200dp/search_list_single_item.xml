@@ -34,7 +34,7 @@
                     <ImageView
                         android:id="@+id/car_image"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="190dp"
                         android:layout_gravity="center"
                         android:src="@drawable/carimageplaceholder"/>
 
@@ -42,7 +42,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|bottom"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="23dp"
                         android:layout_marginRight="15dp"
                         android:gravity="center"
                         android:orientation="horizontal">

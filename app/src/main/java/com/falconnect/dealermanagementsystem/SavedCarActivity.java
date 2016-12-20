@@ -2,10 +2,12 @@ package com.falconnect.dealermanagementsystem;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,9 +22,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
+import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.ProductListAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
+import com.navdrawer.SimpleSideDrawer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +48,27 @@ public class SavedCarActivity extends AppCompatActivity {
     ProductListAdapter listAdapter;
 
     String Saved_Car_url;
+
+    ImageView savedcar_back;
+    private SimpleSideDrawer mNav_savedcar;
+
+
+    String[] web = {
+            "Buy",
+            "Sell",
+            "Manage",
+            "Communication",
+            "Reports",
+            "Logout"
+    };
+    Integer[] imageId = {
+            R.drawable.buy_sidemenu,
+            R.drawable.sell_sidemenu,
+            R.drawable.manage_sidemenu,
+            R.drawable.communication_sidemenu,
+            R.drawable.report_sidemenu,
+            R.drawable.logout_sidemenu
+    };
 
     TextView title;
     public ArrayList<HashMap<String, String>> saved_car_list;
@@ -100,11 +125,10 @@ public class SavedCarActivity extends AppCompatActivity {
             ));
 
         }
-
+        
         //Footer List View Adapter
         adapter = new CustomAdapter(SavedCarActivity.this, data);
         recyclerView_search.setAdapter(adapter);
-
 
         //get city url
         title = (TextView) findViewById(R.id.title_saved_cars);
@@ -115,8 +139,50 @@ public class SavedCarActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.saved_car_list);
 
+        savedcar_back = (ImageView) findViewById(R.id.savedcar_back);
+        mNav_savedcar = new SimpleSideDrawer(this);
+        mNav_savedcar.setLeftBehindContentView(R.layout.activity_behind_left_simple);
+
+        savedcar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNav_savedcar.toggleLeftDrawer();
+            }
+        });
+
+        //NAVIGATION DRAWER LIST VIEW
+        CustomList adapter = new CustomList(SavedCarActivity.this, web, imageId);
+        ListView list = (ListView) findViewById(R.id.nav_list_view);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+            }
+        });
+
         new Saved_Car().execute();
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog alertbox = new AlertDialog.Builder(this)
+                .setMessage("Do you want to exit application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        SavedCarActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                    }
+                })
+                .show();
 
     }
 

@@ -103,6 +103,11 @@
             android:name=".BidsPostingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_bids_posting"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".FundingViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_funding_view"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

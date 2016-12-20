@@ -113,27 +113,19 @@ public class DashBoard extends AppCompatActivity {
     String selectedcity;
 
     String[] web = {
-            "Home",
-            "Compare",
             "Buy",
             "Sell",
             "Manage",
             "Communication",
             "Reports",
-            "Profile Settings",
-            "Contact",
             "Logout"
     };
     Integer[] imageId = {
-            R.drawable.home_sidemenu,
-            R.drawable.buy_sidemenu,
             R.drawable.buy_sidemenu,
             R.drawable.sell_sidemenu,
             R.drawable.manage_sidemenu,
             R.drawable.communication_sidemenu,
             R.drawable.report_sidemenu,
-            R.drawable.contact_sidemenu,
-            R.drawable.contact_sidemenu,
             R.drawable.logout_sidemenu
     };
 
@@ -205,13 +197,12 @@ public class DashBoard extends AppCompatActivity {
             data.add(new DataModel(
                     MyData.nameArray[i],
                     MyData.id_[i],
-                    MyData.drawableArray[i]
+                    MyData.drawableArrayWhite0[i]
             ));
         }
 
         adapter = new CustomAdapter(DashBoard.this, data);
         recyclerView.setAdapter(adapter);
-
 
         //Button By Model
         by_mod.setOnClickListener(new View.OnClickListener()
@@ -270,14 +261,7 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (web[+position].equals("Profile Settings")) {
-                    Intent intent = new Intent(DashBoard.this, ChangePassword.class);
-                    startActivity(intent);
-                    mNav.closeLeftSide();
 
-                } else {
-
-                }
             }
         });
 
