@@ -1,18 +1,12 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
@@ -76,7 +70,6 @@ public class ApplyFundingActivity extends AppCompatActivity {
                 ApplyFundingActivity.this.finish();
             }
         });
-
 
     }
 

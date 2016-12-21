@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -52,13 +54,13 @@ public class FundingActivity extends AppCompatActivity {
     private SimpleSideDrawer mNav_funding;
 
 
+    CardView new_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_funding);
-
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
@@ -92,9 +94,10 @@ public class FundingActivity extends AppCompatActivity {
         adapter = new CustomAdapter(FundingActivity.this, data);
         fundingrecyclerView.setAdapter(adapter);
 
+        ImageView nav_funding = (ImageView)findViewById(R.id.nav_funding);
         mNav_funding = new SimpleSideDrawer(this);
         mNav_funding.setLeftBehindContentView(R.layout.activity_behind_left_simple);
-        mNav_funding.setOnClickListener(new View.OnClickListener() {
+        nav_funding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mNav_funding.toggleLeftDrawer();
@@ -122,6 +125,15 @@ public class FundingActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
+            }
+        });
+
+        new_card = (CardView)findViewById(R.id.new_card);
+        new_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (FundingActivity.this, FundingViewActivity.class);
+                startActivity(intent);
             }
         });
 

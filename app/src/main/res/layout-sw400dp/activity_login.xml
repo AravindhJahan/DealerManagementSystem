@@ -85,7 +85,7 @@
                     android:background="#fff"
                     android:fontFamily="sanz.ttf"
                     android:hint="Email ID"
-                    android:text="ahila@falconnect.in" />
+                    android:text="naveenbabu@falconnect.in" />
 
             </LinearLayout>
 
@@ -127,7 +127,7 @@
                     android:fontFamily="sanz.ttf"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:text="ahila" />
+                    android:text="murthy" />
 
 
             </LinearLayout>

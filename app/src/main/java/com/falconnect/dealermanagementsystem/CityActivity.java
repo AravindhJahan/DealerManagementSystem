@@ -17,10 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.PopularCityAdapter;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
-import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.Model.PopularCityDataModel;
 
 import org.json.JSONArray;

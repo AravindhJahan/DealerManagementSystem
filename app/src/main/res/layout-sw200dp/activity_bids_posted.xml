@@ -208,7 +208,8 @@
         android:layout_marginRight="5dp"
         android:orientation="horizontal"
         app:cardCornerRadius="5dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        android:id="@+id/cardView">
 
         <LinearLayout
             android:id="@+id/category_ite"

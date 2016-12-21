@@ -61,31 +61,26 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                     Intent intent = new Intent(mContext.getApplicationContext(), DashBoard.class);
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 1) {
                     Intent intent = new Intent(mContext.getApplicationContext(), SavedCarActivity.class);
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 2) {
                     Intent intent = new Intent(mContext.getApplicationContext(), MyQueriesActivity.class);
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 3) {
                     Intent intent = new Intent(mContext.getApplicationContext(), BidsPostedActivity.class);
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 4) {
                     Intent intent = new Intent(mContext.getApplicationContext(), FundingActivity.class);
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
-
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else {
 

@@ -289,7 +289,6 @@ public class DashBoard extends AppCompatActivity {
         mod_spinner = (Spinner) findViewById(R.id.model_spinner);
 
         //TextView
-        //sites = (TextView) findViewById(R.id.search_sites);
         sites = (MultiSelectSpinner) findViewById(R.id.search_sites);
 
         //Buttons

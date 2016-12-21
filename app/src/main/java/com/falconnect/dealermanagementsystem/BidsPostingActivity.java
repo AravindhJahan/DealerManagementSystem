@@ -1,6 +1,5 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,6 @@ import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 
 import java.util.ArrayList;
-
 
 public class BidsPostingActivity extends AppCompatActivity {
 
