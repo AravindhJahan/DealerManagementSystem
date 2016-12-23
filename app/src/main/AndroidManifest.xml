@@ -5,6 +5,21 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <supports-screens android:requiresSmallestWidthDp="600" />
+
+    <compatible-screens>
+        <!-- all small size screens -->
+        <screen android:screenSize="small" android:screenDensity="ldpi" />
+        <screen android:screenSize="small" android:screenDensity="mdpi" />
+        <screen android:screenSize="small" android:screenDensity="hdpi" />
+        <screen android:screenSize="small" android:screenDensity="xhdpi" />
+        <!-- all normal size screens -->
+        <screen android:screenSize="large" android:screenDensity="ldpi" />
+        <screen android:screenSize="large" android:screenDensity="mdpi" />
+        <screen android:screenSize="large" android:screenDensity="hdpi" />
+        <screen android:screenSize="large" android:screenDensity="xhdpi" />
+    </compatible-screens>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/splashlogo"
@@ -54,7 +69,7 @@
             android:name=".DashBoard"
             android:label="@string/title_activity_dash_board"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".SearchResultActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

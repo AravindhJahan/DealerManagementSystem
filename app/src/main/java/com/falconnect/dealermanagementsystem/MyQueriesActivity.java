@@ -79,7 +79,7 @@ public class MyQueriesActivity extends AppCompatActivity {
 
 
         queriesrecyclerView = (RecyclerView) findViewById(R.id.my_recycler_queries);
-        queriesrecyclerView.setHasFixedSize(true);
+        queriesrecyclerView.setHasFixedSize(false);
         queriesrecyclerView.setLayoutManager(new LinearLayoutManager(MyQueriesActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
         data = new ArrayList<DataModel>();

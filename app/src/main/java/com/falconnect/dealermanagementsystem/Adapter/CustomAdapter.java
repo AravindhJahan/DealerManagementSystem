@@ -41,6 +41,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer_list_view_single, null);
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
+
         return myViewHolder;
     }
 
@@ -59,26 +60,37 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
                 if (singleItem.getId() == 0) {
                     Intent intent = new Intent(mContext.getApplicationContext(), DashBoard.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 1) {
                     Intent intent = new Intent(mContext.getApplicationContext(), SavedCarActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 2) {
                     Intent intent = new Intent(mContext.getApplicationContext(), MyQueriesActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 3) {
                     Intent intent = new Intent(mContext.getApplicationContext(), BidsPostedActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 4) {
                     Intent intent = new Intent(mContext.getApplicationContext(), FundingActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
                     mContext.startActivity(intent);
                     ((Activity)mContext).finish();
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
@@ -102,11 +114,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         ImageView imageViewIcon;
         LinearLayout category_item;
 
+
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = (TextView) itemView.findViewById(R.id.mtitle);
             this.imageViewIcon = (ImageView) itemView.findViewById(R.id.image_footer);
             this.category_item = (LinearLayout) itemView.findViewById(R.id.category_item);
+
+
         }
     }
 

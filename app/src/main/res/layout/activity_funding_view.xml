@@ -15,13 +15,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="55dp"
             android:background="@drawable/titlebar">
 
             <ImageView
-                android:id="@+id/nav_back_drawer"
-                android:layout_width="25dp"
-                android:layout_height="45dp"
+                android:id="@+id/funding_view_back"
+                android:layout_width="30dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/back_arrow" />

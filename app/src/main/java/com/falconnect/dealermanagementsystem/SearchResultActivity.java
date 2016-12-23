@@ -110,7 +110,7 @@ public class SearchResultActivity extends AppCompatActivity {
             data.add(new DataModel(
                     MyData.nameArray[i],
                     MyData.id_[i],
-                    MyData.drawableArray[i]
+                    MyData.drawableArrayWhite0[i]
             ));
         }
         //Footer List View Adapter

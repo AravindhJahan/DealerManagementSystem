@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
@@ -64,6 +65,16 @@ public class FundingViewActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(FundingViewActivity.this, data);
         fundingviewrecyclerView.setAdapter(adapter);
+
+
+        ImageView funding_view_back =(ImageView)findViewById(R.id.funding_view_back);
+
+        funding_view_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FundingViewActivity.this.finish();
+            }
+        });
 
     }
 

@@ -15,13 +15,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="55dp"
             android:background="@drawable/titlebar">
 
             <ImageView
-                android:id="@+id/saved_car_back"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
+                android:id="@+id/nav_back_drawer"
+                android:layout_width="30dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/back_arrow" />
@@ -35,20 +35,39 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="30dp"
                 android:gravity="center"
-                android:text="Saved Cars"
+                android:text="Search List"
                 android:textColor="#FFF"
                 android:textSize="18dp"
-                app:font="robotoregular.ttf" />
+                app:font="sanz.ttf" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <!--Search Bar-->
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header_search_list"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:actionViewClass="android.widget.SearchView"
+        android:background="@drawable/search_shape"
+        android:focusable="false"
+        app:font="sanz.ttf"
+        android:iconifiedByDefault="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:showAsAction="collapseActionView" />
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/header_search_list"
+        android:layout_below="@+id/searchView"
         android:divider="#fff"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="55dp"
         android:dividerHeight="8dp" />
 
     <android.support.v7.widget.RecyclerView

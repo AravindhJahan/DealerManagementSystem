@@ -16,27 +16,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="55dp"
             android:background="@drawable/titlebar"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/apply_funding_back"
-                android:layout_width="20dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="55dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/back_arrow" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:id="@+id/title_saved_cars"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginRight="30dp"
                 android:text="Apply Funding"
                 android:textColor="#FFF"
                 android:textSize="18dp"
@@ -59,7 +57,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
 
             <ImageView
                 android:id="@+id/chola_image"
@@ -67,7 +67,7 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/circle"
-                android:src="@drawable/defaultcar"/>
+                android:src="@drawable/chola"/>
 
             <ImageView
                 android:id="@+id/apply_funding_ownerimage"
@@ -80,7 +80,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="3dp"
                 android:background="@drawable/circle"
-                android:src="@drawable/splashlogo" />
+                android:src="@drawable/default_avatar" />
 
             <RelativeLayout
                 android:id="@+id/relative"
@@ -89,14 +89,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center">
-
-                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                    android:id="@+id/finance_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cholamandalam Finance"
-                    android:textSize="14dp"
-                    app:font="sanz.ttf" />
 
                 <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                     android:id="@+id/inventry_funing_req"
@@ -109,6 +101,17 @@
                     android:text="Inventory Funding Request"
                     android:textSize="11dp"
                     app:font="sanz.ttf" />
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/finance_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cholamandalam Finance"
+                    android:textSize="14dp"
+                    app:font="sanz.ttf"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignLeft="@+id/inventry_funing_req"
+                    android:layout_alignStart="@+id/inventry_funing_req" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -135,7 +138,7 @@
             android:layout_below="@+id/dealerplus"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -179,7 +182,7 @@
             android:layout_below="@+id/lastname_layout"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -223,7 +226,7 @@
             android:layout_below="@+id/email_layout"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -267,7 +270,7 @@
             android:layout_below="@+id/email_layout"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -311,7 +314,7 @@
             android:layout_below="@+id/address_layout"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -344,10 +347,11 @@
         <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
             android:id="@+id/submit_button"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_submit"
             android:text="Submit"
+            android:textAllCaps="false"
             android:textColor="#FFF" />
 
     </LinearLayout>

@@ -201,6 +201,7 @@ public class DashBoard extends AppCompatActivity {
             ));
         }
 
+
         adapter = new CustomAdapter(DashBoard.this, data);
         recyclerView.setAdapter(adapter);
 

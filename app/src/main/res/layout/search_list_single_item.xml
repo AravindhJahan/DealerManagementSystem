@@ -1,14 +1,14 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    card_view:cardElevation="5dp"
     android:padding="10dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -34,35 +34,46 @@
                     <ImageView
                         android:id="@+id/car_image"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="190dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/carimageplaceholder"/>
+                        android:src="@drawable/carimageplaceholder" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|bottom"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="15dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:background="#80000000"
+                        android:gravity="right">
 
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/camera" />
-
-                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                            android:id="@+id/noofimages"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal"
                             android:gravity="center"
-                            app:font="robotoregular.ttf"
-                            android:text="4"
-                            android:textColor="#FFF"
-                            android:textSize="14dp" />
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="10dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/camera" />
+
+                            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                                android:id="@+id/noofimages"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:gravity="center"
+                                android:text="4"
+                                android:textColor="#FFF"
+                                android:textSize="14dp"
+                                card_view:font="robotoregular.ttf" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </FrameLayout>
@@ -83,23 +94,23 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:maxLines="3"
-                            app:font="robotoregular.ttf"
                             android:text="Ferrari - ZR 65 DX"
                             android:textSize="18dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            app:font="sanz.ttf" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                             android:id="@+id/posted_day"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:gravity="center"
-                            app:font="robotoregular.ttf"
-                            android:text="posted 8 days ago"
-                            android:textSize="12dp"
                             android:layout_alignBaseline="@+id/car_name"
                             android:layout_alignBottom="@+id/car_name"
-                            android:layout_alignParentEnd="true" />
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:text="posted 8 days ago"
+                            android:textSize="12dp"
+                            app:font="sanz.ttf" />
 
                     </RelativeLayout>
 
@@ -119,8 +130,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
                                 android:text="&#x20B9;"
-                                app:font="robotoregular.ttf"
-                                android:textSize="14dp" />
+                                android:textSize="14dp"
+                                app:font="sanz.ttf" />
 
                             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                                 android:id="@+id/car_rate"
@@ -128,10 +139,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="3dp"
                                 android:layout_marginTop="7dp"
-                                app:font="robotoregular.ttf"
                                 android:layout_toEndOf="@+id/rupee"
                                 android:text="40,000,000"
-                                android:textSize="14dp" />
+                                android:textSize="14dp"
+                                card_view:font="sanz.ttf" />
                         </LinearLayout>
 
                         <ImageView
@@ -156,8 +167,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2000kms"
-                            app:font="robotoregular.ttf"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            card_view:font="sanz.ttf" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                             android:id="@+id/car_details_liquid"
@@ -165,8 +176,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="Petrol"
-                            app:font="robotoregular.ttf"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            card_view:font="sanz.ttf" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                             android:id="@+id/car_details_year"
@@ -174,8 +185,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="2015"
-                            app:font="robotoregular.ttf"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            card_view:font="sanz.ttf" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                             android:id="@+id/car_details_owner"
@@ -183,8 +194,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:text="Owner"
-                            app:font="robotoregular.ttf"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            card_view:font="sanz.ttf" />
 
                     </LinearLayout>
 
@@ -202,9 +213,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                app:font="robotoregular.ttf"
                                 android:text="2nd cross street adayar chennai"
-                                android:textSize="14dp" />
+                                android:textSize="14dp"
+                                card_view:font="sanz.ttf" />
 
                         </LinearLayout>
 
@@ -222,6 +233,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
 

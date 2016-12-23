@@ -17,8 +17,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="55dp"
             android:background="@drawable/titlebar">
+
+            <ImageView
+                android:id="@+id/bids_back"
+                android:layout_width="30dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/nav_icon" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:id="@+id/title_saved_cars"
@@ -59,7 +67,7 @@
         app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/category_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,6 +75,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/bid_car"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
                 android:layout_gravity="center">
@@ -75,13 +84,16 @@
                     android:id="@+id/funding_list_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="2dp"
                     android:src="@drawable/defaultcar" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bid_text_details"
+                android:layout_toRightOf="@+id/bid_car"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -103,7 +115,6 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -112,7 +123,6 @@
                             android:layout_height="wrap_content"
                             android:text="&#x20B9;"
                             android:textSize="14dp"
-                            android:textStyle="bold"
                             app:font="sanz.ttf" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -122,14 +132,12 @@
                             android:layout_marginLeft="5dp"
                             android:text="9,00,000.00"
                             android:textSize="14dp"
-                            android:textStyle="bold"
                             app:font="sanz.ttf" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -156,38 +164,38 @@
                         android:id="@+id/bids_aution"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="2dp"
                         android:text="Auction 2 days ago"
                         android:textSize="14dp"
                         app:font="sanz.ttf" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+            </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/won_closed_going"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/camera" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/won_sites"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/chola" />
+                <ImageView
+                    android:id="@+id/won_closed_going"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/bid_won" />
 
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/won_sites"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/chola" />
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
@@ -198,12 +206,12 @@
         android:layout_below="@+id/card_new"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
         android:orientation="horizontal"
         app:cardCornerRadius="5dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        android:id="@+id/cardView">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/category_ite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -211,6 +219,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/default_name"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
                 android:layout_gravity="center">
@@ -219,11 +228,14 @@
                     android:id="@+id/funding_list_mage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="2dp"
                     android:src="@drawable/defaultcar" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/text_default"
+                android:layout_toRightOf="@+id/default_name"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -247,7 +259,6 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -256,7 +267,6 @@
                             android:layout_height="wrap_content"
                             android:text="&#x20B9;"
                             android:textSize="14dp"
-                            android:textStyle="bold"
                             app:font="sanz.ttf" />
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -266,14 +276,12 @@
                             android:layout_marginLeft="5dp"
                             android:text="9,00,000.00"
                             android:textSize="14dp"
-                            android:textStyle="bold"
                             app:font="sanz.ttf" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
                         android:orientation="horizontal">
 
                         <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -301,37 +309,39 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
                         android:text="Auction 2 days ago"
                         android:textSize="14dp"
                         app:font="sanz.ttf" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/won_closd_going"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/camera" />
-
-                    <ImageView
-                        android:id="@+id/won_stes"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/chola" />
-
-                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/won_closd_going"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/bid_won" />
+
+                <ImageView
+                    android:id="@+id/won_stes"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/chola" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
