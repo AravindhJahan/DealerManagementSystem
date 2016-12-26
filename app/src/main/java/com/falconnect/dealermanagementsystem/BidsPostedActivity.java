@@ -37,6 +37,7 @@ public class BidsPostedActivity extends AppCompatActivity {
 
     private SimpleSideDrawer mNav_bids;
 
+    //side menu content
     String[] web = {
             "Buy",
             "Sell",
