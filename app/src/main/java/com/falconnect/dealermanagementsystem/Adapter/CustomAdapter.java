@@ -59,40 +59,55 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             public void onClick(View v) {
 
                 if (singleItem.getId() == 0) {
+                    //Current screen to next screen navigate
                     Intent intent = new Intent(mContext.getApplicationContext(), DashBoard.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
                     mContext.startActivity(intent);
+
+                    //current screen finish
                     ((Activity)mContext).finish();
 
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 1) {
+                    //Current screen to next screen navigate
                     Intent intent = new Intent(mContext.getApplicationContext(), SavedCarActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
                     mContext.startActivity(intent);
+
+                    //current screen finish
                     ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 2) {
+                    //Current screen to next screen navigate
                     Intent intent = new Intent(mContext.getApplicationContext(), MyQueriesActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
                     mContext.startActivity(intent);
+
+                    //current screen finish
                     ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 3) {
+
+                    //Current screen to next screen navigate
                     Intent intent = new Intent(mContext.getApplicationContext(), BidsPostedActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
                     mContext.startActivity(intent);
+
+                    //current screen finish
                     ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem.getId() == 4) {
+                    //Current screen to next screen navigate
                     Intent intent = new Intent(mContext.getApplicationContext(), FundingActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
                     mContext.startActivity(intent);
+
+                    //current screen finish
                     ((Activity)mContext).finish();
+
                     Toast.makeText(mContext, "Selected :" + singleItem.getName(), Toast.LENGTH_SHORT).show();
                 } else {
 

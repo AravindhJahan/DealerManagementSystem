@@ -30,8 +30,10 @@ public class ApplyFundingActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_apply_funding);
 
+        //keyboard off
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        //full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mVisible = true;
@@ -46,10 +48,12 @@ public class ApplyFundingActivity extends AppCompatActivity {
 
         }
 
+        //footer
         applyfundingrecyclerView = (RecyclerView) findViewById(R.id.my_recycler_apply_funding);
         applyfundingrecyclerView.setHasFixedSize(true);
         applyfundingrecyclerView.setLayoutManager(new LinearLayoutManager(ApplyFundingActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
+        //footer data
         data = new ArrayList<DataModel>();
         for (int i = 0; i < MyData.nameArray.length; i++) {
             data.add(new DataModel(
@@ -58,18 +62,22 @@ public class ApplyFundingActivity extends AppCompatActivity {
                     MyData.drawableArrayWhite4[i]
             ));
         }
-
+        //footer adapter
         adapter = new CustomAdapter(ApplyFundingActivity.this, data);
         applyfundingrecyclerView.setAdapter(adapter);
+        //end footer
 
+        //back button
         applyfundingback = (ImageView) findViewById(R.id.apply_funding_back);
 
+        //back button click event
         applyfundingback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ApplyFundingActivity.this.finish();
             }
         });
+        //end back button
 
     }
 
