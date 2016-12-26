@@ -46,6 +46,7 @@ public class BidsPostedActivity extends AppCompatActivity {
             "Reports",
             "Logout"
     };
+    //side menu content icons
     Integer[] imageId = {
             R.drawable.buy_sidemenu,
             R.drawable.sell_sidemenu,
