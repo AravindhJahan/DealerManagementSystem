@@ -11,8 +11,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.falconnect.dealermanagementsystem.Adapter.MultiSelectListViewAdapter;
+import com.falconnect.dealermanagementsystem.Adapter.ProductListAdapter;
+import com.falconnect.dealermanagementsystem.Model.MultiSelectModel;
+import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,11 +37,14 @@ public class SitesActivity extends AppCompatActivity {
     private ImageView btn_apply_site;
     private ImageView btn_close_site;
 
+    MultiSelectListViewAdapter adapter;
+
     public ArrayList<HashMap<String, String>> site_spinner_list;
     HashMap<String, String> sitelist;
     String site_id, site_name;
     private ArrayList<String> site_datas;
 
+    ArrayList<MultiSelectModel> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,7 @@ public class SitesActivity extends AppCompatActivity {
 
         intialize();
 
+        items = new ArrayList<MultiSelectModel>();
         //myList = (ArrayList<String>) getIntent().getSerializableExtra("Site_List");
 
         // XML Parsing Using AsyncTask...
@@ -71,7 +81,6 @@ public class SitesActivity extends AppCompatActivity {
             Toast.makeText(SitesActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             this.finish();
         }
-        site_datas = new ArrayList<String>();
         /*ArrayAdapter adapter = new ArrayAdapter(SitesActivity.this, R.layout.single_site_list_item, myList);
         sitelistView.setAdapter(adapter);*/
 
@@ -85,6 +94,21 @@ public class SitesActivity extends AppCompatActivity {
 
     }
 
+
+
+    private ArrayList<MultiSelectModel> get_data() {
+        final ArrayList<MultiSelectModel> imageItemsss = new ArrayList<>();
+        for (int i = 0; i < site_spinner_list.size(); i++) {
+
+            String name = site_spinner_list.get(i).get("sitename");
+            String id = site_spinner_list.get(i).get("id");
+
+            imageItemsss.add(new MultiSelectModel(id,name));
+
+        }
+
+        return imageItemsss;
+    }
     public void intialize() {
 
         sitelistView = (ListView) findViewById(R.id.multiselectlisttitle);
@@ -112,6 +136,7 @@ public class SitesActivity extends AppCompatActivity {
 
                 site_spinner_list = new ArrayList<>();
 
+                site_datas = new ArrayList<>();
                 try {
                     JSONObject jsonObj = new JSONObject(json);
 
@@ -124,11 +149,12 @@ public class SitesActivity extends AppCompatActivity {
 
                         sitelist = new HashMap<>();
 
-                        sitelist.put("site_id", site_id);
-                        sitelist.put("site_name", site_name);
+                        sitelist.put("id", site_id);
+                        sitelist.put("sitename", site_name);
 
                         site_spinner_list.add(sitelist);
-                        site_datas.add(site_name);
+
+                        //site_datas.add(site_name);
                     }
 
                 } catch (final JSONException e) {
@@ -158,7 +184,8 @@ public class SitesActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            ArrayAdapter adapter = new ArrayAdapter(SitesActivity.this, android.R.layout.activity_list_item, site_datas);
+            adapter = new MultiSelectListViewAdapter(SitesActivity.this, get_data());
+            
             sitelistView.setAdapter(adapter);
 
         }

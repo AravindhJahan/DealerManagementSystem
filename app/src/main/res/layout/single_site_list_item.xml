@@ -6,13 +6,23 @@
     android:background="@android:color/white">
 
     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-        android:id="@+id/multiselectlisttitle"
+        android:id="@+id/multiselectlistid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
-        android:layout_toLeftOf="@+id/checkbox"
+        android:text="1"
+        app:font="sanz.ttf"
+        android:textSize="18dp" />
+
+    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+        android:id="@+id/multiselectlisttitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/multiselectlistid"
         android:text="title"
         app:font="sanz.ttf"
         android:textSize="18dp" />
