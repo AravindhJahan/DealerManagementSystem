@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
         intialize();
 
+
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +105,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     builder.show();
                 } else {
-                    new GetLoginData().execute();
+                    if (isNetworkAvailable()) {
+
+                        new GetLoginData().execute();
+
+                    } else {
+                        Toast.makeText(LoginActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -240,6 +247,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
+    // Check Internet Connection!!!
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity == null) {
+            return false;
+        } else {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 
 }
 

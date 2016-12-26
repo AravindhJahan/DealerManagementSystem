@@ -1,11 +1,11 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -59,11 +58,9 @@ public class DashBoard extends AppCompatActivity {
 
     String selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
 
-    public ArrayList<HashMap<String, String>> site_spinner_list;
-    HashMap<String, String> sitelist;
-
     public ArrayList<HashMap<String, String>> make_spinner_list;
     HashMap<String, String> makelist;
+
 
     public ArrayList<HashMap<String, String>> model_spinner_list;
     HashMap<String, String> modelist;
@@ -82,7 +79,7 @@ public class DashBoard extends AppCompatActivity {
 
     ArrayAdapter<String> spinnerArrayAdapter;
 
-    MultiSelectSpinner sites;
+    TextView sites;
 
     String encodedUrl = null;
 
@@ -99,12 +96,12 @@ public class DashBoard extends AppCompatActivity {
             "Wagon"
     };
 
-    private ArrayList<String> make_datas, model_datas, site_datas, budget_datas;
+    private ArrayList<String> make_datas, model_datas, budget_datas;
 
 
     String get_brand_id, get_brand_name, get_model_id, get_model_name;
 
-    String site_id, site_name, budget_id, budget_name;
+    String budget_id, budget_name;
 
 
     ///Navigation Drawer ListView Content
@@ -164,17 +161,24 @@ public class DashBoard extends AppCompatActivity {
 
         }
 
-        // new City_Datas().execute();
-        new Make_Datas().execute();
-        new Budget_Datas().execute();
-        new Site_Datas().execute();
+        // XML Parsing Using AsyncTask...
+        if (isNetworkAvailable()) {
+
+            new Make_Datas().execute();
+            new Budget_Datas().execute();
+
+
+        } else {
+            Toast.makeText(DashBoard.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+            this.finish();
+        }
 
         //Vehicle Datas to Spinner
         Vehi_Datas();
         make_datas = new ArrayList<String>();
         model_datas = new ArrayList<String>();
         budget_datas = new ArrayList<String>();
-        site_datas = new ArrayList<String>();
+        //site_datas = new ArrayList<String>();
 
 
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
@@ -276,6 +280,17 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
+        sites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard.this, SitesActivity.class);
+
+                startActivity(i);
+
+                DashBoard.this.finish();
+            }
+        });
+
         //Button Event
         search_button();
 
@@ -290,7 +305,7 @@ public class DashBoard extends AppCompatActivity {
         mod_spinner = (Spinner) findViewById(R.id.model_spinner);
 
         //TextView
-        sites = (MultiSelectSpinner) findViewById(R.id.search_sites);
+        sites = (TextView) findViewById(R.id.search_sites);
 
         //Buttons
         bud_mod = (Button) findViewById(R.id.budget_model);
@@ -750,87 +765,6 @@ public class DashBoard extends AppCompatActivity {
 
     }
 
-    private class Site_Datas extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            ServiceHandler sh = new ServiceHandler();
-
-            String city_url = Constant.DASH_BOARD_SPINNER_API;
-
-            String json = sh.makeServiceCall(city_url, ServiceHandler.GET);
-
-            if (json != null) {
-
-                site_spinner_list = new ArrayList<>();
-
-                try {
-                    JSONObject jsonObj = new JSONObject(json);
-
-                    JSONArray city = jsonObj.getJSONArray("site_names");
-
-                    for (int k = 0; k <= city.length(); k++) {
-
-                        site_id = city.getJSONObject(k).getString("id");
-                        site_name = city.getJSONObject(k).getString("sitename");
-
-                        sitelist = new HashMap<>();
-
-                        sitelist.put("city_id", site_id);
-                        sitelist.put("city_name", site_name);
-
-                        site_spinner_list.add(sitelist);
-                        site_datas.add(site_name);
-                    }
-
-                } catch (final JSONException e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-
-            } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            spinnerArrayAdapter = new ArrayAdapter<String>(DashBoard.this, android.R.layout.simple_list_item_checked, site_datas);
-
-            sites.setListAdapter(spinnerArrayAdapter).setListener(new MultiSelectSpinner.MultiSpinnerListener() {
-                @Override
-                public void onItemsSelected(boolean[] selected) {
-
-
-                }
-            })
-                    .setAllCheckedText("All types")
-                    .setAllUncheckedText("Select Sites")
-                    .setTitle("Select Sites");
-        }
-    }
-
     public void search_button() {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -887,6 +821,24 @@ public class DashBoard extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    // Check Internet Connection!!!
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity == null) {
+            return false;
+        } else {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }
