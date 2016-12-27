@@ -209,6 +209,7 @@ public class CityActivity extends AppCompatActivity {
                     Intent intent = new Intent(CityActivity.this, DashBoard.class);
                     intent.putExtra("Selected_Item", selected_city);
                     startActivity(intent);
+
                     CityActivity.this.finish();
 
 

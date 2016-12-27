@@ -30,7 +30,7 @@
                 android:layout_height="55dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/close" />
+                android:src="@drawable/tick" />
 
             <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                 android:layout_width="wrap_content"
@@ -50,11 +50,10 @@
     <ListView
         android:id="@+id/sitelistview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFF"
-        android:choiceMode="multipleChoice"
-        android:layout_below="@+id/btn_value_get"
-        android:layout_marginTop="5dp" />
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="5dp"
+        android:background="#FFF" />
 
 </LinearLayout>
 

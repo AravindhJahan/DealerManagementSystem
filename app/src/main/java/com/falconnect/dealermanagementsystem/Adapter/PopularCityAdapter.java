@@ -56,12 +56,11 @@ public class PopularCityAdapter extends RecyclerView.Adapter<PopularCityAdapter.
                 //Current screen to next screen navigate
                 Toast.makeText(mContext, "Selected Item : " + singleItemdata.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(mContext, DashBoard.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("Selected_Item", singleItemdata.getName());
+                intent.putExtra("selected_item", singleItemdata.getName());
                 mContext.startActivity(intent);
 
                 //current screen finish
-               ((Activity)mContext).finish();
+               //((Activity)mContext).finish();
 
 
             }

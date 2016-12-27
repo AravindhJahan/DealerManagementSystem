@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
-import com.falconnect.dealermanagementsystem.FontAdapter.MultiSelectSpinner;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.navdrawer.SimpleSideDrawer;
@@ -36,8 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -98,6 +95,10 @@ public class DashBoard extends AppCompatActivity {
 
     private ArrayList<String> make_datas, model_datas, budget_datas;
 
+    public ArrayList<HashMap<String, String>> site_spinner_list;
+    HashMap<String, String> sitelist;
+    String site_id, site_name;
+    private ArrayList<String> site_datas;
 
     String get_brand_id, get_brand_name, get_model_id, get_model_name;
 
@@ -149,7 +150,7 @@ public class DashBoard extends AppCompatActivity {
 
         intialize();
 
-        selectedcity = getIntent().getStringExtra("Selected_Item");
+        selectedcity = getIntent().getStringExtra("selected_item");
 
         if (selectedcity == null) {
 
@@ -166,6 +167,7 @@ public class DashBoard extends AppCompatActivity {
 
             new Make_Datas().execute();
             new Budget_Datas().execute();
+            new Site_Datas().execute();
 
 
         } else {
@@ -178,7 +180,7 @@ public class DashBoard extends AppCompatActivity {
         make_datas = new ArrayList<String>();
         model_datas = new ArrayList<String>();
         budget_datas = new ArrayList<String>();
-        //site_datas = new ArrayList<String>();
+        site_datas = new ArrayList<String>();
 
 
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
@@ -273,21 +275,11 @@ public class DashBoard extends AppCompatActivity {
         spinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(DashBoard.this, CityActivity.class);
                 startActivity(i);
 
-                DashBoard.this.finish();
-            }
-        });
-
-        sites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(DashBoard.this, SitesActivity.class);
-
-                startActivity(i);
-
-                DashBoard.this.finish();
+                //DashBoard.this.finish();
             }
         });
 
@@ -763,6 +755,90 @@ public class DashBoard extends AppCompatActivity {
 
         }
 
+    }
+
+    private class Site_Datas extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String city_url = Constant.DASH_BOARD_SPINNER_API;
+
+            String json = sh.makeServiceCall(city_url, ServiceHandler.GET);
+
+            if (json != null) {
+
+                site_spinner_list = new ArrayList<>();
+
+                //site_datas = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    JSONArray city = jsonObj.getJSONArray("site_names");
+
+                    for (int k = 0; k <= city.length(); k++) {
+
+                        site_id = city.getJSONObject(k).getString("id");
+                        site_name = city.getJSONObject(k).getString("sitename");
+
+                        sitelist = new HashMap<>();
+
+                        sitelist.put("id", site_id);
+                        sitelist.put("sitename", site_name);
+
+                        site_spinner_list.add(sitelist);
+
+                        site_datas.add(site_name);
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+
+            sites.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DashBoard.this, SitesActivity.class);
+                    i.putExtra("string_array", site_datas);
+                    startActivity(i);
+                    Toast.makeText(DashBoard.this, "Sites", Toast.LENGTH_SHORT).show();
+                   // DashBoard.this.finish();
+                }
+            });
+
+        }
     }
 
     public void search_button() {
