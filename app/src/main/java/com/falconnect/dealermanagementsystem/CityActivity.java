@@ -195,7 +195,6 @@ public class CityActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-
             ////City Data Get
             listAdapter = new ArrayAdapter<String>(CityActivity.this, R.layout.search_list_view_single_item, R.id.text1, spinner_datas);
             searchlistview.setAdapter(listAdapter);
@@ -211,7 +210,6 @@ public class CityActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     CityActivity.this.finish();
-
 
                 }
             });
