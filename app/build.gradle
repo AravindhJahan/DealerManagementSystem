@@ -27,24 +27,30 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile 'com.android.support:design:23.0.1'
+
     //recycle and card view
-    
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
 
     //Side Drawer
     compile files('libs/simple-side-drawer2.jar')
 
     //Glide
-    
-    //GSON
-    
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.github.bumptech.glide:glide:3.6.1'
+
+    //GSON
     compile 'com.google.code.gson:gson:2.3'
+
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
     testCompile 'junit:junit:4.12'
 }
+
+
+
+
+
 
 
 

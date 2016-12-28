@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,8 +41,12 @@ public class LoginActivity extends AppCompatActivity {
     Button submit;
     EditText username, pass_word;
 
+    SessionManager session;
+
     //JSON DATAS
     String user, pass;
+
+    String result, message, user_id, dealer_name, dealer_img, dealer_address;
 
     public ArrayList<HashMap<String, String>> LoginList;
     HashMap<String, String> loginlistmap;
@@ -76,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
         intialize();
 
+        session = new SessionManager(getApplicationContext());
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,10 +146,6 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username);
         pass_word = (EditText) findViewById(R.id.password);
 
-        username.setTypeface(Typeface.SANS_SERIF);
-        pass_word.setTypeface(Typeface.SANS_SERIF);
-
-
     }
 
 
@@ -191,16 +194,28 @@ public class LoginActivity extends AppCompatActivity {
 
                     for (int i = 0; i <= obj.length(); i++) {
 
-                        String result = obj.getString("Result");
+                        result = obj.getString("Result");
+                        message = obj.getString("message");
 
-                        String message = obj.getString("message");
+                        if (result.equals("0")) {
+                            loginlistmap.put("REsult", result);
+                            loginlistmap.put("Message", message);
+                            LoginList.add(loginlistmap);
+                        } else {
 
-                        loginlistmap.put("REsult", result);
+                            user_id = obj.getString("user_id");
+                            dealer_name = obj.getString("dealer_name");
+                            dealer_img = obj.getString("dealer_img");
+                            dealer_address = obj.getString("dealer_address");
 
-                        loginlistmap.put("Message", message);
-
-                        LoginList.add(loginlistmap);
-
+                            loginlistmap.put("REsult", result);
+                            loginlistmap.put("Message", message);
+                            loginlistmap.put("UserID", user_id);
+                            loginlistmap.put("DealerName", dealer_name);
+                            loginlistmap.put("DealerImage", dealer_img);
+                            loginlistmap.put("DealerAddress", dealer_address);
+                            LoginList.add(loginlistmap);
+                        }
                     }
                 } catch (final JSONException e) {
                     runOnUiThread(new Runnable() {
@@ -225,12 +240,16 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String file_url) {
 
 
+            session.createLoginSession(dealer_name, user_id, dealer_img, dealer_address);
+
+            Log.e("name", session.getUserDetails().toString());
+
             if (loginlistmap.get("REsult").equals("1")) {
                 Intent i = new Intent(LoginActivity.this, DashBoard.class);
                 startActivity(i);
                 LoginActivity.this.finish();
 
-            } else if (loginlistmap.get("REsult").equals("0")){
+            } else if (loginlistmap.get("REsult").equals("0")) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Login Incorrect");
                 builder.setMessage(loginlistmap.get("Message"))

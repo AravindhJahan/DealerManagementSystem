@@ -25,10 +25,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
 import org.json.JSONArray;
@@ -118,6 +120,7 @@ public class DashBoard extends AppCompatActivity {
             "Reports",
             "Logout"
     };
+
     Integer[] imageId = {
             R.drawable.buy_sidemenu,
             R.drawable.sell_sidemenu,
@@ -126,6 +129,13 @@ public class DashBoard extends AppCompatActivity {
             R.drawable.report_sidemenu,
             R.drawable.logout_sidemenu
     };
+
+
+    SessionManager session;
+    ImageView imageView;
+    TextView profile_name;
+    TextView profile_address;
+    String saved_name, saved_address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +196,22 @@ public class DashBoard extends AppCompatActivity {
         nav = (ImageView) findViewById(R.id.nav_icon_drawer);
         mNav = new SimpleSideDrawer(this);
         mNav.setLeftBehindContentView(R.layout.activity_behind_left_simple);
+
+        imageView = (ImageView) mNav.findViewById(R.id.profile_avatar);
+        profile_name = (TextView) mNav.findViewById(R.id.profile_name);
+        profile_address = (TextView) mNav.findViewById(R.id.profile_address);
+
+        session = new SessionManager(DashBoard.this);
+        HashMap<String, String> user = session.getUserDetails();
+        saved_name = user.get("dealer_name");
+        saved_address = user.get("dealer_address");
+        profile_name.setText(saved_name);
+        if (user.get("dealer_img").isEmpty()) {
+            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView);
+        } else {
+            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView);
+        }
+        profile_address.setText(saved_address);
 
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,7 +294,17 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
+                if (web[position] == "Sell") {
+                    Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DashBoard.this, SellDashBoardActivity.class);
+                    startActivity(intent);
+                    mNav.closeLeftSide();
+                } else if (web[position] == "Logout") {
+                    session.logoutUser();
+                    DashBoard.this.finish();
+                } else {
+                    Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -834,7 +870,7 @@ public class DashBoard extends AppCompatActivity {
                     i.putExtra("string_array", site_datas);
                     startActivity(i);
                     Toast.makeText(DashBoard.this, "Sites", Toast.LENGTH_SHORT).show();
-                   // DashBoard.this.finish();
+                    // DashBoard.this.finish();
                 }
             });
 

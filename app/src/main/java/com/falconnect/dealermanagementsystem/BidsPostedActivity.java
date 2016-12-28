@@ -14,13 +14,17 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BidsPostedActivity extends AppCompatActivity {
 
@@ -55,6 +59,12 @@ public class BidsPostedActivity extends AppCompatActivity {
             R.drawable.report_sidemenu,
             R.drawable.logout_sidemenu
     };
+
+    SessionManager session_bids;
+    ImageView imageView_bids;
+    TextView profile_name_bids;
+    TextView profile_address_bids;
+    String saved_name_bids, saved_address_bids;
 
 
     @Override
@@ -109,6 +119,22 @@ public class BidsPostedActivity extends AppCompatActivity {
 
         mNav_bids = new SimpleSideDrawer(this);
         mNav_bids.setLeftBehindContentView(R.layout.activity_behind_left_simple);
+
+        imageView_bids = (ImageView) mNav_bids.findViewById(R.id.profile_avatar);
+        profile_name_bids= (TextView) mNav_bids.findViewById(R.id.profile_name);
+        profile_address_bids = (TextView) mNav_bids.findViewById(R.id.profile_address);
+
+        session_bids = new SessionManager(BidsPostedActivity.this);
+        HashMap<String, String> user = session_bids.getUserDetails();
+        saved_name_bids = user.get("dealer_name");
+        saved_address_bids = user.get("dealer_address");
+        profile_name_bids.setText(saved_name_bids);
+        if (user.get("dealer_img").isEmpty()) {
+            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_bids);
+        } else {
+            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_bids);
+        }
+        profile_address_bids.setText(saved_address_bids);
 
         bids_back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -47,5 +47,7 @@
 
     <string name="title_activity_funding_view">FundingViewActivity</string>
 
+    <string name="title_activity_sell_dash_board">SellDashBoardActivity</string>
+
 
 </resources>

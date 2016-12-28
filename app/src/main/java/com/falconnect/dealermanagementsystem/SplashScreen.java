@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
+
+import java.util.HashMap;
+
 public class SplashScreen extends Activity {
 
     // Splash screen timer
     private static int SPLASH_TIME_OUT = 2000;
+
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +31,26 @@ public class SplashScreen extends Activity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        new Handler().postDelayed(new Runnable() {
+        session = new SessionManager(getApplicationContext());
+        HashMap<String, String> user = session.getUserDetails();
 
-            @Override
-            public void run() {
+        if (user.get("user_id") == null) {
+            new Handler().postDelayed(new Runnable() {
 
-
-                //open activity
-                Intent i = new Intent(SplashScreen.this, MainActivity.class);
-                startActivity(i);
-
-                // activity finish
-                finish();
-
-            }
-        }, SPLASH_TIME_OUT);
+                @Override
+                public void run() {
+                    //open activity
+                    Intent i = new Intent(SplashScreen.this, MainActivity.class);
+                    startActivity(i);
+                    // activity finish
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
+        }
+        else {
+            //open activity
+            Intent i = new Intent(SplashScreen.this, DashBoard.class);
+            startActivity(i);
+        }
     }
-
 }

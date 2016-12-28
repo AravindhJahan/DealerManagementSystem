@@ -34,6 +34,7 @@ public class CustomList extends ArrayAdapter<String>{
         txtTitle.setText(web[position]);
 
         imageView.setImageResource(imageId[position]);
+
         return rowView;
     }
 }

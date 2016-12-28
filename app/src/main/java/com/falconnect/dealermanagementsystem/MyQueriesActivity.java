@@ -14,13 +14,17 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MyQueriesActivity extends AppCompatActivity {
 
@@ -53,6 +57,11 @@ public class MyQueriesActivity extends AppCompatActivity {
 
     private SimpleSideDrawer mNav_queries;
 
+    SessionManager session_queries;
+    ImageView imageView_queries;
+    TextView profile_name_queries;
+    TextView profile_address_queries;
+    String saved_name_queries, saved_address_queries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +106,24 @@ public class MyQueriesActivity extends AppCompatActivity {
         my_queries_back = (ImageView) findViewById(R.id.my_queries_back);
         mNav_queries = new SimpleSideDrawer(this);
         mNav_queries.setLeftBehindContentView(R.layout.activity_behind_left_simple);
+
+
+        imageView_queries = (ImageView) mNav_queries.findViewById(R.id.profile_avatar);
+        profile_name_queries = (TextView) mNav_queries.findViewById(R.id.profile_name);
+        profile_address_queries = (TextView) mNav_queries.findViewById(R.id.profile_address);
+
+        session_queries = new SessionManager(MyQueriesActivity.this);
+        HashMap<String, String> user = session_queries.getUserDetails();
+        saved_name_queries = user.get("dealer_name");
+        saved_address_queries = user.get("dealer_address");
+        profile_name_queries.setText(saved_name_queries);
+        if (user.get("dealer_img").isEmpty()) {
+            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_queries);
+        } else {
+            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_queries);
+        }
+        profile_address_queries.setText(saved_address_queries);
+
         my_queries_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

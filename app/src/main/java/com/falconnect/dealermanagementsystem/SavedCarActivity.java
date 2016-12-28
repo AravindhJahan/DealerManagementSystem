@@ -26,6 +26,7 @@ import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.ProductListAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
 import org.json.JSONArray;
@@ -78,6 +79,13 @@ public class SavedCarActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView_search;
     private static ArrayList<DataModel> data;
+
+
+    SessionManager session_savedcar;
+    ImageView imageView_savedcar;
+    TextView profile_name_savedcar;
+    TextView profile_address_savedcar;
+    String saved_name_savedcar, saved_address_savedcar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +150,23 @@ public class SavedCarActivity extends AppCompatActivity {
         savedcar_back = (ImageView) findViewById(R.id.savedcar_back);
         mNav_savedcar = new SimpleSideDrawer(this);
         mNav_savedcar.setLeftBehindContentView(R.layout.activity_behind_left_simple);
+
+        imageView_savedcar = (ImageView) mNav_savedcar.findViewById(R.id.profile_avatar);
+        profile_name_savedcar= (TextView) mNav_savedcar.findViewById(R.id.profile_name);
+        profile_address_savedcar = (TextView) mNav_savedcar.findViewById(R.id.profile_address);
+
+        session_savedcar = new SessionManager(SavedCarActivity.this);
+        HashMap<String, String> user = session_savedcar.getUserDetails();
+        saved_name_savedcar = user.get("dealer_name");
+        saved_address_savedcar = user.get("dealer_address");
+        profile_name_savedcar.setText(saved_name_savedcar);
+        if (user.get("dealer_img").isEmpty()) {
+            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_savedcar);
+        } else {
+            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_savedcar);
+        }
+        profile_address_savedcar.setText(saved_address_savedcar);
+
 
         savedcar_back.setOnClickListener(new View.OnClickListener() {
             @Override
