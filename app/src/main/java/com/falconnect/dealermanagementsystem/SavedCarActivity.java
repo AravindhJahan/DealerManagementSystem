@@ -85,9 +85,9 @@ public class SavedCarActivity extends AppCompatActivity {
     ImageView imageView_savedcar;
     TextView profile_name_savedcar;
     TextView profile_address_savedcar;
-    String saved_name_savedcar, saved_address_savedcar;
+    String saved_name_savedcar, saved_address_savedcar, saved_user_id;
 
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -143,7 +143,9 @@ public class SavedCarActivity extends AppCompatActivity {
 
         /*String header = getIntent().getStringExtra("Title");
         title.setText(header);*/
-        Saved_Car_url = Constant.SAVED_CAR_API + "&session_user_id=549";
+
+
+
 
         listView = (ListView) findViewById(R.id.saved_car_list);
 
@@ -157,6 +159,7 @@ public class SavedCarActivity extends AppCompatActivity {
 
         session_savedcar = new SessionManager(SavedCarActivity.this);
         HashMap<String, String> user = session_savedcar.getUserDetails();
+        saved_user_id = user.get("user_id");
         saved_name_savedcar = user.get("dealer_name");
         saved_address_savedcar = user.get("dealer_address");
         profile_name_savedcar.setText(saved_name_savedcar);
@@ -174,6 +177,8 @@ public class SavedCarActivity extends AppCompatActivity {
                 mNav_savedcar.toggleLeftDrawer();
             }
         });
+
+        Saved_Car_url = Constant.SAVED_CAR_API + "&session_user_id=" + saved_user_id;
 
         //NAVIGATION DRAWER LIST VIEW
         CustomList adapter = new CustomList(SavedCarActivity.this, web, imageId);
@@ -214,6 +219,7 @@ public class SavedCarActivity extends AppCompatActivity {
     private ArrayList<SingleProductModel> getData() {
         final ArrayList<SingleProductModel> imageItems = new ArrayList<>();
         for (int i = 0; i < saved_car_list.size(); i++) {
+            String car_id = saved_car_list.get(i).get("car_id");
             String image = saved_car_list.get(i).get("imagelinks");
             String name = saved_car_list.get(i).get("make");
             String rate = saved_car_list.get(i).get("price");
@@ -228,7 +234,7 @@ public class SavedCarActivity extends AppCompatActivity {
             String savedcar = saved_car_list.get(i).get("saved_car");
 
 
-            imageItems.add(new SingleProductModel(image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar));
+            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar));
         }
         return imageItems;
     }

@@ -30,6 +30,7 @@ public class SitesActivity extends AppCompatActivity {
     private ImageView btn_close_site;
 
     ArrayList<Product> mProducts;
+
     MultiSelectionAdapter<Product> mAdapter;
 
     ArrayList<String> list = new ArrayList<String>();
@@ -60,7 +61,9 @@ public class SitesActivity extends AppCompatActivity {
         intialize();
 
         sitelistView = (ListView) findViewById(R.id.sitelistview);
+
         Intent intent = getIntent();
+
         list = intent.getStringArrayListExtra("string_array");
 
         mProducts = (ArrayList<Product>) list.clone();
@@ -94,6 +97,10 @@ public class SitesActivity extends AppCompatActivity {
 
                 if (mAdapter != null) {
                     ArrayList<Product> mArrayProducts = mAdapter.getCheckedItems();
+                    Intent intent = new Intent(SitesActivity.this, DashBoard.class);
+                    intent.putExtra("sites_array", mArrayProducts.toString());
+                    startActivity(intent);
+                    SitesActivity.this.finish();
                     Toast.makeText(getApplicationContext(), "Selected Items: " + mArrayProducts.toString(), Toast.LENGTH_LONG).show();
                 } else {
                     //Toast.makeText(getApplicationContext(), "Selected Items: " + mArrayProducts.toString(), Toast.LENGTH_LONG).show();

@@ -60,7 +60,7 @@ public class PopularCityAdapter extends RecyclerView.Adapter<PopularCityAdapter.
                 mContext.startActivity(intent);
 
                 //current screen finish
-               //((Activity)mContext).finish();
+                ((Activity)mContext).finish();
 
 
             }

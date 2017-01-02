@@ -162,6 +162,7 @@ public class SearchResultActivity extends AppCompatActivity {
     private ArrayList<SingleProductModel> getData() {
         final ArrayList<SingleProductModel> imageItems = new ArrayList<>();
         for (int i = 0; i < city_search_list.size(); i++) {
+            String car_id = city_search_list.get(i).get("car_id");
             String image = city_search_list.get(i).get("imagelinks");
             String name = city_search_list.get(i).get("make");
             String rate = city_search_list.get(i).get("price");
@@ -176,7 +177,7 @@ public class SearchResultActivity extends AppCompatActivity {
             String savedcar = city_search_list.get(i).get("saved_car");
 
 
-            imageItems.add(new SingleProductModel(image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site , savedcar));
+            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site , savedcar));
         }
         return imageItems;
     }

@@ -199,8 +199,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginEnd="26dp"
-                        android:layout_marginRight="26dp"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginRight="35dp"
                         android:text="26 Nov 2016"
                         app:font="sanz.ttf"
                         android:textSize="16dp" />
@@ -230,8 +230,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
-                        android:layout_marginEnd="54dp"
-                        android:layout_marginRight="54dp"
+                        android:layout_marginEnd="59dp"
+                        android:layout_marginRight="55dp"
                         android:text="Chennai"
                         app:font="sanz.ttf"
                         android:textSize="16dp" />

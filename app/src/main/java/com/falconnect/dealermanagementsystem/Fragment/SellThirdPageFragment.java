@@ -24,7 +24,7 @@ public class SellThirdPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_sell_third_page, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_first_page_sell, container, false);
 
         return rootView;
     }

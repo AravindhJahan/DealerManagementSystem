@@ -4,6 +4,7 @@ package com.falconnect.dealermanagementsystem.Model;
 
 public class SingleProductModel {
 
+    private String car_id;
     private String image;
     private String name;
     private String rate;
@@ -21,10 +22,11 @@ public class SingleProductModel {
 
 
 
-    public SingleProductModel(String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image, String saved_car)
+    public SingleProductModel(String car_id, String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image, String saved_car)
     {
         super();
 
+        this.car_id = car_id;
         this.image = image;
         this.name = name;
         this.rate = rate;
@@ -39,6 +41,15 @@ public class SingleProductModel {
         this.saved_car = saved_car;
 
     }
+
+    public String getCar_id() {
+        return car_id;
+    }
+
+    public void setCar_id(String car_id) {
+        this.car_id = car_id;
+    }
+
     public String getImage() {
         return image;
     }

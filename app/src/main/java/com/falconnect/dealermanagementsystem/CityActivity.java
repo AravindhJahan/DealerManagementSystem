@@ -99,6 +99,7 @@ public class CityActivity extends AppCompatActivity {
         back_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 CityActivity.this.finish();
 
                 Intent intent = new Intent(CityActivity.this, DashBoard.class);

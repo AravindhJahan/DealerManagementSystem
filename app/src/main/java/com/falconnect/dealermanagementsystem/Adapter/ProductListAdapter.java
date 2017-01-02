@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 import com.falconnect.dealermanagementsystem.R;
+import com.falconnect.dealermanagementsystem.ServiceHandler;
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
@@ -96,27 +105,30 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
                 .load(product.getSite_image())
                 .into(holder.favoriteImg);
 
-        if (product.getSaved_car().equals("1")) {
-
-            Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
-        } else {
+        if (product.getSaved_car().equals("0")) {
             Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
-        }
-
-        if (product.getSaved_car().equals("1")) {
-
-            Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
         } else {
-            Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+            Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
         }
 
         holder.saved_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (clicked == true) {
+                if (clicked == false) {
                     Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
                     Toast.makeText(getContext(), "Added your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
+
+                    SessionManager sessionManager;
+                    sessionManager = new SessionManager(getContext());
+
+                    HashMap<String, String> user = sessionManager.getUserDetails();
+
+                    String id = user.get("user_id");
+
+                    String fav_url = "http://52.220.105.165/dealerdev/public/api_save_car?" +
+                            "session_user_id=" + id +
+                            "&carid=" + product.getCar_id();
 
                     //Animation
                     final Animation myAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
@@ -124,13 +136,13 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
                     myAnim.setInterpolator(interpolator);
                     holder.saved_car.startAnimation(myAnim);
 
-                    clicked = false;
+                    clicked = true;
 
-                } else if(clicked == false){
+                } else if (clicked == true) {
 
                     Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
                     Toast.makeText(getContext(), "Remove from your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
-                    clicked = true;
+                    clicked = false;
                 }
             }
         });

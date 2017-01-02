@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -55,7 +56,10 @@ public class DashBoard extends AppCompatActivity {
 
     List<String> vehilist;
 
-    String selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
+    Intent intent;
+    ArrayList<String> stringArray;
+
+    String site_key,selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
 
     public ArrayList<HashMap<String, String>> make_spinner_list;
     HashMap<String, String> makelist;
@@ -134,8 +138,23 @@ public class DashBoard extends AppCompatActivity {
     SessionManager session;
     ImageView imageView;
     TextView profile_name;
+    HashMap<String, String> user;
     TextView profile_address;
-    String saved_name, saved_address;
+    String saved_name, saved_address, user_id;
+
+    //int bud_mod_value, by_mod_value;
+
+    String sitekey;
+    //String sites_get;
+
+    public static final String PREFS_NAME = "AOP_PREFS";
+    public static final String SITE_KEY = "sitekey";
+    public static final String CITY_KEY = "citykey";
+
+    SharedPreferences settings;
+    SharedPreferences.Editor editor;
+
+    int radioinline ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,27 +178,37 @@ public class DashBoard extends AppCompatActivity {
         }
 
         intialize();
+        settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        editor = settings.edit();
+
+        sitekey = getIntent().getStringExtra("sites_array");
+        if (sitekey == null) {
+            sites.setText("Select Sites");
+        } else {
+            sitekey = sitekey.replace("]", "").replace("[", "");
+            sites.setText(sitekey);
+            editor.putString(SITE_KEY, sitekey);
+        }
 
         selectedcity = getIntent().getStringExtra("selected_item");
-
         if (selectedcity == null) {
-
             spinner.setText("Select City");
-
         } else {
-
             spinner.setText(selectedcity);
-
+            editor.putString(CITY_KEY, selectedcity);
         }
+
+        editor.commit();
+        Log.e("Site_TAF", settings.getAll().toString());
+
+        sites.setText(settings.getString(SITE_KEY, null));
+        spinner.setText(settings.getString(CITY_KEY, null));
 
         // XML Parsing Using AsyncTask...
         if (isNetworkAvailable()) {
-
+            new Site_Datas().execute();
             new Make_Datas().execute();
             new Budget_Datas().execute();
-            new Site_Datas().execute();
-
-
         } else {
             Toast.makeText(DashBoard.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             this.finish();
@@ -202,10 +231,11 @@ public class DashBoard extends AppCompatActivity {
         profile_address = (TextView) mNav.findViewById(R.id.profile_address);
 
         session = new SessionManager(DashBoard.this);
-        HashMap<String, String> user = session.getUserDetails();
+        user = session.getUserDetails();
         saved_name = user.get("dealer_name");
         saved_address = user.get("dealer_address");
         profile_name.setText(saved_name);
+
         if (user.get("dealer_img").isEmpty()) {
             Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView);
         } else {
@@ -233,16 +263,14 @@ public class DashBoard extends AppCompatActivity {
             ));
         }
 
-
         adapter = new CustomAdapter(DashBoard.this, data);
         recyclerView.setAdapter(adapter);
 
         //Button By Model
-        by_mod.setOnClickListener(new View.OnClickListener()
-
-        {
+        by_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioinline = 1;
                 by_mod.setBackgroundResource(R.drawable.budget_model);
                 bud_mod.setBackgroundResource(R.drawable.by_model);
                 by_mod.setTextColor(Color.WHITE);
@@ -269,6 +297,7 @@ public class DashBoard extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
+                radioinline = 0;
                 by_mod.setBackgroundResource(R.drawable.by_model);
                 bud_mod.setBackgroundResource(R.drawable.budget_model);
                 by_mod.setTextColor(Color.BLACK);
@@ -301,9 +330,10 @@ public class DashBoard extends AppCompatActivity {
                     mNav.closeLeftSide();
                 } else if (web[position] == "Logout") {
                     session.logoutUser();
+                    mNav.closeLeftSide();
                     DashBoard.this.finish();
                 } else {
-                    Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -311,18 +341,17 @@ public class DashBoard extends AppCompatActivity {
         spinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(DashBoard.this, CityActivity.class);
                 startActivity(i);
-
-                //DashBoard.this.finish();
+                DashBoard.this.finish();
             }
         });
 
         //Button Event
         search_button();
-
     }
+
+
 
     public void intialize() {
         //Spinners
@@ -408,6 +437,87 @@ public class DashBoard extends AppCompatActivity {
             }
         });
 
+    }
+
+    private class Site_Datas extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String city_url = Constant.DASH_BOARD_SPINNER_API;
+
+            String json = sh.makeServiceCall(city_url, ServiceHandler.GET);
+
+            if (json != null) {
+
+                site_spinner_list = new ArrayList<>();
+
+                //site_datas = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    JSONArray city = jsonObj.getJSONArray("site_names");
+
+                    for (int k = 0; k <= city.length(); k++) {
+
+                        site_id = city.getJSONObject(k).getString("id");
+                        site_name = city.getJSONObject(k).getString("sitename");
+
+                        sitelist = new HashMap<>();
+
+                        sitelist.put("id", site_id);
+                        sitelist.put("sitename", site_name);
+
+                        site_spinner_list.add(sitelist);
+
+                        site_datas.add(site_name);
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            sites.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DashBoard.this, SitesActivity.class);
+                    i.putExtra("string_array", site_datas);
+                    startActivity(i);
+                    Toast.makeText(DashBoard.this, "Sites", Toast.LENGTH_SHORT).show();
+                    DashBoard.this.finish();                }
+            });
+        }
     }
 
     private class Make_Datas extends AsyncTask<Void, Void, Void> {
@@ -793,90 +903,6 @@ public class DashBoard extends AppCompatActivity {
 
     }
 
-    private class Site_Datas extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            ServiceHandler sh = new ServiceHandler();
-
-            String city_url = Constant.DASH_BOARD_SPINNER_API;
-
-            String json = sh.makeServiceCall(city_url, ServiceHandler.GET);
-
-            if (json != null) {
-
-                site_spinner_list = new ArrayList<>();
-
-                //site_datas = new ArrayList<>();
-
-                try {
-                    JSONObject jsonObj = new JSONObject(json);
-
-                    JSONArray city = jsonObj.getJSONArray("site_names");
-
-                    for (int k = 0; k <= city.length(); k++) {
-
-                        site_id = city.getJSONObject(k).getString("id");
-                        site_name = city.getJSONObject(k).getString("sitename");
-
-                        sitelist = new HashMap<>();
-
-                        sitelist.put("id", site_id);
-                        sitelist.put("sitename", site_name);
-
-                        site_spinner_list.add(sitelist);
-
-                        site_datas.add(site_name);
-                    }
-
-                } catch (final JSONException e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                }
-
-
-            } else {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-
-            sites.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(DashBoard.this, SitesActivity.class);
-                    i.putExtra("string_array", site_datas);
-                    startActivity(i);
-                    Toast.makeText(DashBoard.this, "Sites", Toast.LENGTH_SHORT).show();
-                    // DashBoard.this.finish();
-                }
-            });
-
-        }
-    }
-
     public void search_button() {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -884,48 +910,26 @@ public class DashBoard extends AppCompatActivity {
 
                 selected_city = spinner.getText().toString();
 
-                if (selected_city == "Select City") {
+                user_id = user.get("user_id");
+
+                site_key = sites.getText().toString();
+                site_key = site_key.toLowerCase();
+
+                if (selected_city == "Select City" && site_key == "Select Site") {
+                    Toast.makeText(DashBoard.this, "You Must Select Your Site", Toast.LENGTH_SHORT).show();
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
-                } else if (selected_site == null && selected_budget == null && selected_vehicle_type == null &&
-                        selected_model == null && selected_make == null) {
-                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city + "&page_name=searchpage";
-                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                    j.putExtra("City", selected_city);
-                    j.putExtra("City_Url", city_search_url);
-                    startActivity(j);
-                } else if (selected_site == null && selected_vehicle_type == null &&
-                        selected_model == null && selected_make == null) {
-                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
-                            + "&car_budget=" + selected_budget + "&page_name=searchpage";
-
-                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                    j.putExtra("City", selected_city);
-                    j.putExtra("City_Url", city_search_url);
-                    startActivity(j);
-                } else if (selected_site == null && selected_model == null && selected_make == null) {
-                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
-                            + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type
-                            + "&page_name=searchpage";
-
-                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                    j.putExtra("City", selected_city);
-                    j.putExtra("City_Url", city_search_url);
-                    startActivity(j);
-                } else if (selected_site == null && selected_make == null) {
-                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
-                            + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type +
-                            "&vehicle_model=" + selected_model + "&page_name=searchpage";
-                    Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
-                    j.putExtra("City", selected_city);
-                    j.putExtra("City_Url", city_search_url);
-                    startActivity(j);
-                } else if (selected_site == null) {
-                    String city_search_url = Constant.SEARCH_CAR_LISTING_API + "city_name=" + selected_city
-                            + "&car_budget=" + selected_budget + "&vehicle_type=" + selected_vehicle_type +
-                            "&vehicle_model=" + selected_model + "&vehicle_make=" + selected_make + "&page_name=searchpage";
-
+                } else {
+                    String city_search_url = Constant.SEARCH_CAR_LISTING_API +
+                            "session_user_id=" + user_id +
+                            "&car_sites=" + site_key +
+                            "&city_name=" + selected_city +
+                            "&radioInline=" + radioinline +
+                            "&car_budget=" + selected_budget +
+                            "&vehicle_type=" + selected_vehicle_type +
+                            "&vehicle_model=" + selected_model +
+                            "&vehicle_make=" + selected_make +
+                            "&page_name=searchpage";
                     Log.e("city_url_search", city_search_url);
-
                     Intent j = new Intent(DashBoard.this, SearchResultActivity.class);
                     j.putExtra("City", selected_city);
                     j.putExtra("City_Url", city_search_url);
