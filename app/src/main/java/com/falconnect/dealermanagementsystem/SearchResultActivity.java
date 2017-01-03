@@ -31,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -47,9 +48,11 @@ public class SearchResultActivity extends AppCompatActivity {
 
     ProductListAdapter listAdapter;
 
-    String City_Search_List_Url ;
+    String City_Search_List_Url;
     public ArrayList<HashMap<String, String>> city_search_list;
     HashMap<String, String> citysearchlist;
+
+    ArrayList<HashMap<String, String>> top_notes_array;
 
     ImageView return_btn;
 
@@ -57,6 +60,9 @@ public class SearchResultActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView_search;
     private static ArrayList<DataModel> data;
+
+
+    public static final String TOP_NOTE = "top_note";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +96,7 @@ public class SearchResultActivity extends AppCompatActivity {
         }
 
         //Back Arrow
-        return_btn = (ImageView)findViewById(R.id.nav_back_drawer);
+        return_btn = (ImageView) findViewById(R.id.nav_back_drawer);
         return_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +126,6 @@ public class SearchResultActivity extends AppCompatActivity {
 
         //get city url
         City_Search_List_Url = getIntent().getStringExtra("City_Url");
-
 
 
         new Search_List().execute();
@@ -153,10 +158,6 @@ public class SearchResultActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-        Log.e("City_URL", City_Search_List_Url);
-
     }
 
     private ArrayList<SingleProductModel> getData() {
@@ -175,9 +176,10 @@ public class SearchResultActivity extends AppCompatActivity {
             String site = city_search_list.get(i).get("site_image");
             String numofimage = city_search_list.get(i).get("noimages");
             String savedcar = city_search_list.get(i).get("saved_car");
+            String bid = city_search_list.get(i).get("bid_image");
 
 
-            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site , savedcar));
+            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar, bid));
         }
         return imageItems;
     }
@@ -199,6 +201,7 @@ public class SearchResultActivity extends AppCompatActivity {
             if (json != null) {
 
                 city_search_list = new ArrayList<>();
+                //top_notes_array = new ArrayList<>();
 
                 try {
                     JSONObject jsonObj = new JSONObject(json);
@@ -208,11 +211,12 @@ public class SearchResultActivity extends AppCompatActivity {
                     for (int k = 0; k <= city.length(); k++) {
 
                         String make = city.getJSONObject(k).getString("make");
+                        String make_id = city.getJSONObject(k).getString("make_id");
                         String model = city.getJSONObject(k).getString("model");
                         String variant = city.getJSONObject(k).getString("variant");
                         String car_address_1 = city.getJSONObject(k).getString("car_address_1");
+                        String car_locality = city.getJSONObject(k).getString("car_locality");
                         String registration_year = city.getJSONObject(k).getString("registration_year");
-                        String place = city.getJSONObject(k).getString("place");
                         String kilometer_run = city.getJSONObject(k).getString("kilometer_run");
                         String fuel_type = city.getJSONObject(k).getString("fuel_type");
                         String owner_type = city.getJSONObject(k).getString("owner_type");
@@ -220,23 +224,28 @@ public class SearchResultActivity extends AppCompatActivity {
                         String daysstmt = city.getJSONObject(k).getString("daysstmt");
                         String car_id = city.getJSONObject(k).getString("car_id");
                         String dealer_id = city.getJSONObject(k).getString("dealer_id");
+                        String bid_image = city.getJSONObject(k).getString("bid_image");
                         String noimages = city.getJSONObject(k).getString("noimages");
                         String imagelinks = city.getJSONObject(k).getString("imagelinks");
                         String site = city.getJSONObject(k).getString("site");
                         String saved_car = city.getJSONObject(k).getString("saved_car");
                         String compare_car = city.getJSONObject(k).getString("compare_car");
+                        String site_id = city.getJSONObject(k).getString("site_id");
+                        String auction = city.getJSONObject(k).getString("auction");
                         String notify_car = city.getJSONObject(k).getString("noimages");
-                        String bid_image = city.getJSONObject(k).getString("imagelinks");
                         String site_image = city.getJSONObject(k).getString("site_image");
+
+                       // JSONArray top_notes = jsonObj.getJSONArray(TOP_NOTE);
 
                         citysearchlist = new HashMap<>();
 
                         citysearchlist.put("make", make);
+                        citysearchlist.put("make_id", make_id);
                         citysearchlist.put("model", model);
                         citysearchlist.put("variant", variant);
                         citysearchlist.put("car_address_1", car_address_1);
                         citysearchlist.put("registration_year", registration_year);
-                        citysearchlist.put("place", place);
+                        citysearchlist.put("car_locality", car_locality);
                         citysearchlist.put("kilometer_run", kilometer_run);
                         citysearchlist.put("fuel_type", fuel_type);
                         citysearchlist.put("owner_type", owner_type);
@@ -249,6 +258,8 @@ public class SearchResultActivity extends AppCompatActivity {
                         citysearchlist.put("site", site);
                         citysearchlist.put("saved_car", saved_car);
                         citysearchlist.put("compare_car", compare_car);
+                        citysearchlist.put("site_id", site_id);
+                        citysearchlist.put("auction", auction);
                         citysearchlist.put("notify_car", notify_car);
                         citysearchlist.put("bid_image", bid_image);
                         citysearchlist.put("site_image", site_image);

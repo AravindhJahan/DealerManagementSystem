@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.falconnect.dealermanagementsystem.Constant;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 import com.falconnect.dealermanagementsystem.R;
 import com.falconnect.dealermanagementsystem.ServiceHandler;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,6 +37,15 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
     private Context context;
     private boolean clicked = false;
     public MyBounceInterpolator interpolator;
+
+    SingleProductModel product;
+    SessionManager sessionManager = new SessionManager(getContext());
+    HashMap<String, String> user;
+    String user_id;
+    String result, message;
+    public ArrayList<HashMap<String, String>> savecarList;
+    HashMap<String, String> savemap;
+    ViewHolder holder;
 
     public ProductListAdapter(Context context, List<SingleProductModel> products) {
         super(context, R.layout.search_list_single_item, products);
@@ -58,7 +70,6 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final ViewHolder holder;
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -78,12 +89,14 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.no_of_images = (TextView) convertView.findViewById(R.id.noofimages);
             holder.favoriteImg = (ImageView) convertView.findViewById(R.id.chola);
             holder.saved_car = (ImageView) convertView.findViewById(R.id.car_saved);
+            holder.bid_image = (ImageView) convertView.findViewById(R.id.like);
+
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final SingleProductModel product = (SingleProductModel) getItem(position);
+        product = (SingleProductModel) getItem(position);
 
         Glide.with(getContext())
                 .load(product.getImage())
@@ -111,43 +124,90 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
         }
 
+        Glide.with(getContext()).load(product.getBid()).into(holder.bid_image);
+
         holder.saved_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (clicked == false) {
-                    Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
-                    Toast.makeText(getContext(), "Added your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
-
-                    SessionManager sessionManager;
-                    sessionManager = new SessionManager(getContext());
-
-                    HashMap<String, String> user = sessionManager.getUserDetails();
-
-                    String id = user.get("user_id");
-
-                    String fav_url = "http://52.220.105.165/dealerdev/public/api_save_car?" +
-                            "session_user_id=" + id +
-                            "&carid=" + product.getCar_id();
-
-                    //Animation
-                    final Animation myAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
-                    interpolator = new MyBounceInterpolator(0.2, 20);
-                    myAnim.setInterpolator(interpolator);
-                    holder.saved_car.startAnimation(myAnim);
-
-                    clicked = true;
-
-                } else if (clicked == true) {
-
-                    Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
-                    Toast.makeText(getContext(), "Remove from your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
-                    clicked = false;
-                }
+                new Favbutton().execute();
             }
         });
 
         return convertView;
+    }
+
+    class Favbutton extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            ServiceHandler sh = new ServiceHandler();
+            user = sessionManager.getUserDetails();
+            user_id = user.get("user_id");
+            String fav_url = Constant.SAVE_CAR_API + "session_user_id=" + user_id + "&carid=" + product.getCar_id();
+            String json = sh.makeServiceCall(fav_url, ServiceHandler.POST);
+
+            if (json != null) {
+
+                savecarList = new ArrayList<>();
+                savemap = new HashMap<String, String>();
+
+                try {
+                    JSONObject obj = new JSONObject(json);
+
+                    for (int i = 0; i <= obj.length(); i++) {
+
+                        result = obj.getString("Result");
+                        message = obj.getString("message");
+
+                        if (result.equals("3")) {
+                            savemap.put("REsult", result);
+                            savemap.put("Message", message);
+                            savecarList.add(savemap);
+                        } else {
+
+
+                        }
+                    }
+                } catch (final JSONException e) {
+                    Toast.makeText(getContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(getContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            if (clicked == false) {
+                Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
+                Toast.makeText(getContext(), "Added your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
+
+                //Animation
+                final Animation myAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
+                interpolator = new MyBounceInterpolator(0.2, 20);
+                myAnim.setInterpolator(interpolator);
+                holder.saved_car.startAnimation(myAnim);
+
+                clicked = true;
+
+            } else if (clicked == true) {
+
+                Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+                Toast.makeText(getContext(), "Remove from your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
+                clicked = false;
+            }
+
+        }
+
     }
 
     private class ViewHolder {
@@ -157,6 +217,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         TextView car_kms, car_fuel, car_year, car_owner, car_address, no_of_images;
         ImageView favoriteImg;
         ImageView saved_car;
+        ImageView bid_image;
 
     }
 

@@ -59,7 +59,7 @@ public class DashBoard extends AppCompatActivity {
     Intent intent;
     ArrayList<String> stringArray;
 
-    String site_key,selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
+    String site_key, selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
 
     public ArrayList<HashMap<String, String>> make_spinner_list;
     HashMap<String, String> makelist;
@@ -154,7 +154,7 @@ public class DashBoard extends AppCompatActivity {
     SharedPreferences settings;
     SharedPreferences.Editor editor;
 
-    int radioinline ;
+    int radioinline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -324,10 +324,10 @@ public class DashBoard extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (web[position] == "Sell") {
-                    Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DashBoard.this, SellDashBoardActivity.class);
                     startActivity(intent);
                     mNav.closeLeftSide();
+                    Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
                 } else if (web[position] == "Logout") {
                     session.logoutUser();
                     mNav.closeLeftSide();
@@ -344,14 +344,14 @@ public class DashBoard extends AppCompatActivity {
                 Intent i = new Intent(DashBoard.this, CityActivity.class);
                 startActivity(i);
                 DashBoard.this.finish();
+
             }
         });
+
 
         //Button Event
         search_button();
     }
-
-
 
     public void intialize() {
         //Spinners
@@ -515,7 +515,8 @@ public class DashBoard extends AppCompatActivity {
                     i.putExtra("string_array", site_datas);
                     startActivity(i);
                     Toast.makeText(DashBoard.this, "Sites", Toast.LENGTH_SHORT).show();
-                    DashBoard.this.finish();                }
+                    DashBoard.this.finish();
+                }
             });
         }
     }

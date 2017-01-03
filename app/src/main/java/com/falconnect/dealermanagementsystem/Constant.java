@@ -17,6 +17,8 @@ public class Constant {
 
     public static final String SAVED_CAR_API = "http://52.220.105.165/dealerdev/public/apiview_savedcars?";
 
+    public static final String SAVE_CAR_API = "http://52.220.105.165/dealerdev/public/api_save_car?";
+
 
 }
 

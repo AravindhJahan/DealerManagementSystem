@@ -17,12 +17,12 @@ public class SingleProductModel {
     private String num_of_image;
     private String site_image;
     private String saved_car;
+    private String bid;
 
 
 
 
-
-    public SingleProductModel(String car_id, String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image, String saved_car)
+    public SingleProductModel(String car_id, String image, String name, String rate, String kms, String fuel, String year, String owner, String address, String posted_date, String num_of_image, String site_image, String saved_car, String bid)
     {
         super();
 
@@ -39,6 +39,7 @@ public class SingleProductModel {
         this.num_of_image = num_of_image;
         this.site_image = site_image;
         this.saved_car = saved_car;
+        this.bid = bid;
 
     }
 
@@ -48,6 +49,14 @@ public class SingleProductModel {
 
     public void setCar_id(String car_id) {
         this.car_id = car_id;
+    }
+
+    public String getBid() {
+        return bid;
+    }
+
+    public void setBid(String bid) {
+        this.bid = bid;
     }
 
     public String getImage() {

@@ -1,15 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFAF0"
     android:orientation="vertical">
 
-    <!--<ListView
-        android:id="@+id/inventry_listview"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>-->
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFF"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/car_image_myinventry"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/circle"
+                android:src="@drawable/car_iamge" />
+
+            <LinearLayout
+                android:id="@+id/layout_myinven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/car_image_myinventry"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/myinventry_car_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="Hyundai i10"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        app:font="sanz.ttf" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/switchoff" />
+
+                </RelativeLayout>
+
+                <!--Rupee and Rate-->
+                <RelativeLayout
+                    android:id="@+id/rupeeandrate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/myinventry_car_rate_rupee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\u20B9"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        app:font="sanz.ttf" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/myinventry_car_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/myinventry_car_rate_rupee"
+                        android:text="4,50,000"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        app:font="sanz.ttf" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="10dp"
+                        android:text="post"
+                        app:font="sanz.ttf" />
+
+                </RelativeLayout>
+
+                <!--kms petrol year owners-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                            android:id="@+id/myinventory_kms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1200KMS"
+                            android:textSize="12dp"
+                            app:font="sanz.ttf" />
+
+                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                            android:id="@+id/myinventory_fuel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Petrol"
+                            android:textSize="12dp"
+                            app:font="sanz.ttf" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/details_sa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/details"
+                        android:orientation="horizontal">
+
+                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                            android:id="@+id/myinventory_year"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2015"
+                            android:textSize="12dp"
+                            app:font="sanz.ttf" />
+
+                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                            android:id="@+id/myinventory_owners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="2owners"
+                            android:textSize="12dp"
+                            app:font="sanz.ttf" />
+
+                    </LinearLayout>
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/ready_for_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center"
+                        android:text="Ready For Sale"
+                        android:textSize="12dp"
+                        app:font="sanz.ttf" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/layout_myinven"
+                android:layout_centerHorizontal="true"
+                android:background="#C0C0C0" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/myinventory_recycle_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view1"
+                android:layout_marginTop="5dp"
+                android:scrollbars="none" />
+
+        </RelativeLayout>
 
 
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sell_footer_recycyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="none" />
 
 </RelativeLayout>

@@ -43,7 +43,7 @@ public class SplashScreen extends Activity {
                     Intent i = new Intent(SplashScreen.this, MainActivity.class);
                     startActivity(i);
                     // activity finish
-                    finish();
+                    SplashScreen.this.finish();
                 }
             }, SPLASH_TIME_OUT);
         }
@@ -51,6 +51,7 @@ public class SplashScreen extends Activity {
             //open activity
             Intent i = new Intent(SplashScreen.this, DashBoard.class);
             startActivity(i);
+            SplashScreen.this.finish();
         }
     }
 }

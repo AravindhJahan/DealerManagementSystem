@@ -1,58 +1,60 @@
-package com.falconnect.dealermanagementsystem;
+package com.falconnect.dealermanagementsystem.Fragment;
 
-public class MyData {
+import com.falconnect.dealermanagementsystem.R;
 
-    static String[] nameArray = {
-            "Search",
-            "Saved Cars",
-            "My Queries",
-            "Bids Posted",
-            "Funding"};
+public class MySellData {
+
+    static String[] sellnameArray = {
+            "Inventory",
+            "My Posting",
+            "Auction",
+            "Queries Recieved",
+            "Apply Loan"};
 
 
-    static Integer[] drawableArray = {
+    static Integer[] selldrawableArray = {
             R.drawable.search_blue,
             R.drawable.savecar_blue,
             R.drawable.queries_blue,
             R.drawable.bids_blue,
             R.drawable.funding_blue};
 
-    static Integer[] drawableArrayWhite0 = {
+    static Integer[] selldrawableArrayWhite0 = {
             R.drawable.search_white,
             R.drawable.savecar_blue,
             R.drawable.queries_blue,
             R.drawable.bids_blue,
             R.drawable.funding_blue};
 
-    static Integer[] drawableArrayWhite1 = {
+    static Integer[] selldrawableArrayWhite1 = {
             R.drawable.search_blue,
             R.drawable.savecar_white,
             R.drawable.queries_blue,
             R.drawable.bids_blue,
             R.drawable.funding_blue};
 
-    static Integer[] drawableArrayWhite2 = {
+    static Integer[] selldrawableArrayWhite2 = {
             R.drawable.search_blue,
             R.drawable.savecar_blue,
             R.drawable.queries_white,
             R.drawable.bids_blue,
             R.drawable.funding_blue};
 
-    static Integer[] drawableArrayWhite3 = {
+    static Integer[] selldrawableArrayWhite3 = {
             R.drawable.search_blue,
             R.drawable.savecar_blue,
             R.drawable.queries_blue,
             R.drawable.bids_white,
             R.drawable.funding_blue};
 
-    static Integer[] drawableArrayWhite4 = {
+    static Integer[] selldrawableArrayWhite4 = {
             R.drawable.search_blue,
             R.drawable.savecar_blue,
             R.drawable.queries_blue,
             R.drawable.bids_blue,
             R.drawable.funding_white};
 
-    static Integer[] id_ = {0, 1, 2, 3, 4};
+    static Integer[] sellid_ = {0, 1, 2, 3, 4};
 
 
 

@@ -87,7 +87,7 @@ public class SavedCarActivity extends AppCompatActivity {
     TextView profile_address_savedcar;
     String saved_name_savedcar, saved_address_savedcar, saved_user_id;
 
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -133,7 +133,7 @@ public class SavedCarActivity extends AppCompatActivity {
             ));
 
         }
-        
+
         //Footer List View Adapter
         adapter = new CustomAdapter(SavedCarActivity.this, data);
         recyclerView_search.setAdapter(adapter);
@@ -232,9 +232,9 @@ public class SavedCarActivity extends AppCompatActivity {
             String site = saved_car_list.get(i).get("site_image");
             String numofimage = saved_car_list.get(i).get("noimages");
             String savedcar = saved_car_list.get(i).get("saved_car");
+            String bid = saved_car_list.get(i).get("bid_image");
 
-
-            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar));
+            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar, bid));
         }
         return imageItems;
     }
@@ -265,11 +265,12 @@ public class SavedCarActivity extends AppCompatActivity {
                     for (int k = 0; k <= city.length(); k++) {
 
                         String make = city.getJSONObject(k).getString("make");
+                        String make_id = city.getJSONObject(k).getString("make_id");
                         String model = city.getJSONObject(k).getString("model");
                         String variant = city.getJSONObject(k).getString("variant");
                         String car_address_1 = city.getJSONObject(k).getString("car_address_1");
+                        String car_locality = city.getJSONObject(k).getString("car_locality");
                         String registration_year = city.getJSONObject(k).getString("registration_year");
-                        String place = city.getJSONObject(k).getString("place");
                         String kilometer_run = city.getJSONObject(k).getString("kilometer_run");
                         String fuel_type = city.getJSONObject(k).getString("fuel_type");
                         String owner_type = city.getJSONObject(k).getString("owner_type");
@@ -277,23 +278,26 @@ public class SavedCarActivity extends AppCompatActivity {
                         String daysstmt = city.getJSONObject(k).getString("daysstmt");
                         String car_id = city.getJSONObject(k).getString("car_id");
                         String dealer_id = city.getJSONObject(k).getString("dealer_id");
+                        String bid_image = city.getJSONObject(k).getString("bid_image");
                         String noimages = city.getJSONObject(k).getString("noimages");
                         String imagelinks = city.getJSONObject(k).getString("imagelinks");
                         String site = city.getJSONObject(k).getString("site");
                         String saved_car = city.getJSONObject(k).getString("saved_car");
                         String compare_car = city.getJSONObject(k).getString("compare_car");
+                        String site_id = city.getJSONObject(k).getString("site_id");
+                        String auction = city.getJSONObject(k).getString("auction");
                         String notify_car = city.getJSONObject(k).getString("noimages");
-                        String bid_image = city.getJSONObject(k).getString("imagelinks");
                         String site_image = city.getJSONObject(k).getString("site_image");
 
                         savedcarlist = new HashMap<>();
 
                         savedcarlist.put("make", make);
+                        savedcarlist.put("make_id", make_id);
                         savedcarlist.put("model", model);
                         savedcarlist.put("variant", variant);
                         savedcarlist.put("car_address_1", car_address_1);
                         savedcarlist.put("registration_year", registration_year);
-                        savedcarlist.put("place", place);
+                        savedcarlist.put("car_locality", car_locality);
                         savedcarlist.put("kilometer_run", kilometer_run);
                         savedcarlist.put("fuel_type", fuel_type);
                         savedcarlist.put("owner_type", owner_type);
@@ -306,6 +310,8 @@ public class SavedCarActivity extends AppCompatActivity {
                         savedcarlist.put("site", site);
                         savedcarlist.put("saved_car", saved_car);
                         savedcarlist.put("compare_car", compare_car);
+                        savedcarlist.put("site_id", site_id);
+                        savedcarlist.put("auction", auction);
                         savedcarlist.put("notify_car", notify_car);
                         savedcarlist.put("bid_image", bid_image);
                         savedcarlist.put("site_image", site_image);
