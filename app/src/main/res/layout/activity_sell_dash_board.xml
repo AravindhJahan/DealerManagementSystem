@@ -17,7 +17,7 @@
             android:background="@drawable/titlebar">
 
             <ImageView
-                android:id="@+id/bids_back"
+                android:id="@+id/inventry_mnav"
                 android:layout_width="30dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center"
@@ -34,7 +34,7 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="30dp"
                 android:gravity="center"
-                android:text="Sell DashBoard"
+                android:text="My Inventory"
                 android:textColor="#FFF"
                 android:textSize="18dp"
                 app:font="sanz.ttf" />
@@ -77,8 +77,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
             </LinearLayout>
+
         </TabHost>
+
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -15,11 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
@@ -38,22 +40,7 @@ public class MyQueriesActivity extends AppCompatActivity {
 
     ImageView my_queries_back;
 
-    String[] web = {
-            "Buy",
-            "Sell",
-            "Manage",
-            "Communication",
-            "Reports",
-            "Logout"
-    };
-    Integer[] imageId = {
-            R.drawable.buy_sidemenu,
-            R.drawable.sell_sidemenu,
-            R.drawable.manage_sidemenu,
-            R.drawable.communication_sidemenu,
-            R.drawable.report_sidemenu,
-            R.drawable.logout_sidemenu
-    };
+    BuyPageNavigation queries_buypagenavigation;
 
     private SimpleSideDrawer mNav_queries;
 
@@ -132,18 +119,40 @@ public class MyQueriesActivity extends AppCompatActivity {
         });
 
         //NAVIGATION DRAWER LIST VIEW
-        CustomList adapter = new CustomList(MyQueriesActivity.this, web, imageId);
+        queries_buypagenavigation = new BuyPageNavigation();
+        CustomList adapter = new CustomList(MyQueriesActivity.this, queries_buypagenavigation.web, queries_buypagenavigation.imageId);
+
         ListView list = (ListView) findViewById(R.id.nav_list_view);
+
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
+                if (queries_buypagenavigation.web[position] == "Buy") {
+                    mNav_queries.closeLeftSide();
+                    Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (queries_buypagenavigation.web[position] == "Sell") {
+                    Intent intent = new Intent(MyQueriesActivity.this, SellDashBoardActivity.class);
+                    startActivity(intent);
+                    mNav_queries.closeLeftSide();
+                    Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (queries_buypagenavigation.web[position] == "Manage") {
+                    mNav_queries.closeLeftSide();
+                    Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (queries_buypagenavigation.web[position] == "Communication") {
+                    mNav_queries.closeLeftSide();
+                    Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();                } else if (queries_buypagenavigation.web[position] == "Reports") {
+                } else if (queries_buypagenavigation.web[position] == "Logout") {
+                    session_queries.logoutUser();
+                    mNav_queries.closeLeftSide();
+                    MyQueriesActivity.this.finish();
+                } else {
+                    //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
 
     @Override

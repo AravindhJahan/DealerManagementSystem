@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -6,56 +5,7 @@
     android:background="#FFF"
     android:orientation="vertical">
 
-
-
     <!--Header-->
-    <RelativeLayout
-        android:id="@+id/header_search_list"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/titlebar"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/nav_funding"
-                android:layout_width="30dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/nav_icon" />
-
-            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Apply Funding"
-                android:textColor="#FFF"
-                android:textSize="18dp"
-                android:id="@+id/title_saved_cars"
-                app:font="sanz.ttf"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
-
-            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                android:id="@+id/plus"
-                android:text="+"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:gravity="center"
-                android:textSize="30dp"
-                android:textColor="#FFF"
-                android:layout_marginRight="20dp"
-                app:font="sanz.ttf"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-        </RelativeLayout>
-
-    </RelativeLayout>
 
     <!--<ListView
         android:id="@+id/funding_list"
@@ -87,8 +37,8 @@
 
             <ImageView
                 android:id="@+id/funding_list_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
@@ -100,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/funding_list_image"
                 android:layout_toEndOf="@+id/funding_list_image">
@@ -114,21 +65,33 @@
                     android:orientation="vertical">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/funding_name"
+                        android:id="@+id/quereies_recieved_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ABC10001"
+                        android:text="Aravindh"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         app:font="sanz.ttf" />
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/funding_address"
+                        android:id="@+id/queries_recieved_car_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/funding_name"
-                        android:text="9876543210, Chennai"
+                        android:layout_below="@id/quereies_recieved_name"
+                        android:text="Hyundai i10"
                         app:font="sanz.ttf"
+                        android:textSize="16dp" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/queries_revieved_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@id/queries_recieved_car_name"
+                        android:text="Is there 2014 model available with you"
+                        app:font="sanz.ttf"
+                        android:maxLines="1"
+                        android:layout_marginRight="5dp"
                         android:textSize="12dp" />
 
                 </RelativeLayout>
@@ -145,40 +108,12 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginEnd="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/rupee"
-                        android:gravity="center">
-
-                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                            android:id="@+id/funding_rate_rupee"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="&#x20B9;"
-                            android:textStyle="bold"
-                            app:font="sanz.ttf"
-                            android:textSize="18dp" />
-
-                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                            android:id="@+id/funding_rate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="4,00,000"
-                            android:layout_toRightOf="@+id/funding_rate_rupee"
-                            android:textStyle="bold"
-                            app:font="sanz.ttf"
-                            android:textSize="18dp" />
-
-                    </RelativeLayout>
-
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                         android:id="@+id/funding_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rupee"
-                        android:text="26 Nov 2016"
+                        android:text="2 Hours ago"
                         app:font="sanz.ttf"
                         android:layout_marginLeft="15dp"
                         android:textSize="12dp" />
@@ -211,8 +146,8 @@
 
             <ImageView
                 android:id="@+id/funding_l_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
@@ -238,24 +173,33 @@
                     android:orientation="vertical">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/funding_ne"
+                        android:id="@+id/quereiess_recieved_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ABC10001"
+                        android:text="Jahan"
                         android:textSize="18dp"
                         android:textStyle="bold"
-                        app:font="sanz.ttf"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        app:font="sanz.ttf" />
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/fundinaddress"
+                        android:id="@+id/queriess_recieved_car_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/funding_ne"
-                        android:text="9876543210, Chennai"
+                        android:layout_below="@id/quereiess_recieved_name"
+                        android:text="Hyundai i10"
                         app:font="sanz.ttf"
+                        android:textSize="16dp" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/queriess_revieved_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@id/queriess_recieved_car_name"
+                        android:text="Is there 2014 model available with you"
+                        app:font="sanz.ttf"
+                        android:maxLines="1"
+                        android:layout_marginRight="5dp"
                         android:textSize="12dp" />
 
                 </RelativeLayout>
@@ -272,40 +216,12 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginEnd="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/rue"
-                        android:gravity="center">
-
-                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                            android:id="@+id/fding_rate_rupee"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="&#x20B9;"
-                            android:textStyle="bold"
-                            app:font="sanz.ttf"
-                            android:textSize="18dp" />
-
-                        <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                            android:id="@+id/fding_rate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:text="4,00,000"
-                            android:layout_toRightOf="@+id/fding_rate_rupee"
-                            android:textStyle="bold"
-                            app:font="sanz.ttf"
-                            android:textSize="18dp" />
-
-                    </RelativeLayout>
-
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                         android:id="@+id/fding_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rue"
-                        android:text="26 Nov 2016"
+                        android:text="10 Hours ago"
                         app:font="sanz.ttf"
                         android:layout_marginLeft="15dp"
                         android:textSize="12dp" />
@@ -320,10 +236,48 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_funding"
+        android:id="@+id/my_recycler_queries_recieved"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"
         android:layout_alignParentBottom="true"/>
+
+    <RelativeLayout
+        android:id="@+id/header_search_list"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/titlebar"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/query_recived_mnav"
+                android:layout_width="30dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/nav_icon" />
+
+            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Queries Recieved"
+                android:textColor="#FFF"
+                android:textSize="18dp"
+                android:id="@+id/title_saved_cars"
+                app:font="sanz.ttf"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

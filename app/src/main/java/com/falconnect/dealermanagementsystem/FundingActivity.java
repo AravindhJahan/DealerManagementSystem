@@ -15,11 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
@@ -37,22 +39,7 @@ public class FundingActivity extends AppCompatActivity {
 
     TextView plus;
 
-    String[] web = {
-            "Buy",
-            "Sell",
-            "Manage",
-            "Communication",
-            "Reports",
-            "Logout"
-    };
-    Integer[] imageId = {
-            R.drawable.buy_sidemenu,
-            R.drawable.sell_sidemenu,
-            R.drawable.manage_sidemenu,
-            R.drawable.communication_sidemenu,
-            R.drawable.report_sidemenu,
-            R.drawable.logout_sidemenu
-    };
+    BuyPageNavigation funding_buypagenavigation;
 
     private SimpleSideDrawer mNav_funding;
 
@@ -62,9 +49,7 @@ public class FundingActivity extends AppCompatActivity {
     TextView profile_address_fund;
     String saved_name_fund, saved_address_fund;
 
-
-
-
+    SessionManager session;
     CardView new_card;
 
     @Override
@@ -125,9 +110,6 @@ public class FundingActivity extends AppCompatActivity {
         }
         profile_address_fund.setText(saved_address_fund);
 
-
-
-
         nav_funding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,21 +123,45 @@ public class FundingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FundingActivity.this, ApplyFundingActivity.class);
                 startActivity(intent);
-
-
             }
         });
 
+        session = new SessionManager(FundingActivity.this);
+
         //NAVIGATION DRAWER LIST VIEW
-        CustomList adapter = new CustomList(FundingActivity.this, web, imageId);
+        funding_buypagenavigation = new BuyPageNavigation();
+        CustomList adapter = new CustomList(FundingActivity.this, funding_buypagenavigation.web, funding_buypagenavigation.imageId);
         ListView list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (funding_buypagenavigation.web[position] == "Buy") {
+                    mNav_funding.closeLeftSide();
+                    Toast.makeText(FundingActivity.this, funding_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (funding_buypagenavigation.web[position] == "Sell") {
+                    Intent intent = new Intent(FundingActivity.this, SellDashBoardActivity.class);
+                    startActivity(intent);
+                    mNav_funding.closeLeftSide();
+                    Toast.makeText(FundingActivity.this, funding_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (funding_buypagenavigation.web[position] == "Manage") {
+                    mNav_funding.closeLeftSide();
+                    Toast.makeText(FundingActivity.this, funding_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
 
-
+                } else if (funding_buypagenavigation.web[position] == "Communication") {
+                    mNav_funding.closeLeftSide();
+                    Toast.makeText(FundingActivity.this, funding_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (funding_buypagenavigation.web[position] == "Reports") {
+                    mNav_funding.closeLeftSide();
+                    Toast.makeText(FundingActivity.this, funding_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (funding_buypagenavigation.web[position] == "Logout") {
+                    session.logoutUser();
+                    mNav_funding.closeLeftSide();
+                    FundingActivity.this.finish();
+                } else {
+                    //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

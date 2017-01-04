@@ -31,6 +31,7 @@ import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
@@ -116,25 +117,6 @@ public class DashBoard extends AppCompatActivity {
 
     String selectedcity;
 
-    String[] web = {
-            "Buy",
-            "Sell",
-            "Manage",
-            "Communication",
-            "Reports",
-            "Logout"
-    };
-
-    Integer[] imageId = {
-            R.drawable.buy_sidemenu,
-            R.drawable.sell_sidemenu,
-            R.drawable.manage_sidemenu,
-            R.drawable.communication_sidemenu,
-            R.drawable.report_sidemenu,
-            R.drawable.logout_sidemenu
-    };
-
-
     SessionManager session;
     ImageView imageView;
     TextView profile_name;
@@ -146,6 +128,8 @@ public class DashBoard extends AppCompatActivity {
 
     String sitekey;
     //String sites_get;
+
+    BuyPageNavigation mnavgation;
 
     public static final String PREFS_NAME = "AOP_PREFS";
     public static final String SITE_KEY = "sitekey";
@@ -182,9 +166,10 @@ public class DashBoard extends AppCompatActivity {
         editor = settings.edit();
 
         sitekey = getIntent().getStringExtra("sites_array");
+
         if (sitekey == null) {
             sites.setText("Select Sites");
-        } else {
+        }else{
             sitekey = sitekey.replace("]", "").replace("[", "");
             sites.setText(sitekey);
             editor.putString(SITE_KEY, sitekey);
@@ -201,8 +186,8 @@ public class DashBoard extends AppCompatActivity {
         editor.commit();
         Log.e("Site_TAF", settings.getAll().toString());
 
-        sites.setText(settings.getString(SITE_KEY, null));
-        spinner.setText(settings.getString(CITY_KEY, null));
+        sites.setText(settings.getString(SITE_KEY, "Select Sites"));
+        spinner.setText(settings.getString(CITY_KEY, "Select City"));
 
         // XML Parsing Using AsyncTask...
         if (isNetworkAvailable()) {
@@ -314,7 +299,8 @@ public class DashBoard extends AppCompatActivity {
         });
 
         //NAVIGATION DRAWER LIST VIEW
-        CustomList adapter = new CustomList(DashBoard.this, web, imageId);
+        mnavgation = new BuyPageNavigation();
+        CustomList adapter = new CustomList(DashBoard.this, mnavgation.web, mnavgation.imageId);
         list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
 
@@ -323,14 +309,30 @@ public class DashBoard extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (web[position] == "Sell") {
+                if (mnavgation.web[position] == "Buy") {
+                    mNav.closeLeftSide();
+                    Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (mnavgation.web[position] == "Sell") {
                     Intent intent = new Intent(DashBoard.this, SellDashBoardActivity.class);
                     startActivity(intent);
                     mNav.closeLeftSide();
-                    Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
-                } else if (web[position] == "Logout") {
+                    DashBoard.this.finish();
+                    Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (mnavgation.web[position] == "Manage") {
+                    Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
+                    mNav.closeLeftSide();
+                } else if (mnavgation.web[position] == "Communication") {
+                    mNav.closeLeftSide();
+                    Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
+
+                }else if (mnavgation.web[position] == "Reports") {
+                    mNav.closeLeftSide();
+                    Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
+                }else if (mnavgation.web[position] == "Logout") {
                     session.logoutUser();
                     mNav.closeLeftSide();
+                    editor.clear();
+                    editor.commit();
                     DashBoard.this.finish();
                 } else {
                     //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();

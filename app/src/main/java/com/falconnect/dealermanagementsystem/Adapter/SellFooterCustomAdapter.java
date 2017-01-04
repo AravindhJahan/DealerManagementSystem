@@ -1,6 +1,8 @@
 package com.falconnect.dealermanagementsystem.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.falconnect.dealermanagementsystem.BidsPostedActivity;
+import com.falconnect.dealermanagementsystem.DashBoard;
 import com.falconnect.dealermanagementsystem.Fragment.SellDataModel;
+import com.falconnect.dealermanagementsystem.FundingActivity;
+import com.falconnect.dealermanagementsystem.LoanActivity;
+import com.falconnect.dealermanagementsystem.LoginActivity;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
+import com.falconnect.dealermanagementsystem.MyQueriesActivity;
+import com.falconnect.dealermanagementsystem.QueriesRecievedActivity;
 import com.falconnect.dealermanagementsystem.R;
+import com.falconnect.dealermanagementsystem.SavedCarActivity;
+import com.falconnect.dealermanagementsystem.SellDashBoardActivity;
 
 import java.util.ArrayList;
 
@@ -41,6 +53,44 @@ public class SellFooterCustomAdapter extends RecyclerView.Adapter<SellFooterCust
 
         holder.text_ViewName.setText(singleItem_sell.getSellname());
         holder.image_ViewIcon.setImageResource(singleItem_sell.getSellimage());
+        holder.category_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (singleItem_sell.getSellfooterid_() == 0) {
+                    //Current screen to next screen navigate
+                    Intent intent = new Intent(mContext.getApplicationContext(), SellDashBoardActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    mContext.startActivity(intent);
+                    //current screen finish
+                    ((Activity)mContext).finish();
+                    Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
+                } else if (singleItem_sell.getSellfooterid_() == 1) {
+                    //Current screen to next screen navigate
+                    Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
+                } else if (singleItem_sell.getSellfooterid_() == 2) {
+                    //Current screen to next screen navigate
+                    Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
+                } else if (singleItem_sell.getSellfooterid_() == 3) {
+                    Intent intent = new Intent(mContext.getApplicationContext(), QueriesRecievedActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    mContext.startActivity(intent);
+                    //current screen finish
+                    ((Activity)mContext).finish();
+                    Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
+                } else if (singleItem_sell.getSellfooterid_() == 4) {
+                    //Current screen to next screen navigate
+                    Intent intent = new Intent(mContext.getApplicationContext(), LoanActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    mContext.startActivity(intent);
+                    //current screen finish
+                    ((Activity)mContext).finish();
+                    Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
+            }
+        });
 
     }
 

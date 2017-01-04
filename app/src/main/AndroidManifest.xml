@@ -150,6 +150,16 @@
             android:name=".SellDashBoardActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_sell_dash_board"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".LoanActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_loan"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".QueriesRecievedActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_queries_recieved"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

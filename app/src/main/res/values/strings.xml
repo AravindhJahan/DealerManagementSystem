@@ -49,5 +49,9 @@
 
     <string name="title_activity_sell_dash_board">SellDashBoardActivity</string>
 
+    <string name="title_activity_loan">LoanActivity</string>
+
+    <string name="title_activity_queries_recieved">QueriesRecievedActivity</string>
+
 
 </resources>

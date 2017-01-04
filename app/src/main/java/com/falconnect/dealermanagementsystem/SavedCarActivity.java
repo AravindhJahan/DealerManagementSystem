@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -26,6 +27,7 @@ import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.ProductListAdapter;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
+import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
@@ -53,23 +55,7 @@ public class SavedCarActivity extends AppCompatActivity {
     ImageView savedcar_back;
     private SimpleSideDrawer mNav_savedcar;
 
-
-    String[] web = {
-            "Buy",
-            "Sell",
-            "Manage",
-            "Communication",
-            "Reports",
-            "Logout"
-    };
-    Integer[] imageId = {
-            R.drawable.buy_sidemenu,
-            R.drawable.sell_sidemenu,
-            R.drawable.manage_sidemenu,
-            R.drawable.communication_sidemenu,
-            R.drawable.report_sidemenu,
-            R.drawable.logout_sidemenu
-    };
+    BuyPageNavigation savedcar_buypagenavigation;
 
     TextView title;
     public ArrayList<HashMap<String, String>> saved_car_list;
@@ -79,7 +65,6 @@ public class SavedCarActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView_search;
     private static ArrayList<DataModel> data;
-
 
     SessionManager session_savedcar;
     ImageView imageView_savedcar;
@@ -141,12 +126,6 @@ public class SavedCarActivity extends AppCompatActivity {
         //get city url
         title = (TextView) findViewById(R.id.title_saved_cars);
 
-        /*String header = getIntent().getStringExtra("Title");
-        title.setText(header);*/
-
-
-
-
         listView = (ListView) findViewById(R.id.saved_car_list);
 
         savedcar_back = (ImageView) findViewById(R.id.savedcar_back);
@@ -170,7 +149,6 @@ public class SavedCarActivity extends AppCompatActivity {
         }
         profile_address_savedcar.setText(saved_address_savedcar);
 
-
         savedcar_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,14 +159,40 @@ public class SavedCarActivity extends AppCompatActivity {
         Saved_Car_url = Constant.SAVED_CAR_API + "&session_user_id=" + saved_user_id;
 
         //NAVIGATION DRAWER LIST VIEW
-        CustomList adapter = new CustomList(SavedCarActivity.this, web, imageId);
+        savedcar_buypagenavigation = new BuyPageNavigation();
+        CustomList adapter = new CustomList(SavedCarActivity.this, savedcar_buypagenavigation.web, savedcar_buypagenavigation.imageId);
         ListView list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (savedcar_buypagenavigation.web[position] == "Buy") {
+                    mNav_savedcar.closeLeftSide();
+                    Toast.makeText(SavedCarActivity.this, savedcar_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (savedcar_buypagenavigation.web[position] == "Sell") {
+                    Intent intent = new Intent(SavedCarActivity.this, SellDashBoardActivity.class);
+                    startActivity(intent);
+                    mNav_savedcar.closeLeftSide();
+                    Toast.makeText(SavedCarActivity.this, savedcar_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (savedcar_buypagenavigation.web[position] == "Manage") {
+                    mNav_savedcar.closeLeftSide();
+                    Toast.makeText(SavedCarActivity.this, savedcar_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (savedcar_buypagenavigation.web[position] == "Communication") {
+                    mNav_savedcar.closeLeftSide();
+                    Toast.makeText(SavedCarActivity.this, savedcar_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (savedcar_buypagenavigation.web[position] == "Reports") {
 
+                    mNav_savedcar.closeLeftSide();
+                    Toast.makeText(SavedCarActivity.this, savedcar_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+
+                } else if (savedcar_buypagenavigation.web[position] == "Logout") {
+                    session_savedcar.logoutUser();
+                    mNav_savedcar.closeLeftSide();
+                    SavedCarActivity.this.finish();
+                } else {
+                    //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

@@ -49,6 +49,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="14dp"
                 android:src="@drawable/default_avatar"
+                android:background="@drawable/circle"
                 android:layout_centerHorizontal="true" />
 
         </RelativeLayout>

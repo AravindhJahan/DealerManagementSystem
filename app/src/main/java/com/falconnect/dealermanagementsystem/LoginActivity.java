@@ -45,9 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //JSON DATAS
     String user, pass;
-
     String result, message, user_id, dealer_name, dealer_img, dealer_address;
-
     public ArrayList<HashMap<String, String>> LoginList;
     HashMap<String, String> loginlistmap;
 

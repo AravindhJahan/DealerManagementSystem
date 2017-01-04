@@ -15,11 +15,13 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
@@ -36,30 +38,12 @@ public class BidsPostedActivity extends AppCompatActivity {
     private static ArrayList<DataModel> data;
 
     CardView card_new;
-
+    SessionManager session;
     ImageView bids_back;
 
     private SimpleSideDrawer mNav_bids;
 
-    //side menu content
-    String[] web = {
-            "Buy",
-            "Sell",
-            "Manage",
-            "Communication",
-            "Reports",
-            "Logout"
-    };
-    //side menu content icons
-    Integer[] imageId = {
-            R.drawable.buy_sidemenu,
-            R.drawable.sell_sidemenu,
-            R.drawable.manage_sidemenu,
-            R.drawable.communication_sidemenu,
-            R.drawable.report_sidemenu,
-            R.drawable.logout_sidemenu
-    };
-
+    BuyPageNavigation bids_buypagenavigation;
     SessionManager session_bids;
     ImageView imageView_bids;
     TextView profile_name_bids;
@@ -115,13 +99,13 @@ public class BidsPostedActivity extends AppCompatActivity {
             }
         });
 
-        bids_back = (ImageView)findViewById(R.id.bids_back);
+        bids_back = (ImageView) findViewById(R.id.bids_back);
 
         mNav_bids = new SimpleSideDrawer(this);
         mNav_bids.setLeftBehindContentView(R.layout.activity_behind_left_simple);
 
         imageView_bids = (ImageView) mNav_bids.findViewById(R.id.profile_avatar);
-        profile_name_bids= (TextView) mNav_bids.findViewById(R.id.profile_name);
+        profile_name_bids = (TextView) mNav_bids.findViewById(R.id.profile_name);
         profile_address_bids = (TextView) mNav_bids.findViewById(R.id.profile_address);
 
         session_bids = new SessionManager(BidsPostedActivity.this);
@@ -143,8 +127,11 @@ public class BidsPostedActivity extends AppCompatActivity {
             }
         });
 
+        session = new SessionManager(BidsPostedActivity.this);
+
         //NAVIGATION DRAWER LIST VIEW
-        CustomList adapter = new CustomList(BidsPostedActivity.this, web, imageId);
+        bids_buypagenavigation = new BuyPageNavigation();
+        CustomList adapter = new CustomList(BidsPostedActivity.this, bids_buypagenavigation.web, bids_buypagenavigation.imageId);
         ListView list = (ListView) findViewById(R.id.nav_list_view);
         list.setAdapter(adapter);
 
@@ -152,6 +139,30 @@ public class BidsPostedActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                if (bids_buypagenavigation.web[position] == "Buy") {
+                    mNav_bids.closeLeftSide();
+                    Toast.makeText(BidsPostedActivity.this, bids_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (bids_buypagenavigation.web[position] == "Sell") {
+                    Intent intent = new Intent(BidsPostedActivity.this, SellDashBoardActivity.class);
+                    startActivity(intent);
+                    mNav_bids.closeLeftSide();
+                    Toast.makeText(BidsPostedActivity.this, bids_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (bids_buypagenavigation.web[position] == "Manage") {
+                    Toast.makeText(BidsPostedActivity.this, bids_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                    mNav_bids.closeLeftSide();
+                } else if (bids_buypagenavigation.web[position] == "Communication") {
+                    Toast.makeText(BidsPostedActivity.this, bids_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                    mNav_bids.closeLeftSide();
+                } else if (bids_buypagenavigation.web[position] == "Reports") {
+                    Toast.makeText(BidsPostedActivity.this, bids_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                    mNav_bids.closeLeftSide();
+                } else if (bids_buypagenavigation.web[position] == "Logout") {
+                    session.logoutUser();
+                    mNav_bids.closeLeftSide();
+                    BidsPostedActivity.this.finish();
+                } else {
+                    //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
