@@ -160,6 +160,16 @@
             android:name=".QueriesRecievedActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_queries_recieved"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".LoanViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_loan_view"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".AuctionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_auction"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

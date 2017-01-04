@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
@@ -47,6 +48,9 @@ public class LoanActivity extends AppCompatActivity {
     private static RecyclerView sellloan_footer;
     private static ArrayList<SellFooterDataModel> sellfooterdata;
     private static RecyclerView.Adapter selladapter;
+
+    CardView loancard ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +148,15 @@ public class LoanActivity extends AppCompatActivity {
                 } else {
                     //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        loancard = (CardView) findViewById(R.id.loan_cust_card);
+        loancard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoanActivity.this, LoanViewActivity.class);
+                startActivity(intent);
             }
         });
 

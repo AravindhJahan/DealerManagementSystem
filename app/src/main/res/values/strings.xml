@@ -53,5 +53,9 @@
 
     <string name="title_activity_queries_recieved">QueriesRecievedActivity</string>
 
+    <string name="title_activity_loan_view">LoanViewActivity</string>
+
+    <string name="title_activity_auction">AuctionActivity</string>
+
 
 </resources>
