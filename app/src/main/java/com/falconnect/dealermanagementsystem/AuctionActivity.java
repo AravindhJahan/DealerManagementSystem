@@ -136,6 +136,4 @@ public class AuctionActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
