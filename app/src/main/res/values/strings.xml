@@ -57,5 +57,7 @@
 
     <string name="title_activity_auction">AuctionActivity</string>
 
+    <string name="title_activity_my_posting">MyPostingActivity</string>
+
 
 </resources>

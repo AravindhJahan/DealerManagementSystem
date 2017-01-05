@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.SellFooterCustomAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
@@ -97,9 +98,15 @@ public class QueriesRecievedActivity extends AppCompatActivity {
         saved_address_query_receive = user.get("dealer_address");
         profile_name_query_receive.setText(saved_name_query_receive);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_query_receive);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(QueriesRecievedActivity.this))
+                    .into(imageView_query_receive);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_query_receive);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(QueriesRecievedActivity.this))
+                    .into(imageView_query_receive);
         }
         profile_address_query_receive.setText(saved_address_query_receive);
         query_recieve_mNav  = (ImageView) findViewById(R.id.query_recived_mnav);

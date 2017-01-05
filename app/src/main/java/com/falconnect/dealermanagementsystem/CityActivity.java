@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.falconnect.dealermanagementsystem.Adapter.PopularCityAdapter;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.PopularCityDataModel;
+import com.falconnect.dealermanagementsystem.Model.QueryListModel;
+import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;

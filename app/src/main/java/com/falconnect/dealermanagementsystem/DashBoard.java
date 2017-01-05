@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.City_Make_Spinner_Model;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
@@ -222,9 +223,15 @@ public class DashBoard extends AppCompatActivity {
         profile_name.setText(saved_name);
 
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(DashBoard.this))
+                    .into(imageView);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(DashBoard.this))
+                    .into(imageView);
         }
         profile_address.setText(saved_address);
 
@@ -315,8 +322,8 @@ public class DashBoard extends AppCompatActivity {
                 } else if (mnavgation.web[position] == "Sell") {
                     Intent intent = new Intent(DashBoard.this, SellDashBoardActivity.class);
                     startActivity(intent);
-                    mNav.closeLeftSide();
                     DashBoard.this.finish();
+                    mNav.closeLeftSide();
                     Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
                 } else if (mnavgation.web[position] == "Manage") {
                     Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
@@ -324,7 +331,6 @@ public class DashBoard extends AppCompatActivity {
                 } else if (mnavgation.web[position] == "Communication") {
                     mNav.closeLeftSide();
                     Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
-
                 }else if (mnavgation.web[position] == "Reports") {
                     mNav.closeLeftSide();
                     Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();

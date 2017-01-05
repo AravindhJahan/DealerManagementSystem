@@ -19,24 +19,31 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:id="@+id/queryimage1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
-            android:src="@drawable/car_iamge"
-            android:background="@drawable/circle"/>
+            android:src="@drawable/car_iamge"/>
 
         <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/querieslink"/>
+
+        <ImageView
+            android:id="@+id/queryimage2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"
-            android:src="@drawable/splashlogo"
-            android:background="@drawable/circle"/>
+            android:src="@drawable/default_avatar"/>
 
         <LinearLayout
             android:layout_width="130dp"
@@ -70,26 +77,43 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="5dp"
                 app:font="sanz.ttf"
+                android:maxLines="1"
                 android:text="Is there  2016 model available with you"
                 android:textSize="12dp"/>
 
-
-            <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                android:id="@+id/query_time"
-                android:layout_height="wrap_content"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:text="26.11.2016 12:56:09"
-                app:font="sanz.ttf"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="12dp"/>
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/queriestime"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="4.5dp"
+                    android:src="@drawable/queriestime"/>
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/query_time"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="26.11.2016 12:56:09"
+                    app:font="sanz.ttf"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@+id/queriestime"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="12dp"/>
+
+            </RelativeLayout>
+
 
         </LinearLayout>
-        
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginRight="3dp"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/replay"/>
 
     </LinearLayout>

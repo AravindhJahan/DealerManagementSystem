@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.ProductListAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
@@ -143,9 +144,14 @@ public class SavedCarActivity extends AppCompatActivity {
         saved_address_savedcar = user.get("dealer_address");
         profile_name_savedcar.setText(saved_name_savedcar);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_savedcar);
+            Glide.with(getApplicationContext()).load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(SavedCarActivity.this))
+                    .into(imageView_savedcar);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_savedcar);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(SavedCarActivity.this))
+                    .into(imageView_savedcar);
         }
         profile_address_savedcar.setText(saved_address_savedcar);
 

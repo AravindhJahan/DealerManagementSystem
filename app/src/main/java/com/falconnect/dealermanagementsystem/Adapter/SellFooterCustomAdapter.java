@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.falconnect.dealermanagementsystem.AuctionActivity;
 import com.falconnect.dealermanagementsystem.BidsPostedActivity;
 import com.falconnect.dealermanagementsystem.DashBoard;
 import com.falconnect.dealermanagementsystem.Fragment.SellDataModel;
@@ -19,6 +20,7 @@ import com.falconnect.dealermanagementsystem.FundingActivity;
 import com.falconnect.dealermanagementsystem.LoanActivity;
 import com.falconnect.dealermanagementsystem.LoginActivity;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
+import com.falconnect.dealermanagementsystem.MyPostingActivity;
 import com.falconnect.dealermanagementsystem.MyQueriesActivity;
 import com.falconnect.dealermanagementsystem.QueriesRecievedActivity;
 import com.falconnect.dealermanagementsystem.R;
@@ -67,9 +69,19 @@ public class SellFooterCustomAdapter extends RecyclerView.Adapter<SellFooterCust
                     Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem_sell.getSellfooterid_() == 1) {
                     //Current screen to next screen navigate
+                    Intent intent = new Intent(mContext.getApplicationContext(), MyPostingActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    mContext.startActivity(intent);
+                    //current screen finish
+                    ((Activity)mContext).finish();
                     Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem_sell.getSellfooterid_() == 2) {
                     //Current screen to next screen navigate
+                    Intent intent = new Intent(mContext.getApplicationContext(), AuctionActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    mContext.startActivity(intent);
+                    //current screen finish
+                    ((Activity)mContext).finish();
                     Toast.makeText(mContext, "Selected :" + singleItem_sell.getSellname(), Toast.LENGTH_SHORT).show();
                 } else if (singleItem_sell.getSellfooterid_() == 3) {
                     Intent intent = new Intent(mContext.getApplicationContext(), QueriesRecievedActivity.class);

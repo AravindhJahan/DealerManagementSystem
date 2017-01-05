@@ -57,7 +57,7 @@ public class SessionManager {
 
         Log.e("dealer_name", KEY_DEALER_NAME);
         Log.e("user_id", KEY_ID);
-        Log.e("dealer_image", KEY_IMAGE);
+        Log.e("dealer_imag", KEY_IMAGE);
         Log.e("dealer_address", KEY_CITY);
 
         return user;

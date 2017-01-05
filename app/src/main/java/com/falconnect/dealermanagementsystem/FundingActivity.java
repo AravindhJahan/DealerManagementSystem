@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
@@ -104,9 +105,15 @@ public class FundingActivity extends AppCompatActivity {
         saved_address_fund = user.get("dealer_address");
         profile_name_fund.setText(saved_name_fund);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_fund);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(FundingActivity.this))
+                    .into(imageView_fund);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_fund);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(FundingActivity.this))
+                    .into(imageView_fund);
         }
         profile_address_fund.setText(saved_address_fund);
 

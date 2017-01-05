@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.PagerAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Fragment.SellFirstPageFragment;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
@@ -123,9 +124,15 @@ public class SellDashBoardActivity extends FragmentActivity implements TabHost.O
         saved_address_myinven = user.get("dealer_address");
         profile_name_myinven.setText(saved_name_myinven);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_myinven);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(SellDashBoardActivity.this))
+                    .into(imageView_myinven);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_myinven);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(SellDashBoardActivity.this))
+                    .into(imageView_myinven);
         }
         profile_address_myinven.setText(saved_address_myinven);
         inventry_mnav = (ImageView) findViewById(R.id.inventry_mnav);

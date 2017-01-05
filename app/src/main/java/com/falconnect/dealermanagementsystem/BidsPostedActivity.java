@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +19,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.falconnect.dealermanagementsystem.Adapter.BidsPostedListAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
+import com.falconnect.dealermanagementsystem.Adapter.QueryListAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
+import com.falconnect.dealermanagementsystem.Model.BidsPostedListModel;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.Model.QueryListModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +53,7 @@ public class BidsPostedActivity extends AppCompatActivity {
 
     private SimpleSideDrawer mNav_bids;
 
+    HashMap<String, String> user;
     BuyPageNavigation bids_buypagenavigation;
     SessionManager session_bids;
     ImageView imageView_bids;
@@ -50,6 +61,12 @@ public class BidsPostedActivity extends AppCompatActivity {
     TextView profile_address_bids;
     String saved_name_bids, saved_address_bids;
 
+
+    ListView bids_listview;
+    public ArrayList<HashMap<String, String>> bids_list;
+    HashMap<String, String> bidslist;
+
+    BidsPostedListAdapter bidsPostedListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,16 +106,6 @@ public class BidsPostedActivity extends AppCompatActivity {
         adapter = new CustomAdapter(BidsPostedActivity.this, data);
         bidsrecyclerView.setAdapter(adapter);
 
-        card_new = (CardView) findViewById(R.id.card_new);
-
-        card_new.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BidsPostedActivity.this, BidsPostingActivity.class);
-                startActivity(intent);
-            }
-        });
-
         bids_back = (ImageView) findViewById(R.id.bids_back);
 
         mNav_bids = new SimpleSideDrawer(this);
@@ -109,14 +116,20 @@ public class BidsPostedActivity extends AppCompatActivity {
         profile_address_bids = (TextView) mNav_bids.findViewById(R.id.profile_address);
 
         session_bids = new SessionManager(BidsPostedActivity.this);
-        HashMap<String, String> user = session_bids.getUserDetails();
+        user = session_bids.getUserDetails();
         saved_name_bids = user.get("dealer_name");
         saved_address_bids = user.get("dealer_address");
         profile_name_bids.setText(saved_name_bids);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_bids);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(BidsPostedActivity.this))
+                    .into(imageView_bids);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_bids);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(BidsPostedActivity.this))
+                    .into(imageView_bids);
         }
         profile_address_bids.setText(saved_address_bids);
 
@@ -163,9 +176,11 @@ public class BidsPostedActivity extends AppCompatActivity {
                 } else {
                     //Toast.makeText(DashBoard.this, web[position], Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
+
+        bids_listview = (ListView) findViewById(R.id.bids_listview);
+        new Bids_posted_data().execute();
 
     }
 
@@ -185,6 +200,122 @@ public class BidsPostedActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+
+    }
+
+    private ArrayList<BidsPostedListModel> getbidsdata() {
+        final ArrayList<BidsPostedListModel> biddata = new ArrayList<>();
+        for (int i = 0; i < bids_list.size(); i++) {
+            String image = bids_list.get(i).get("imagelink");
+            String bidded_amount = bids_list.get(i).get("bidded_amount");
+            String make = bids_list.get(i).get("make");
+            String posted = bids_list.get(i).get("posted");
+            String closing_time = bids_list.get(i).get("closing_time");
+            String site_image = bids_list.get(i).get("site_image");
+            String bid_image = bids_list.get(i).get("bid_image");
+            biddata.add(new BidsPostedListModel(image, bidded_amount, make, posted, closing_time, site_image, bid_image));
+        }
+        return biddata;
+    }
+
+    private class Bids_posted_data extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String queriesurl = Constant.BIDS_POSTED_API + "session_user_id=" + user.get("user_id");
+
+            String json = sh.makeServiceCall(queriesurl, ServiceHandler.POST);
+
+            if (json != null) {
+
+                bids_list = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    JSONArray bids = jsonObj.getJSONArray("bidding_list");
+
+                    for (int k = 0; k <= bids.length(); k++) {
+
+                        String dealer_id = bids.getJSONObject(k).getString("dealer_id");
+                        String car_id = bids.getJSONObject(k).getString("car_id");
+                        String noimages = bids.getJSONObject(k).getString("noimages");
+                        String imagelink = bids.getJSONObject(k).getString("imagelink");
+                        String site_id = bids.getJSONObject(k).getString("site_id");
+                        String bid_image = bids.getJSONObject(k).getString("bid_image");
+                        String site_image = bids.getJSONObject(k).getString("site_image");
+                        String posted = bids.getJSONObject(k).getString("posted");
+                        String closing_time = bids.getJSONObject(k).getString("closing_time");
+                        String make = bids.getJSONObject(k).getString("make");
+                        String model = bids.getJSONObject(k).getString("model");
+                        String bidded_amount = bids.getJSONObject(k).getString("bidded_amount");
+
+                        bidslist = new HashMap<>();
+
+                        bidslist.put("dealer_id", dealer_id);
+                        bidslist.put("car_id", car_id);
+                        bidslist.put("noimages", noimages);
+                        bidslist.put("imagelink", imagelink);
+                        bidslist.put("site_id", site_id);
+                        bidslist.put("bid_image", bid_image);
+                        bidslist.put("site_image", site_image);
+                        bidslist.put("posted", posted);
+                        bidslist.put("closing_time", closing_time);
+                        bidslist.put("make", make);
+                        bidslist.put("model", model);
+                        bidslist.put("bidded_amount", bidded_amount);
+
+                        bids_list.add(bidslist);
+
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            bidsPostedListAdapter = new BidsPostedListAdapter(BidsPostedActivity.this, getbidsdata());
+            bids_listview.setAdapter(bidsPostedListAdapter);
+            bids_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    BidsPostedListModel queryListModel = (BidsPostedListModel)parent.getItemAtPosition(position);
+                    Toast.makeText(BidsPostedActivity.this, queryListModel.getCar_name(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+        }
 
     }
 

@@ -19,6 +19,10 @@ public class Constant {
 
     public static final String SAVE_CAR_API = "http://52.220.105.165/dealerdev/public/api_save_car?";
 
+    public static final String QUREIS_PAGE_API = "http://52.220.105.165/dealerdev/public/api_queries_car?";
+
+    public static final String BIDS_POSTED_API = "http://52.220.105.165/dealerdev/public/api_bidding_list?";
+
 
 }
 

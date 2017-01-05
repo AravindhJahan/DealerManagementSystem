@@ -2,6 +2,7 @@ package com.falconnect.dealermanagementsystem;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -20,10 +21,18 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
+import com.falconnect.dealermanagementsystem.Adapter.QueryListAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
+import com.falconnect.dealermanagementsystem.Model.QueryListModel;
+import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +57,17 @@ public class MyQueriesActivity extends AppCompatActivity {
     ImageView imageView_queries;
     TextView profile_name_queries;
     TextView profile_address_queries;
+    HashMap<String, String> user;
     String saved_name_queries, saved_address_queries;
+
+
+    //ListView
+    ListView queries_listview;
+
+    public ArrayList<HashMap<String, String>> queries_list;
+    HashMap<String, String> querieslist;
+
+    QueryListAdapter queryListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,14 +119,20 @@ public class MyQueriesActivity extends AppCompatActivity {
         profile_address_queries = (TextView) mNav_queries.findViewById(R.id.profile_address);
 
         session_queries = new SessionManager(MyQueriesActivity.this);
-        HashMap<String, String> user = session_queries.getUserDetails();
+        user = session_queries.getUserDetails();
         saved_name_queries = user.get("dealer_name");
         saved_address_queries = user.get("dealer_address");
         profile_name_queries.setText(saved_name_queries);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_queries);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(MyQueriesActivity.this))
+                    .into(imageView_queries);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_queries);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(MyQueriesActivity.this))
+                    .into(imageView_queries);
         }
         profile_address_queries.setText(saved_address_queries);
 
@@ -143,7 +168,8 @@ public class MyQueriesActivity extends AppCompatActivity {
                     Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
                 } else if (queries_buypagenavigation.web[position] == "Communication") {
                     mNav_queries.closeLeftSide();
-                    Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();                } else if (queries_buypagenavigation.web[position] == "Reports") {
+                    Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
+                } else if (queries_buypagenavigation.web[position] == "Reports") {
                 } else if (queries_buypagenavigation.web[position] == "Logout") {
                     session_queries.logoutUser();
                     mNav_queries.closeLeftSide();
@@ -153,6 +179,10 @@ public class MyQueriesActivity extends AppCompatActivity {
                 }
             }
         });
+
+        queries_listview = (ListView) findViewById(R.id.queries_listview);
+
+        new Myqueries_Data().execute();
     }
 
     @Override
@@ -172,5 +202,126 @@ public class MyQueriesActivity extends AppCompatActivity {
                 .show();
 
     }
+
+    private ArrayList<QueryListModel> getdata() {
+        final ArrayList<QueryListModel> querydata = new ArrayList<>();
+        for (int i = 0; i < queries_list.size(); i++) {
+            String image = queries_list.get(i).get("imagelink");
+            String name = queries_list.get(i).get("dealer_name");
+            String carname = queries_list.get(i).get("make");
+            String details = queries_list.get(i).get("message");
+            String timedata = queries_list.get(i).get("Time");
+            querydata.add(new QueryListModel(image, carname, name, details, timedata));
+        }
+        return querydata;
+    }
+
+    private class Myqueries_Data extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String queriesurl = Constant.QUREIS_PAGE_API + "session_user_id=" + user.get("user_id");
+
+            String json = sh.makeServiceCall(queriesurl, ServiceHandler.POST);
+
+            if (json != null) {
+
+                queries_list = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    JSONArray query = jsonObj.getJSONArray("queries_list");
+
+                    for (int k = 0; k <= query.length(); k++) {
+
+                        String noimages = query.getJSONObject(k).getString("noimages");
+                        String imagelink = query.getJSONObject(k).getString("imagelink");
+                        String price = query.getJSONObject(k).getString("price");
+                        String car_id = query.getJSONObject(k).getString("car_id");
+                        String status = query.getJSONObject(k).getString("status");
+                        String from_dealer_id = query.getJSONObject(k).getString("from_dealer_id");
+                        String to_dealer_name = query.getJSONObject(k).getString("to_dealer_name");
+                        String to_dealer_id = query.getJSONObject(k).getString("to_dealer_id");
+                        String make = query.getJSONObject(k).getString("make");
+                        String title = query.getJSONObject(k).getString("title");
+                        String dealer_name = query.getJSONObject(k).getString("dealer_name");
+                        String dealer_email = query.getJSONObject(k).getString("dealer_email");
+                        String message = query.getJSONObject(k).getString("message");
+                        String contact_transactioncode = query.getJSONObject(k).getString("contact_transactioncode");
+                        String time = query.getJSONObject(k).getString("Time");
+
+                        querieslist = new HashMap<>();
+
+                        querieslist.put("noimages", noimages);
+                        querieslist.put("imagelink", imagelink);
+                        querieslist.put("price", price);
+                        querieslist.put("car_id", car_id);
+                        querieslist.put("status", status);
+                        querieslist.put("from_dealer_id", from_dealer_id);
+                        querieslist.put("to_dealer_name", to_dealer_name);
+                        querieslist.put("to_dealer_id", to_dealer_id);
+                        querieslist.put("make", make);
+                        querieslist.put("title", title);
+                        querieslist.put("dealer_name", dealer_name);
+                        querieslist.put("dealer_email", dealer_email);
+                        querieslist.put("message", message);
+                        querieslist.put("contact_transactioncode", contact_transactioncode);
+                        querieslist.put("Time", time);
+
+                        queries_list.add(querieslist);
+
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            queryListAdapter = new QueryListAdapter(MyQueriesActivity.this, getdata());
+            queries_listview.setAdapter(queryListAdapter);
+            queries_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    QueryListModel queryListModel = (QueryListModel)parent.getItemAtPosition(position);
+                    Toast.makeText(MyQueriesActivity.this, queryListModel.getCar_name(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+        }
+
+    }
+
 
 }

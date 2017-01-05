@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.SellFooterCustomAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
@@ -46,6 +48,8 @@ public class AuctionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_acution);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mVisible = true;
 
@@ -59,7 +63,7 @@ public class AuctionActivity extends AppCompatActivity {
 
         }
 
-        sellacution_footer = (RecyclerView) findViewById(R.id.my_recycler_apply_loan);
+        sellacution_footer = (RecyclerView) findViewById(R.id.auction_recycle_view);
         sellacution_footer.setHasFixedSize(true);
         sellacution_footer.setLayoutManager(new LinearLayoutManager(AuctionActivity.this, LinearLayoutManager.HORIZONTAL, false));
         sellfooterdata = new ArrayList<SellFooterDataModel>();
@@ -67,7 +71,7 @@ public class AuctionActivity extends AppCompatActivity {
 
             sellfooterdata.add(new SellFooterDataModel(
                     MyFooterSellData.sellnameArray[i],
-                    MyFooterSellData.selldrawableArrayWhite4[i],
+                    MyFooterSellData.selldrawableArrayWhite2[i],
                     MyFooterSellData.sellid_[i]
             ));
         }
@@ -87,9 +91,15 @@ public class AuctionActivity extends AppCompatActivity {
         saved_address_auction = user.get("dealer_address");
         profile_name_auction.setText(saved_name_auction);
         if (user.get("dealer_img").isEmpty()) {
-            Glide.with(getApplicationContext()).load(R.drawable.default_avatar).into(imageView_auction);
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.default_avatar)
+                    .transform(new RoundImageTransform(AuctionActivity.this))
+                    .into(imageView_auction);
         } else {
-            Glide.with(getApplicationContext()).load(user.get("dealer_img")).into(imageView_auction);
+            Glide.with(getApplicationContext())
+                    .load(user.get("dealer_img"))
+                    .transform(new RoundImageTransform(AuctionActivity.this))
+                    .into(imageView_auction);
         }
         profile_address_auction.setText(saved_address_auction);
         auction_mnav  = (ImageView) findViewById(R.id.auction_mnav);
