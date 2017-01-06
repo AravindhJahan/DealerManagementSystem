@@ -23,6 +23,12 @@ public class Constant {
 
     public static final String BIDS_POSTED_API = "http://52.220.105.165/dealerdev/public/api_bidding_list?";
 
+    public static final String BIDS_POSTING_LISTVIEW_API = "http://52.220.105.165/dealerdev/public/api_bidding_viewmore?";
+
+    public static final String NEW_BID_POSTING_AMOUNT_API = "http://52.220.105.165/dealerdev/public/api_addbidding_viewmore?";
+
+    public static final String APPLY_FUNDING_APT = "http://52.220.105.165/dealerdev/public/api_apply_funding?";
+
 
 }
 

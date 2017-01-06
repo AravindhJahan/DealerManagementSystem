@@ -36,6 +36,7 @@
                 android:layout_marginRight="30dp"
                 android:gravity="center"
                 android:text="ABC1001"
+                android:id="@+id/fund_token_id"
                 android:textColor="#FFF"
                 android:textSize="18dp"
                 app:font="sanz.ttf" />
@@ -58,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:id="@+id/text_card"
             app:cardCornerRadius="5dp">
 
             <LinearLayout
@@ -73,8 +75,8 @@
 
                     <ImageView
                         android:id="@+id/cholo_images"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:background="@drawable/circle"
@@ -88,28 +90,26 @@
                     android:layout_marginTop="10dp">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/delaer_name_get"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="60dp"
-                        android:layout_marginRight="60dp"
-                        android:text="Johnson"
+                        android:id="@+id/token_id"
                         app:font="sanz.ttf"
+                        android:layout_marginRight="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="Token"
+                        android:layout_toRightOf="@+id/tiken_text"
                         android:textSize="16dp" />
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/dealerplus_name_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tiken_text"
+                        app:font="sanz.ttf"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Dealer Name"
-                        app:font="sanz.ttf"
+                        android:text="Token"
                         android:textSize="16dp" />
 
 
@@ -121,25 +121,26 @@
                     android:layout_marginTop="10dp">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/dealerplus_mobile_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Mobile Number"
+                        android:id="@+id/contact_id"
                         app:font="sanz.ttf"
-                        android:textSize="16dp" />
-
-                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/delaer_mobile_get"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="31dp"
-                        android:layout_marginRight="31dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_toRightOf="@+id/contact_text"
+                        android:text="chennai"
+                        android:textSize="16dp" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/contact_text"
                         app:font="sanz.ttf"
-                        android:text="9865001122"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Contact"
                         android:textSize="16dp" />
 
 
@@ -151,25 +152,26 @@
                     android:layout_marginTop="10dp">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/dealerplus_amount_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/amount_id"
+                        app:font="sanz.ttf"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="100000"
+                        android:layout_toRightOf="@+id/amount_text"
+                        android:layout_marginRight="30dp"
+                        android:textSize="16dp" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/amount_text"
+                        app:font="sanz.ttf"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
                         android:layout_marginLeft="10dp"
                         android:text="Amount"
-                        app:font="sanz.ttf"
-                        android:textSize="16dp" />
-
-                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/delaer_amount_get"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        app:font="sanz.ttf"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="58dp"
-                        android:layout_marginRight="58dp"
-                        android:text="4,00,000"
                         android:textSize="16dp" />
 
 
@@ -181,28 +183,26 @@
                     android:layout_marginTop="10dp">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/dealerplus_date_text"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/email_id"
+                        app:font="sanz.ttf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="jaxx@gmail.com"
+                        android:layout_toRightOf="@+id/email_text"
+                        android:layout_marginRight="30dp"
+                        android:textSize="16dp" />
+
+                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                        android:id="@+id/email_text"
+                        app:font="sanz.ttf"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Date"
-                        app:font="sanz.ttf"
-                        android:textSize="16dp" />
-
-                    <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/delaer_date_get"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginRight="35dp"
-                        android:text="26 Nov 2016"
-                        app:font="sanz.ttf"
+                        android:text="Email"
                         android:textSize="16dp" />
 
 
@@ -211,34 +211,106 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/dealerplus_city_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="City"
+                        android:id="@+id/date_id"
                         app:font="sanz.ttf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="123"
+                        android:layout_marginRight="30dp"
+                        android:layout_toRightOf="@+id/date_name"
                         android:textSize="16dp" />
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
-                        android:id="@+id/delaer_city_get"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="59dp"
-                        android:layout_marginRight="55dp"
-                        android:text="Chennai"
+                        android:id="@+id/date_name"
                         app:font="sanz.ttf"
-                        android:textSize="16dp" />
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="16dp"
+                        android:text="Date" />
+
 
                 </RelativeLayout>
 
             </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/text_card">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/funding_financier_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="FINANCIER"
+                    android:textSize="16dp"
+                    android:textColor="#000"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    app:font="sanz.ttf"/>
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/status_funding"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#000"
+                    android:text="STATUS"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16dp"
+                    app:font="sanz.ttf"
+                    android:textStyle="bold"/>
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/loan_chola_text"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/funding_financier_text"
+                    android:text="Cholamandalam Investment Corp Ltd"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="10dp"
+                    app:font="sanz.ttf"/>
+
+                <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
+                    android:id="@+id/status"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Completed"
+                    android:layout_below="@+id/funding_financier_text"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="12dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#C0C0"
+                    android:layout_marginBottom="10dp"
+                    app:font="sanz.ttf"/>
+
+            </RelativeLayout>
+
 
         </android.support.v7.widget.CardView>
 

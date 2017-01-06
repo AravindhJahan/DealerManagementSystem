@@ -63,7 +63,6 @@ public class BidsPostedListAdapter extends ArrayAdapter<BidsPostedListModel> {
             holder.car_rate = (TextView) convertView.findViewById(R.id.bids_posted_rate);
             holder.car_tim_left = (TextView) convertView.findViewById(R.id.bids_time_left);
             holder.car_posted_date = (TextView) convertView.findViewById(R.id.bids_aution);
-            holder.car_bids_won_label = (TextView) convertView.findViewById(R.id.bids_won_label);
 
             convertView.setTag(holder);
         } else {
@@ -88,9 +87,6 @@ public class BidsPostedListAdapter extends ArrayAdapter<BidsPostedListModel> {
         holder.car_tim_left.setText(bidsPostedListModel.getLeftdate_time());
         holder.car_posted_date.setText(bidsPostedListModel.getCar_posted_ago());
 
-        if (bidsPostedListModel.getBids_won().equals("bid-won.jpg")) {
-            holder.car_bids_won_label.setText("ongoing");
-        }
 
         return convertView;
     }
@@ -99,7 +95,7 @@ public class BidsPostedListAdapter extends ArrayAdapter<BidsPostedListModel> {
     private class ViewHolder {
 
         ImageView car_image, site_image;
-        TextView car_name, car_rate, car_tim_left, car_posted_date, car_bids_won_label;
+        TextView car_name, car_rate, car_tim_left, car_posted_date;
     }
 
 }

@@ -1,19 +1,19 @@
 package com.falconnect.dealermanagementsystem;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
+import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
+import com.falconnect.dealermanagementsystem.Model.ApplyFundingListModel;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 
 import java.util.ArrayList;
@@ -27,6 +27,15 @@ public class FundingViewActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView fundingviewrecyclerView;
     private static ArrayList<DataModel> data;
+
+    String token_id, contact_id, email_id, amount_id, date_id, status_id;
+
+    TextView token, contact, email, amount, status, date;
+
+    TextView header;
+
+    ImageView fund_image;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,13 @@ public class FundingViewActivity extends AppCompatActivity {
         } else {
 
         }
+
+        token_id = getIntent().getStringExtra("token_id");
+        contact_id = getIntent().getStringExtra("contact_id");
+        amount_id = getIntent().getStringExtra("amount_id");
+        email_id = getIntent().getStringExtra("email_id");
+        status_id = getIntent().getStringExtra("status_id");
+        date_id = getIntent().getStringExtra("date_id");
 
         fundingviewrecyclerView = (RecyclerView) findViewById(R.id.funding_view_my_recycler);
         fundingviewrecyclerView.setHasFixedSize(true);
@@ -75,6 +91,34 @@ public class FundingViewActivity extends AppCompatActivity {
                 FundingViewActivity.this.finish();
             }
         });
+
+        token = (TextView) findViewById(R.id.token_id);
+        contact = (TextView) findViewById(R.id.contact_id);
+        amount = (TextView) findViewById(R.id.amount_id);
+        email = (TextView) findViewById(R.id.email_id);
+        status = (TextView) findViewById(R.id.status);
+        date = (TextView) findViewById(R.id.date_id);
+        header = (TextView) findViewById(R.id.fund_token_id) ;
+        fund_image = (ImageView) findViewById(R.id.cholo_images);
+
+        token.setText(token_id.toString());
+
+        contact.setText(contact_id.toString());
+
+        amount.setText(amount_id.toString());
+
+        email.setText(email_id.toString());
+
+        status.setText(status_id.toString());
+
+        date.setText(date_id.toString());
+
+        header.setText(token_id.toString());
+
+        Glide.with(getApplicationContext())
+                .load(R.drawable.chola)
+                .transform(new RoundImageTransform(FundingViewActivity.this))
+                .into(fund_image);
 
     }
 

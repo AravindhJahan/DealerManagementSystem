@@ -213,7 +213,9 @@ public class BidsPostedActivity extends AppCompatActivity {
             String closing_time = bids_list.get(i).get("closing_time");
             String site_image = bids_list.get(i).get("site_image");
             String bid_image = bids_list.get(i).get("bid_image");
-            biddata.add(new BidsPostedListModel(image, bidded_amount, make, posted, closing_time, site_image, bid_image));
+            String car_id = bids_list.get(i).get("car_id");
+            String dealer_id = bids_list.get(i).get("dealer_id");
+            biddata.add(new BidsPostedListModel(image, bidded_amount, make, posted, closing_time, site_image, bid_image, car_id, dealer_id));
         }
         return biddata;
     }
@@ -308,8 +310,14 @@ public class BidsPostedActivity extends AppCompatActivity {
             bids_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    BidsPostedListModel queryListModel = (BidsPostedListModel)parent.getItemAtPosition(position);
-                    Toast.makeText(BidsPostedActivity.this, queryListModel.getCar_name(), Toast.LENGTH_SHORT).show();
+                    BidsPostedListModel bidsPostedListModel = (BidsPostedListModel)parent.getItemAtPosition(position);
+                    Intent intent = new Intent(BidsPostedActivity.this, BidsPostingActivity.class);
+                    intent.putExtra("car_id",bidsPostedListModel.getCar_id());
+                    intent.putExtra("car_name", bidsPostedListModel.getCar_name());
+                    intent.putExtra("dealer_id", bidsPostedListModel.getDealer_id());
+                    intent.putExtra("car_image", bidsPostedListModel.getCar_image());
+                    startActivity(intent);
+                    Toast.makeText(BidsPostedActivity.this, bidsPostedListModel.getCar_name(), Toast.LENGTH_SHORT).show();
 
                 }
             });

@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/header_search_list"
         android:divider="#fff"
+        android:layout_marginBottom="65dp"
         android:dividerHeight="8dp" />
 
 

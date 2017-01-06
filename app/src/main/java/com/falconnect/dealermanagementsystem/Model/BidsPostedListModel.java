@@ -1,7 +1,6 @@
 package com.falconnect.dealermanagementsystem.Model;
 
 
-
 public class BidsPostedListModel {
 
     private String car_image;
@@ -11,9 +10,10 @@ public class BidsPostedListModel {
     private String leftdate_time;
     private String site_image;
     private String bids_won;
-    
+    private String car_id;
+    private String dealer_id;
 
-    public BidsPostedListModel(String car_image, String car_rate, String car_name, String car_posted_ago, String leftdate_time, String site_image, String bids_won) {
+    public BidsPostedListModel(String car_image, String car_rate, String car_name, String car_posted_ago, String leftdate_time, String site_image, String bids_won, String car_id, String dealer_id) {
         super();
 
         this.car_image = car_image;
@@ -23,6 +23,8 @@ public class BidsPostedListModel {
         this.leftdate_time = leftdate_time;
         this.site_image = site_image;
         this.bids_won = bids_won;
+        this.car_id = car_id;
+        this.dealer_id = dealer_id;
 
     }
 
@@ -81,6 +83,23 @@ public class BidsPostedListModel {
     public void setBids_won(String bids_won) {
         this.bids_won = bids_won;
     }
+
+    public String getCar_id() {
+        return car_id;
+    }
+
+    public void setCar_id(String car_id) {
+        this.car_id = car_id;
+    }
+
+    public String getDealer_id() {
+        return dealer_id;
+    }
+
+    public void setDealer_id(String dealer_id) {
+        this.dealer_id = dealer_id;
+    }
+
 }
 
 

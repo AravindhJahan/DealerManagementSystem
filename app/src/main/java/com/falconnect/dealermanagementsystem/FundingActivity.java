@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,15 +19,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.falconnect.dealermanagementsystem.Adapter.ApplyFundingListAdapter;
+import com.falconnect.dealermanagementsystem.Adapter.BidsPostedListAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
+import com.falconnect.dealermanagementsystem.Model.ApplyFundingListModel;
+import com.falconnect.dealermanagementsystem.Model.BidsPostedListModel;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.NavigationDrawer.BuyPageNavigation;
 import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
 import com.navdrawer.SimpleSideDrawer;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class FundingActivity extends AppCompatActivity {
@@ -51,7 +61,15 @@ public class FundingActivity extends AppCompatActivity {
     String saved_name_fund, saved_address_fund;
 
     SessionManager session;
-    CardView new_card;
+    HashMap<String, String> user;
+
+    ListView applyfunding_listview;
+    public ArrayList<HashMap<String, String>> applyfund_list;
+    HashMap<String, String> applyfundlist;
+    ArrayList<String> datas = new ArrayList<String>();
+
+    ApplyFundingListAdapter applyFundingListAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +118,7 @@ public class FundingActivity extends AppCompatActivity {
         profile_address_fund = (TextView) mNav_funding.findViewById(R.id.profile_address);
 
         session_fund = new SessionManager(FundingActivity.this);
-        HashMap<String, String> user = session_fund.getUserDetails();
+        user = session_fund.getUserDetails();
         saved_name_fund = user.get("dealer_name");
         saved_address_fund = user.get("dealer_address");
         profile_name_fund.setText(saved_name_fund);
@@ -172,14 +190,7 @@ public class FundingActivity extends AppCompatActivity {
             }
         });
 
-        new_card = (CardView)findViewById(R.id.new_card);
-        new_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (FundingActivity.this, FundingViewActivity.class);
-                startActivity(intent);
-            }
-        });
+        new Apply_fund().execute();
 
     }
 
@@ -198,6 +209,121 @@ public class FundingActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+
+    }
+
+
+    private ArrayList<ApplyFundingListModel> getFundData() {
+        final ArrayList<ApplyFundingListModel> funddata = new ArrayList<>();
+        for (int i = 0; i < applyfund_list.size(); i++) {
+            String token = applyfund_list.get(i).get("Token");
+            String contact = applyfund_list.get(i).get("Contact");
+            String amount = applyfund_list.get(i).get("Amount");
+            String email = applyfund_list.get(i).get("Email");
+            String status = applyfund_list.get(i).get("Status");
+            String date = applyfund_list.get(i).get("Date");
+
+            funddata.add(new ApplyFundingListModel(token, contact, amount, email, status, date));
+        }
+        return funddata;
+    }
+
+    private class Apply_fund extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String queriesurl = Constant.APPLY_FUNDING_APT + "session_user_id=" + user.get("user_id");
+
+            String json = sh.makeServiceCall(queriesurl, ServiceHandler.POST);
+
+            if (json != null) {
+
+                applyfund_list = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    JSONArray apply_fund = jsonObj.getJSONArray("apply_inventory_fund_list");
+
+                    for (int k = 0; k <= apply_fund.length(); k++) {
+
+                        String token = apply_fund.getJSONObject(k).getString("Token");
+                        String contact = apply_fund.getJSONObject(k).getString("Contact");
+                        String amount = apply_fund.getJSONObject(k).getString("Amount");
+                        String status = apply_fund.getJSONObject(k).getString("Status");
+                        String email = apply_fund.getJSONObject(k).getString("Email");
+                        String date = apply_fund.getJSONObject(k).getString("Date");
+
+                        applyfundlist = new HashMap<>();
+
+                        applyfundlist.put("Token", token);
+                        applyfundlist.put("Contact", contact);
+                        applyfundlist.put("Amount", amount);
+                        applyfundlist.put("Status", status);
+                        applyfundlist.put("Email", email);
+                        applyfundlist.put("Date", date);
+
+                        applyfund_list.add(applyfundlist);
+
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            applyfunding_listview = (ListView) findViewById(R.id.funding_listview);
+
+            applyFundingListAdapter = new ApplyFundingListAdapter(FundingActivity.this, getFundData());
+            applyfunding_listview.setAdapter(applyFundingListAdapter);
+            applyfunding_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    ApplyFundingListModel applyFundingListModel = (ApplyFundingListModel)parent.getItemAtPosition(position);
+                    Intent intent = new Intent(FundingActivity.this, FundingViewActivity.class);
+                    intent.putExtra("token_id", applyFundingListModel.getToken());
+                    intent.putExtra("contact_id", applyFundingListModel.getContact());
+                    intent.putExtra("email_id", applyFundingListModel.getEmail());
+                    intent.putExtra("amount_id", applyFundingListModel.getAmount());
+                    intent.putExtra("status_id", applyFundingListModel.getStatus());
+                    intent.putExtra("date_id", applyFundingListModel.getDate());
+                    startActivity(intent);
+                    Toast.makeText(FundingActivity.this, applyFundingListModel.getToken(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+        }
 
     }
 }

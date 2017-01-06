@@ -107,20 +107,6 @@ public class QueryListAdapter extends ArrayAdapter<QueryListModel> {
                 .placeholder(R.drawable.default_avatar)
                 .into(holder.image2);
 
-       /* Glide.with(context)
-                .load(queryListModel.getImage1())
-                .asBitmap()
-                .centerCrop()
-                .into(new BitmapImageViewTarget(holder.image1) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        holder.image1.setImageDrawable(circularBitmapDrawable);
-                    }
-                });*/
-
         holder.name.setText(queryListModel.getOwner_name());
         holder.car_name.setText(queryListModel.getCar_name());
         holder.car_message.setText(queryListModel.getCar_details());
