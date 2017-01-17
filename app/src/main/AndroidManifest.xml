@@ -175,6 +175,11 @@
             android:name=".MyPostingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_my_posting"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".ManageDashBoardActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_manage_dash_board"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

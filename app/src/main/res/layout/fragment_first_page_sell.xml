@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@+id/myinventry_car_rate_rupee"
-                        android:text="4,50,000"
+                        android:text="5,50,000"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         app:font="sanz.ttf" />

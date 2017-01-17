@@ -41,7 +41,7 @@ public class SellFooterCustomAdapter extends RecyclerView.Adapter<SellFooterCust
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sell_footer_list_view_single, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer_list_view_single, null);
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
@@ -121,9 +121,9 @@ public class SellFooterCustomAdapter extends RecyclerView.Adapter<SellFooterCust
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            this.text_ViewName = (TextView) itemView.findViewById(R.id.mtitle_sell);
-            this.image_ViewIcon = (ImageView) itemView.findViewById(R.id.image_footer_sell);
-            this.category_item = (LinearLayout) itemView.findViewById(R.id.category_item_sell);
+            this.text_ViewName = (TextView) itemView.findViewById(R.id.mtitle);
+            this.image_ViewIcon = (ImageView) itemView.findViewById(R.id.image_footer);
+            this.category_item = (LinearLayout) itemView.findViewById(R.id.category_item);
 
         }
     }

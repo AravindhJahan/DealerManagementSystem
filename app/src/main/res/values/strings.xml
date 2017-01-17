@@ -59,5 +59,7 @@
 
     <string name="title_activity_my_posting">MyPostingActivity</string>
 
+    <string name="title_activity_manage_dash_board">ManageDashBoardActivity</string>
+
 
 </resources>
