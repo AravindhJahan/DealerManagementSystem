@@ -179,6 +179,7 @@ public class SavedCarActivity extends AppCompatActivity {
                 } else if (savedcar_buypagenavigation.web[position] == "Sell") {
                     Intent intent = new Intent(SavedCarActivity.this, SellDashBoardActivity.class);
                     startActivity(intent);
+                    SavedCarActivity.this.finish();
                     mNav_savedcar.closeLeftSide();
                     Toast.makeText(SavedCarActivity.this, savedcar_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
                 } else if (savedcar_buypagenavigation.web[position] == "Manage") {

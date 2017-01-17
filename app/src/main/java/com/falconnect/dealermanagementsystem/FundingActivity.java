@@ -168,6 +168,7 @@ public class FundingActivity extends AppCompatActivity {
                 } else if (funding_buypagenavigation.web[position] == "Sell") {
                     Intent intent = new Intent(FundingActivity.this, SellDashBoardActivity.class);
                     startActivity(intent);
+                    FundingActivity.this.finish();
                     mNav_funding.closeLeftSide();
                     Toast.makeText(FundingActivity.this, funding_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
                 } else if (funding_buypagenavigation.web[position] == "Manage") {

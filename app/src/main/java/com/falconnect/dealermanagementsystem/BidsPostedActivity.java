@@ -158,6 +158,7 @@ public class BidsPostedActivity extends AppCompatActivity {
                 } else if (bids_buypagenavigation.web[position] == "Sell") {
                     Intent intent = new Intent(BidsPostedActivity.this, SellDashBoardActivity.class);
                     startActivity(intent);
+                    BidsPostedActivity.this.finish();
                     mNav_bids.closeLeftSide();
                     Toast.makeText(BidsPostedActivity.this, bids_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
                 } else if (bids_buypagenavigation.web[position] == "Manage") {

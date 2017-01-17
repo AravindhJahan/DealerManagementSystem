@@ -161,6 +161,7 @@ public class MyQueriesActivity extends AppCompatActivity {
                 } else if (queries_buypagenavigation.web[position] == "Sell") {
                     Intent intent = new Intent(MyQueriesActivity.this, SellDashBoardActivity.class);
                     startActivity(intent);
+                    MyQueriesActivity.this.finish();
                     mNav_queries.closeLeftSide();
                     Toast.makeText(MyQueriesActivity.this, queries_buypagenavigation.web[position], Toast.LENGTH_SHORT).show();
                 } else if (queries_buypagenavigation.web[position] == "Manage") {
