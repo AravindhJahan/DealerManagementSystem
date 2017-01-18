@@ -40,15 +40,11 @@ import java.util.HashMap;
 public class MyQueriesActivity extends AppCompatActivity {
 
     private boolean mVisible;
-
-
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView queriesrecyclerView;
     private static ArrayList<DataModel> data;
-
     ImageView my_queries_back;
-
     BuyPageNavigation queries_buypagenavigation;
 
     private SimpleSideDrawer mNav_queries;
@@ -60,13 +56,10 @@ public class MyQueriesActivity extends AppCompatActivity {
     HashMap<String, String> user;
     String saved_name_queries, saved_address_queries;
 
-
     //ListView
     ListView queries_listview;
-
     public ArrayList<HashMap<String, String>> queries_list;
     HashMap<String, String> querieslist;
-
     QueryListAdapter queryListAdapter;
 
     @Override
@@ -323,6 +316,5 @@ public class MyQueriesActivity extends AppCompatActivity {
         }
 
     }
-
 
 }

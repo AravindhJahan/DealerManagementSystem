@@ -306,6 +306,7 @@ public class FundingActivity extends AppCompatActivity {
 
             applyFundingListAdapter = new ApplyFundingListAdapter(FundingActivity.this, getFundData());
             applyfunding_listview.setAdapter(applyFundingListAdapter);
+
             applyfunding_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

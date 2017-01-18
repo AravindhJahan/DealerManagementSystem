@@ -94,16 +94,6 @@ public class SellDashBoardActivity extends FragmentActivity implements TabHost.O
 
         mVisible = true;
 
-        /*if (mVisible) {
-            android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.hide();
-            }
-            mVisible = false;
-        } else {
-
-        }*/
-
 
         if (savedInstanceState != null) {
             mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab")); //set the tab as per the saved state

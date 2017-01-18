@@ -15,6 +15,8 @@
         android:id="@+id/category_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:background="?android:selectableItemBackground"
         android:orientation="horizontal">
 
@@ -49,10 +51,10 @@
 
                 <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
                     android:id="@+id/funding_name"
-                    android:layout_width="120dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="DPFND20170102092400"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:textStyle="bold"
                     app:font="sanz.ttf" />
 
@@ -63,7 +65,9 @@
                     android:layout_below="@id/funding_name"
                     android:text="9876543210, Chennai"
                     android:textSize="12dp"
-                    app:font="sanz.ttf" />
+                    app:font="sanz.ttf"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
 
             </RelativeLayout>
 
@@ -85,6 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
                     android:gravity="center">
 
                     <com.falconnect.dealermanagementsystem.FontAdapter.CustomTextView
@@ -92,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="&#x20B9;"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:textStyle="bold"
                         app:font="sanz.ttf" />
 
@@ -103,7 +108,7 @@
                         android:layout_marginLeft="3dp"
                         android:layout_toRightOf="@+id/funding_rate_rupee"
                         android:text="4,00,000"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:textStyle="bold"
                         app:font="sanz.ttf" />
 

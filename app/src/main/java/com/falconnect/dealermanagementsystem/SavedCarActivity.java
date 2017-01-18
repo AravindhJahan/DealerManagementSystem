@@ -206,7 +206,6 @@ public class SavedCarActivity extends AppCompatActivity {
 
         new Saved_Car().execute();
 
-
     }
 
     @Override
@@ -230,22 +229,34 @@ public class SavedCarActivity extends AppCompatActivity {
     private ArrayList<SingleProductModel> getData() {
         final ArrayList<SingleProductModel> imageItems = new ArrayList<>();
         for (int i = 0; i < saved_car_list.size(); i++) {
+            String make = saved_car_list.get(i).get("make");
+            String make_id = saved_car_list.get(i).get("make_id");
+            String model = saved_car_list.get(i).get("model");
+            String variant = saved_car_list.get(i).get("variant");
+            String car_locality = saved_car_list.get(i).get("car_locality");
+            String registration_year = saved_car_list.get(i).get("registration_year");
+            String kilometer_run = saved_car_list.get(i).get("kilometer_run");
+            String fuel_type = saved_car_list.get(i).get("fuel_type");
+            String owner_type = saved_car_list.get(i).get("owner_type");
+            String price = saved_car_list.get(i).get("price");
+            String daysstmt = saved_car_list.get(i).get("daysstmt");
             String car_id = saved_car_list.get(i).get("car_id");
-            String image = saved_car_list.get(i).get("imagelinks");
-            String name = saved_car_list.get(i).get("make");
-            String rate = saved_car_list.get(i).get("price");
-            String posteddate = saved_car_list.get(i).get("daysstmt");
-            String kms = saved_car_list.get(i).get("kilometer_run");
-            String fuel = saved_car_list.get(i).get("fuel_type");
-            String year = saved_car_list.get(i).get("registration_year");
-            String owner = saved_car_list.get(i).get("owner_type");
-            String address = saved_car_list.get(i).get("car_address_1");
-            String site = saved_car_list.get(i).get("site_image");
-            String numofimage = saved_car_list.get(i).get("noimages");
-            String savedcar = saved_car_list.get(i).get("saved_car");
-            String bid = saved_car_list.get(i).get("bid_image");
+            String dealer_id = saved_car_list.get(i).get("dealer_id");
+            String bid_image = saved_car_list.get(i).get("bid_image");
+            String no_images = saved_car_list.get(i).get("no_images");
+            String imagelinks = saved_car_list.get(i).get("imagelinks");
+            String saved_car = saved_car_list.get(i).get("saved_car");
+            String compare_car = saved_car_list.get(i).get("compare_car");
+            String notify_car = saved_car_list.get(i).get("notify_car");
+            String view_car = saved_car_list.get(i).get("view_car");
+            String auction = saved_car_list.get(i).get("auction");
+            String site_id = saved_car_list.get(i).get("site_id");
+            String site_image = saved_car_list.get(i).get("site_image");
 
-            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar, bid));
+            imageItems.add(new SingleProductModel(make,make_id,model,variant,car_locality,registration_year,
+                    kilometer_run,fuel_type,owner_type,price,daysstmt,car_id,
+                    dealer_id,bid_image,no_images,imagelinks,saved_car,compare_car,
+                    notify_car,view_car,auction,site_id,site_image));
         }
         return imageItems;
     }
@@ -279,7 +290,6 @@ public class SavedCarActivity extends AppCompatActivity {
                         String make_id = city.getJSONObject(k).getString("make_id");
                         String model = city.getJSONObject(k).getString("model");
                         String variant = city.getJSONObject(k).getString("variant");
-                        String car_address_1 = city.getJSONObject(k).getString("car_address_1");
                         String car_locality = city.getJSONObject(k).getString("car_locality");
                         String registration_year = city.getJSONObject(k).getString("registration_year");
                         String kilometer_run = city.getJSONObject(k).getString("kilometer_run");
@@ -290,14 +300,14 @@ public class SavedCarActivity extends AppCompatActivity {
                         String car_id = city.getJSONObject(k).getString("car_id");
                         String dealer_id = city.getJSONObject(k).getString("dealer_id");
                         String bid_image = city.getJSONObject(k).getString("bid_image");
-                        String noimages = city.getJSONObject(k).getString("noimages");
+                        String no_images = city.getJSONObject(k).getString("no_images");
                         String imagelinks = city.getJSONObject(k).getString("imagelinks");
-                        String site = city.getJSONObject(k).getString("site");
                         String saved_car = city.getJSONObject(k).getString("saved_car");
                         String compare_car = city.getJSONObject(k).getString("compare_car");
-                        String site_id = city.getJSONObject(k).getString("site_id");
+                        String notify_car = city.getJSONObject(k).getString("notify_car");
+                        String view_car = city.getJSONObject(k).getString("view_car");
                         String auction = city.getJSONObject(k).getString("auction");
-                        String notify_car = city.getJSONObject(k).getString("noimages");
+                        String site_id = city.getJSONObject(k).getString("site_id");
                         String site_image = city.getJSONObject(k).getString("site_image");
 
                         savedcarlist = new HashMap<>();
@@ -306,9 +316,8 @@ public class SavedCarActivity extends AppCompatActivity {
                         savedcarlist.put("make_id", make_id);
                         savedcarlist.put("model", model);
                         savedcarlist.put("variant", variant);
-                        savedcarlist.put("car_address_1", car_address_1);
-                        savedcarlist.put("registration_year", registration_year);
                         savedcarlist.put("car_locality", car_locality);
+                        savedcarlist.put("registration_year", registration_year);
                         savedcarlist.put("kilometer_run", kilometer_run);
                         savedcarlist.put("fuel_type", fuel_type);
                         savedcarlist.put("owner_type", owner_type);
@@ -316,15 +325,15 @@ public class SavedCarActivity extends AppCompatActivity {
                         savedcarlist.put("daysstmt", daysstmt);
                         savedcarlist.put("car_id", car_id);
                         savedcarlist.put("dealer_id", dealer_id);
-                        savedcarlist.put("noimages", noimages);
+                        savedcarlist.put("bid_image", bid_image);
+                        savedcarlist.put("no_images", no_images);
                         savedcarlist.put("imagelinks", imagelinks);
-                        savedcarlist.put("site", site);
                         savedcarlist.put("saved_car", saved_car);
                         savedcarlist.put("compare_car", compare_car);
-                        savedcarlist.put("site_id", site_id);
-                        savedcarlist.put("auction", auction);
                         savedcarlist.put("notify_car", notify_car);
-                        savedcarlist.put("bid_image", bid_image);
+                        savedcarlist.put("view_car", view_car);
+                        savedcarlist.put("auction", auction);
+                        savedcarlist.put("site_id", site_id);
                         savedcarlist.put("site_image", site_image);
 
                         saved_car_list.add(savedcarlist);
@@ -365,7 +374,7 @@ public class SavedCarActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                     SingleProductModel item = (SingleProductModel) parent.getItemAtPosition(position);
 
-                    Toast.makeText(SavedCarActivity.this, "Selected Car Name :" + item.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SavedCarActivity.this, "Selected Car Name :" + item.getMake(), Toast.LENGTH_SHORT).show();
 
                 }
             });

@@ -61,7 +61,7 @@ public class DashBoard extends AppCompatActivity {
     Intent intent;
     ArrayList<String> stringArray;
 
-    String site_key, selected_city, selected_make, selected_model, selected_site, selected_budget, selected_vehicle_type;
+    String site_key, selected_city, selected_make, selected_model, selected_budget, selected_vehicle_type;
 
     public ArrayList<HashMap<String, String>> make_spinner_list;
     HashMap<String, String> makelist;
@@ -170,7 +170,7 @@ public class DashBoard extends AppCompatActivity {
 
         if (sitekey == null) {
             sites.setText("Select Sites");
-        }else{
+        } else {
             sitekey = sitekey.replace("]", "").replace("[", "");
             sites.setText(sitekey);
             editor.putString(SITE_KEY, sitekey);
@@ -331,10 +331,10 @@ public class DashBoard extends AppCompatActivity {
                 } else if (mnavgation.web[position] == "Communication") {
                     mNav.closeLeftSide();
                     Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
-                }else if (mnavgation.web[position] == "Reports") {
+                } else if (mnavgation.web[position] == "Reports") {
                     mNav.closeLeftSide();
                     Toast.makeText(DashBoard.this, mnavgation.web[position], Toast.LENGTH_SHORT).show();
-                }else if (mnavgation.web[position] == "Logout") {
+                } else if (mnavgation.web[position] == "Logout") {
                     session.logoutUser();
                     mNav.closeLeftSide();
                     editor.clear();
@@ -928,9 +928,33 @@ public class DashBoard extends AppCompatActivity {
                     Toast.makeText(DashBoard.this, "You Must Select Your Site", Toast.LENGTH_SHORT).show();
                     Toast.makeText(DashBoard.this, "You Must Select Your City", Toast.LENGTH_SHORT).show();
                 } else {
+                    String upperString = site_key.substring(0, 1).toUpperCase()
+                            + site_key.substring(1);
+
+                    if (selected_budget == null) {
+                        selected_budget = "";
+                    } else {
+
+                    }
+                    if (selected_make == null) {
+                        selected_make = "";
+                    } else {
+
+                    }
+                    if (selected_model == null) {
+                        selected_model = "";
+                    } else {
+
+                    }
+                    if (selected_vehicle_type == null) {
+                        selected_vehicle_type = "";
+                    } else {
+
+                    }
+
                     String city_search_url = Constant.SEARCH_CAR_LISTING_API +
                             "session_user_id=" + user_id +
-                            "&car_sites=" + site_key +
+                            "&car_sites=" + upperString +
                             "&city_name=" + selected_city +
                             "&radioInline=" + radioinline +
                             "&car_budget=" + selected_budget +

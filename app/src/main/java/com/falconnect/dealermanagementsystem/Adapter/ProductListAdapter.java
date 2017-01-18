@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,9 +36,8 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
     List<SingleProductModel> products;
     private Context context;
-    private boolean clicked = false;
     public MyBounceInterpolator interpolator;
-
+    private boolean clicked = false;
     SingleProductModel product;
     SessionManager sessionManager = new SessionManager(getContext());
     HashMap<String, String> user;
@@ -90,6 +90,8 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.favoriteImg = (ImageView) convertView.findViewById(R.id.chola);
             holder.saved_car = (ImageView) convertView.findViewById(R.id.car_saved);
             holder.bid_image = (ImageView) convertView.findViewById(R.id.like);
+            holder.alert_image = (ImageView) convertView.findViewById(R.id.car_alert);
+
 
 
             convertView.setTag(holder);
@@ -99,39 +101,56 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         product = (SingleProductModel) getItem(position);
 
         Glide.with(getContext())
-                .load(product.getImage())
+                .load(product.getImagelinks())
                 .placeholder(R.drawable.carimageplaceholder)
                 .into(holder.car_image);
 
-        holder.car_image.setScaleType(ImageView.ScaleType.FIT_XY);
-        holder.car_name.setText(product.getName());
-        holder.car_rate.setText(product.getRate());
-        holder.car_date.setText(product.getPosted_date());
-        holder.car_kms.setText(product.getKms());
-        holder.car_fuel.setText(product.getFuel());
-        holder.car_year.setText(product.getYear());
-        holder.car_owner.setText(product.getOwner());
-        holder.car_address.setText(product.getAddress());
-        holder.no_of_images.setText(product.getNum_of_image());
+        holder.car_name.setText(product.getMake());
+        holder.car_rate.setText(product.getPrice());
+        holder.car_date.setText(product.getDaysstmt());
+        holder.car_kms.setText(product.getKilometer_run());
+        holder.car_fuel.setText(product.getFuel_type());
+        holder.car_year.setText(product.getRegistration_year());
+        holder.car_owner.setText(product.getOwner_type());
+        holder.car_address.setText(product.getCar_locality());
+        holder.no_of_images.setText(product.getNo_images());
 
         Glide.with(getContext())
                 .load(product.getSite_image())
                 .into(holder.favoriteImg);
 
         if (product.getSaved_car().equals("0")) {
-            Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
+            Glide.with(getContext())
+                    .load(R.drawable.like_white)
+                    .into(holder.saved_car);
         } else {
-            Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
+            Glide.with(getContext())
+                    .load(R.drawable.like_red)
+                    .into(holder.saved_car);
         }
 
-        Glide.with(getContext()).load(product.getBid()).into(holder.bid_image);
+        if (product.getNotify_car().equals("0")) {
+            Glide.with(getContext())
+                    .load(R.drawable.alert_white)
+                    .into(holder.alert_image);
+        } else {
+            Glide.with(getContext())
+                    .load(R.drawable.alert_red)
+                    .into(holder.alert_image);
+        }
+
+        Glide.with(getContext()).load(product.getBid_image()).into(holder.bid_image);
 
         holder.saved_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                new Favbutton().execute();
-            }
+                if(clicked) {
+                    new Favbutton().execute();
+                } else {
+                    new Favbutton().execute();
+                }
+                clicked = true;
+             }
         });
 
         return convertView;
@@ -150,7 +169,9 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             ServiceHandler sh = new ServiceHandler();
             user = sessionManager.getUserDetails();
             user_id = user.get("user_id");
-            String fav_url = Constant.SAVE_CAR_API + "session_user_id=" + user_id + "&carid=" + product.getCar_id();
+            String fav_url = Constant.SAVE_CAR_API
+                    + "session_user_id=" + user_id
+                    + "&carid=" + product.getCar_id();
             String json = sh.makeServiceCall(fav_url, ServiceHandler.POST);
 
             if (json != null) {
@@ -165,15 +186,10 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
                         result = obj.getString("Result");
                         message = obj.getString("message");
+                        savemap.put("REsult", result);
+                        savemap.put("Message", message);
+                        savecarList.add(savemap);
 
-                        if (result.equals("3")) {
-                            savemap.put("REsult", result);
-                            savemap.put("Message", message);
-                            savecarList.add(savemap);
-                        } else {
-
-
-                        }
                     }
                 } catch (final JSONException e) {
                     Toast.makeText(getContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -187,27 +203,20 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         @Override
         protected void onPostExecute(String s) {
 
-            if (clicked == false) {
-                Glide.with(getContext()).load(R.drawable.like_red).into(holder.saved_car);
-                Toast.makeText(getContext(), "Added your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
-
+            if (savemap.get("REsult").equals("3")) {
+                Glide.with(getContext())
+                        .load(R.drawable.like_red)
+                        .into(holder.saved_car);
                 //Animation
                 final Animation myAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
                 interpolator = new MyBounceInterpolator(0.2, 20);
                 myAnim.setInterpolator(interpolator);
                 holder.saved_car.startAnimation(myAnim);
+                Toast.makeText(getContext(), savemap.get("Message"), Toast.LENGTH_SHORT).show();
+            } else {
 
-                clicked = true;
-
-            } else if (clicked == true) {
-
-                Glide.with(getContext()).load(R.drawable.like_white).into(holder.saved_car);
-                Toast.makeText(getContext(), "Remove from your saved car" + " " + product.getName(), Toast.LENGTH_SHORT).show();
-                clicked = false;
             }
-
         }
-
     }
 
     private class ViewHolder {
@@ -217,8 +226,7 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         TextView car_kms, car_fuel, car_year, car_owner, car_address, no_of_images;
         ImageView favoriteImg;
         ImageView saved_car;
-        ImageView bid_image;
-
+        ImageView bid_image, alert_image;
     }
 
 }

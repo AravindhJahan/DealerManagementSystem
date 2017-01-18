@@ -21,7 +21,6 @@ public class ApplyFundingListAdapter extends ArrayAdapter<ApplyFundingListModel>
 
     List<ApplyFundingListModel> products;
     private Context context;
-
     ViewHolder holder;
 
     public ApplyFundingListAdapter(Context context, List<ApplyFundingListModel> products) {
@@ -74,9 +73,7 @@ public class ApplyFundingListAdapter extends ArrayAdapter<ApplyFundingListModel>
         return convertView;
     }
 
-
     private class ViewHolder {
-
         TextView fund_name, fund_address, fund_rate, fund_date;
     }
 

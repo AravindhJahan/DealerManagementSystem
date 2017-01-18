@@ -163,23 +163,35 @@ public class SearchResultActivity extends AppCompatActivity {
     private ArrayList<SingleProductModel> getData() {
         final ArrayList<SingleProductModel> imageItems = new ArrayList<>();
         for (int i = 0; i < city_search_list.size(); i++) {
+
+            String make = city_search_list.get(i).get("make");
+            String make_id = city_search_list.get(i).get("make_id");
+            String model = city_search_list.get(i).get("model");
+            String variant = city_search_list.get(i).get("variant");
+            String car_locality = city_search_list.get(i).get("car_locality");
+            String registration_year = city_search_list.get(i).get("registration_year");
+            String kilometer_run = city_search_list.get(i).get("kilometer_run");
+            String fuel_type = city_search_list.get(i).get("fuel_type");
+            String owner_type = city_search_list.get(i).get("owner_type");
+            String price = city_search_list.get(i).get("price");
+            String daysstmt = city_search_list.get(i).get("daysstmt");
             String car_id = city_search_list.get(i).get("car_id");
-            String image = city_search_list.get(i).get("imagelinks");
-            String name = city_search_list.get(i).get("make");
-            String rate = city_search_list.get(i).get("price");
-            String posteddate = city_search_list.get(i).get("daysstmt");
-            String kms = city_search_list.get(i).get("kilometer_run");
-            String fuel = city_search_list.get(i).get("fuel_type");
-            String year = city_search_list.get(i).get("registration_year");
-            String owner = city_search_list.get(i).get("owner_type");
-            String address = city_search_list.get(i).get("car_address_1");
-            String site = city_search_list.get(i).get("site_image");
-            String numofimage = city_search_list.get(i).get("noimages");
-            String savedcar = city_search_list.get(i).get("saved_car");
-            String bid = city_search_list.get(i).get("bid_image");
+            String dealer_id = city_search_list.get(i).get("dealer_id");
+            String bid_image = city_search_list.get(i).get("bid_image");
+            String no_images = city_search_list.get(i).get("no_images");
+            String imagelinks = city_search_list.get(i).get("imagelinks");
+            String saved_car = city_search_list.get(i).get("saved_car");
+            String compare_car = city_search_list.get(i).get("compare_car");
+            String notify_car = city_search_list.get(i).get("notify_car");
+            String view_car = city_search_list.get(i).get("view_car");
+            String auction = city_search_list.get(i).get("auction");
+            String site_id = city_search_list.get(i).get("site_id");
+            String site_image = city_search_list.get(i).get("site_image");
 
-
-            imageItems.add(new SingleProductModel(car_id, image, name, rate, kms, fuel, year, owner, address, posteddate, numofimage, site, savedcar, bid));
+            imageItems.add(new SingleProductModel(make,make_id,model,variant,car_locality,registration_year,
+                    kilometer_run,fuel_type,owner_type,price,daysstmt,car_id,
+                    dealer_id,bid_image,no_images,imagelinks,saved_car,compare_car,
+                    notify_car,view_car,auction,site_id,site_image));
         }
         return imageItems;
     }
@@ -214,7 +226,6 @@ public class SearchResultActivity extends AppCompatActivity {
                         String make_id = city.getJSONObject(k).getString("make_id");
                         String model = city.getJSONObject(k).getString("model");
                         String variant = city.getJSONObject(k).getString("variant");
-                        String car_address_1 = city.getJSONObject(k).getString("car_address_1");
                         String car_locality = city.getJSONObject(k).getString("car_locality");
                         String registration_year = city.getJSONObject(k).getString("registration_year");
                         String kilometer_run = city.getJSONObject(k).getString("kilometer_run");
@@ -225,17 +236,15 @@ public class SearchResultActivity extends AppCompatActivity {
                         String car_id = city.getJSONObject(k).getString("car_id");
                         String dealer_id = city.getJSONObject(k).getString("dealer_id");
                         String bid_image = city.getJSONObject(k).getString("bid_image");
-                        String noimages = city.getJSONObject(k).getString("noimages");
+                        String no_images = city.getJSONObject(k).getString("no_images");
                         String imagelinks = city.getJSONObject(k).getString("imagelinks");
-                        String site = city.getJSONObject(k).getString("site");
                         String saved_car = city.getJSONObject(k).getString("saved_car");
                         String compare_car = city.getJSONObject(k).getString("compare_car");
-                        String site_id = city.getJSONObject(k).getString("site_id");
+                        String notify_car = city.getJSONObject(k).getString("notify_car");
+                        String view_car = city.getJSONObject(k).getString("view_car");
                         String auction = city.getJSONObject(k).getString("auction");
-                        String notify_car = city.getJSONObject(k).getString("noimages");
+                        String site_id = city.getJSONObject(k).getString("site_id");
                         String site_image = city.getJSONObject(k).getString("site_image");
-
-                       // JSONArray top_notes = jsonObj.getJSONArray(TOP_NOTE);
 
                         citysearchlist = new HashMap<>();
 
@@ -243,9 +252,8 @@ public class SearchResultActivity extends AppCompatActivity {
                         citysearchlist.put("make_id", make_id);
                         citysearchlist.put("model", model);
                         citysearchlist.put("variant", variant);
-                        citysearchlist.put("car_address_1", car_address_1);
-                        citysearchlist.put("registration_year", registration_year);
                         citysearchlist.put("car_locality", car_locality);
+                        citysearchlist.put("registration_year", registration_year);
                         citysearchlist.put("kilometer_run", kilometer_run);
                         citysearchlist.put("fuel_type", fuel_type);
                         citysearchlist.put("owner_type", owner_type);
@@ -253,15 +261,15 @@ public class SearchResultActivity extends AppCompatActivity {
                         citysearchlist.put("daysstmt", daysstmt);
                         citysearchlist.put("car_id", car_id);
                         citysearchlist.put("dealer_id", dealer_id);
-                        citysearchlist.put("noimages", noimages);
+                        citysearchlist.put("bid_image", bid_image);
+                        citysearchlist.put("no_images", no_images);
                         citysearchlist.put("imagelinks", imagelinks);
-                        citysearchlist.put("site", site);
                         citysearchlist.put("saved_car", saved_car);
                         citysearchlist.put("compare_car", compare_car);
-                        citysearchlist.put("site_id", site_id);
-                        citysearchlist.put("auction", auction);
                         citysearchlist.put("notify_car", notify_car);
-                        citysearchlist.put("bid_image", bid_image);
+                        citysearchlist.put("view_car", view_car);
+                        citysearchlist.put("auction", auction);
+                        citysearchlist.put("site_id", site_id);
                         citysearchlist.put("site_image", site_image);
 
                         city_search_list.add(citysearchlist);
@@ -302,7 +310,7 @@ public class SearchResultActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                     SingleProductModel item = (SingleProductModel) parent.getItemAtPosition(position);
 
-                    Toast.makeText(SearchResultActivity.this, "Selected Car Name :" + item.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchResultActivity.this, "Selected Car Name :" + item.getMake(), Toast.LENGTH_SHORT).show();
 
                 }
             });

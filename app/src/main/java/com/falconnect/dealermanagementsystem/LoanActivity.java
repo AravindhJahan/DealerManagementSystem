@@ -45,13 +45,11 @@ public class LoanActivity extends AppCompatActivity {
     String saved_name_loan, saved_address_loan;
     BuyPageNavigation loan_buypagenavigation;
 
-
     private static RecyclerView sellloan_footer;
     private static ArrayList<SellFooterDataModel> sellfooterdata;
     private static RecyclerView.Adapter selladapter;
 
     CardView loancard ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

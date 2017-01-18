@@ -38,7 +38,6 @@ public class CityActivity extends AppCompatActivity {
     ListView searchlistview;
     ImageView back_close;
 
-
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView popular_city_recycleview;
@@ -47,7 +46,6 @@ public class CityActivity extends AppCompatActivity {
     String get_city_id, get_city_name;
     private ArrayList<String> spinner_datas;
     ArrayList<City_Make_Spinner_Model> datas;
-
     public ArrayList<HashMap<String, String>> city_spinner_list;
     HashMap<String, String> citylist;
 
@@ -112,7 +110,6 @@ public class CityActivity extends AppCompatActivity {
 
         new City_Datas().execute();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -235,5 +232,6 @@ public class CityActivity extends AppCompatActivity {
         }
         ////End City Data Get
     }
+
 }
 

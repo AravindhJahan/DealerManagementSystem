@@ -99,6 +99,7 @@ public class QueryListAdapter extends ArrayAdapter<QueryListModel> {
         Glide.with(context)
                 .load(queryListModel.getImage1())
                 .transform(new RoundImageTransform(getContext()))
+                .placeholder(R.drawable.car_iamge)
                 .into(holder.image1);
 
         Glide.with(context)

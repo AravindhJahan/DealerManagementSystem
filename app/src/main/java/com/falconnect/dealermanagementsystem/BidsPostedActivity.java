@@ -48,6 +48,7 @@ public class BidsPostedActivity extends AppCompatActivity {
     private static ArrayList<DataModel> data;
 
     CardView card_new;
+
     SessionManager session;
     ImageView bids_back;
 
@@ -60,7 +61,6 @@ public class BidsPostedActivity extends AppCompatActivity {
     TextView profile_name_bids;
     TextView profile_address_bids;
     String saved_name_bids, saved_address_bids;
-
 
     ListView bids_listview;
     public ArrayList<HashMap<String, String>> bids_list;
@@ -233,7 +233,9 @@ public class BidsPostedActivity extends AppCompatActivity {
 
             ServiceHandler sh = new ServiceHandler();
 
-            String queriesurl = Constant.BIDS_POSTED_API + "session_user_id=" + user.get("user_id");
+            String queriesurl = Constant.BIDS_POSTED_API
+                    + "session_user_id="
+                    + user.get("user_id");
 
             String json = sh.makeServiceCall(queriesurl, ServiceHandler.POST);
 

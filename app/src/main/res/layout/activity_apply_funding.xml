@@ -33,8 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_marginRight="30dp"
+                android:gravity="center"
                 android:text="Apply Funding"
                 android:textColor="#FFF"
                 android:textSize="18dp"
@@ -59,8 +59,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
 
             <ImageView
                 android:id="@+id/chola_image"
@@ -68,7 +68,7 @@
                 android:layout_height="55dp"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/circle"
-                android:src="@drawable/chola"/>
+                android:src="@drawable/chola" />
 
             <ImageView
                 android:id="@+id/apply_funding_ownerimage"
@@ -107,255 +107,318 @@
                     android:id="@+id/finance_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/inventry_funing_req"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/inventry_funing_req"
                     android:text="Cholamandalam Finance"
                     android:textSize="14dp"
-                    app:font="sanz.ttf"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignLeft="@+id/inventry_funing_req"
-                    android:layout_alignStart="@+id/inventry_funing_req" />
+                    app:font="sanz.ttf" />
             </RelativeLayout>
 
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
-    <!--Body2-->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:scrollbars="none">
 
-        <!--Dealership Name-->
+        <!--Body2-->
         <LinearLayout
-            android:id="@+id/company_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/dealerplus"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/user" />
-
-            <EditText
-                android:id="@+id/dealershipname"
+            <!--Dealer Name-->
+            <LinearLayout
+                android:id="@+id/dealer_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/dealerplus"
                 android:layout_marginLeft="5dp"
-                android:background="#fff"
-                android:fontFamily="sanz.ttf"
-                android:hint="Dealership Name"
-                android:textSize="15dp" />
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/dealername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="sanz.ttf"
+                    android:hint="Dealer Name"
+                    android:textSize="15dp" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/username_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#808080" />
+            </LinearLayout>
 
-        <!--Mobile Number-->
-        <LinearLayout
-            android:id="@+id/email_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/lastname_layout"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/contact" />
-
-            <EditText
-                android:id="@+id/phone_num"
+            <View
+                android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:background="#fff"
-                android:fontFamily="robotoreqular.ttf"
-                android:hint="Mobile Number"
-                android:textSize="15dp" />
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
 
-        </LinearLayout>
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/username_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#808080" />
-
-        <!--Amount-->
-        <LinearLayout
-            android:id="@+id/contact_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/email_layout"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/contact" />
-
-            <EditText
-                android:id="@+id/amount"
+            <!--Dealership Name-->
+            <LinearLayout
+                android:id="@+id/company_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/dealerplus"
                 android:layout_marginLeft="5dp"
-                android:background="#fff"
-                android:fontFamily="sanz.ttf"
-                android:hint="Amount"
-                android:textSize="15dp" />
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/dealershipname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="sanz.ttf"
+                    android:hint="Dealership Name"
+                    android:textSize="15dp" />
 
-        <View
-            android:id="@+id/view9"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/username_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#808080" />
+            </LinearLayout>
 
-        <!--Date-->
-        <LinearLayout
-            android:id="@+id/date_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/email_layout"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/contact" />
-
-            <EditText
-                android:id="@+id/date"
+            <View
+                android:id="@+id/view22"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:background="#fff"
-                android:fontFamily="sanz.ttf"
-                android:hint="MM/DD/YY"
-                android:textSize="15dp" />
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
 
-        </LinearLayout>
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/username_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#808080" />
-
-        <!--city-->
-        <LinearLayout
-            android:id="@+id/city_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/address_layout"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:src="@drawable/location" />
-
-            <Spinner
-                android:id="@+id/city_spinner"
+            <!--Dealer Email-->
+            <LinearLayout
+                android:id="@+id/emaail_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lastname_layout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="robotoreqular.ttf"
+                    android:hint="Dealer Email ID"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view23"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
+
+            <!--Mobile Number-->
+            <LinearLayout
+                android:id="@+id/mobile_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lastname_layout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/phone_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="robotoreqular.ttf"
+                    android:hint="Mobile Number"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
+
+            <!--Amount-->
+            <LinearLayout
+                android:id="@+id/contact_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/email_layout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="sanz.ttf"
+                    android:hint="Amount"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view9"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
+
+            <!--Date-->
+            <LinearLayout
+                android:id="@+id/area_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/email_layout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="sanz.ttf"
+                    android:hint="Area"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
+
+            <!--city-->
+            <LinearLayout
+                android:id="@+id/city_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/address_layout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="#fff"
+                    android:fontFamily="sanz.ttf"
+                    android:hint="City"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/username_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="#808080" />
+
+            <!--Button-->
+            <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
+                android:id="@+id/submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_submit"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textColor="#FFF"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="90dp"
+                app:font="sanz.ttf" />
 
         </LinearLayout>
 
-        <View
-            android:id="@+id/view7"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/username_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="#808080" />
-
-        <!--Button-->
-        <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
-            android:id="@+id/submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/shape_submit"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textColor="#FFF" />
-
-    </LinearLayout>
+    </ScrollView>
 
     <!--Footer-->
     <android.support.v7.widget.RecyclerView
