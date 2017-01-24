@@ -52,6 +52,8 @@ public class ApplyFundingActivity extends AppCompatActivity {
     public ArrayList<HashMap<String, String>> applyfundactivity_list;
     HashMap<String, String> applyfundactivitylist;
 
+    ApplyFundingListAdapter applyFundingListAdapter;
+
     String s1,s2,s3,s4,s5,s6,s7;
 
     @Override
@@ -213,14 +215,11 @@ public class ApplyFundingActivity extends AppCompatActivity {
             if (applyfundactivitylist.get("Result").equals("1")) {
                 Toast.makeText(ApplyFundingActivity.this, applyfundactivitylist.get("message"), Toast.LENGTH_SHORT).show();
                 ApplyFundingActivity.this.finish();
+
             } else {
                 Toast.makeText(ApplyFundingActivity.this, applyfundactivitylist.get("message"), Toast.LENGTH_SHORT).show();
 
             }
-
         }
-
     }
-
-
 }

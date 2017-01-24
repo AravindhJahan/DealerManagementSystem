@@ -242,8 +242,8 @@
                         android:layout_height="25dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/like_white" />
+                        android:layout_marginTop="10dp" />
+
 
                     <ImageView
                         android:id="@+id/car_alert"
@@ -251,8 +251,7 @@
                         android:layout_height="25dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/alert_white" />
+                        android:layout_marginTop="10dp" />
 
                     <ImageView
                         android:id="@+id/car_compare"
@@ -262,8 +261,7 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="end"
                         android:layout_marginEnd="28dp"
-                        android:layout_marginRight="28dp"
-                        android:src="@drawable/compare" />
+                        android:layout_marginRight="28dp" />
 
 
                 </RelativeLayout>

@@ -11,14 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Constant;
-import com.falconnect.dealermanagementsystem.Model.Product;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
 import com.falconnect.dealermanagementsystem.R;
 import com.falconnect.dealermanagementsystem.ServiceHandler;
@@ -33,7 +34,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
+public class SavedCarAdapter extends ArrayAdapter<SingleProductModel> {
 
     List<SingleProductModel> products;
     private Context context;
@@ -47,12 +48,17 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
     public ArrayList<HashMap<String, String>> savecarList;
     HashMap<String, String> savemap;
     ViewHolder holder;
-    boolean isFav = false;
+    boolean isAlert = false;
 
-    public ProductListAdapter(Context context, List<SingleProductModel> products) {
+
+    public SavedCarAdapter(Context context, List<SingleProductModel> products) {
         super(context, R.layout.search_list_single_item, products);
         this.context = context;
         this.products = products;
+    }
+
+    public List<SingleProductModel> getData() {
+        return products;
     }
 
     @Override
@@ -94,7 +100,6 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.bid_image = (ImageView) convertView.findViewById(R.id.like);
             holder.alert_image = (ImageView) convertView.findViewById(R.id.car_alert);
 
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -121,13 +126,9 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
                 .into(holder.favoriteImg);
 
         if (product.getSaved_car().equals("0")) {
-            Glide.with(context)
-                    .load(R.drawable.like_white)
-                    .into(holder.saved_car);
+            holder.saved_car.setBackgroundResource(R.drawable.like_white);
         } else {
-            Glide.with(context)
-                    .load(R.drawable.like_red)
-                    .into(holder.saved_car);
+            holder.saved_car.setBackgroundResource(R.drawable.like_red);
         }
 
         if (product.getNotify_car().equals("1")) {
@@ -136,19 +137,36 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
             holder.alert_image.setBackgroundResource(R.drawable.alert_white);
         }
 
-        Glide.with(getContext()).load(product.getBid_image()).into(holder.bid_image);
+        Glide.with(getContext())
+                .load(product.getBid_image())
+                .into(holder.bid_image);
+
+        holder.alert_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isAlert = !isAlert;
+                if (isAlert) {
+                    v.setBackgroundResource(R.drawable.alert_white);
+                } else {
+                    v.setBackgroundResource(R.drawable.alert_red);
+                }
+
+            }
+        });
 
         holder.saved_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new FavLikeButton().execute();
+                 new LikeButton().execute();
+
+
             }
         });
 
         return convertView;
     }
 
-    class FavLikeButton extends AsyncTask<String, String, String> {
+    class LikeButton extends AsyncTask<String, String, String> {
 
         @Override
         protected void onPreExecute() {
@@ -194,8 +212,10 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getContext(), savemap.get("Message"), Toast.LENGTH_SHORT).show();
-            Log.e("CarId", product.getCar_id());
+            int pos = products.indexOf(product);
+            products.remove(pos);
+            notifyDataSetChanged();
+            Toast.makeText(getContext(), savemap.get("Message"),Toast.LENGTH_SHORT).show();
         }
     }
 

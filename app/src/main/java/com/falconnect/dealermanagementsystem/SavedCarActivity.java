@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.CustomAdapter;
 import com.falconnect.dealermanagementsystem.Adapter.CustomList;
 import com.falconnect.dealermanagementsystem.Adapter.ProductListAdapter;
+import com.falconnect.dealermanagementsystem.Adapter.SavedCarAdapter;
 import com.falconnect.dealermanagementsystem.FontAdapter.RoundImageTransform;
 import com.falconnect.dealermanagementsystem.Model.DataModel;
 import com.falconnect.dealermanagementsystem.Model.SingleProductModel;
@@ -39,6 +40,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class SavedCarActivity extends AppCompatActivity {
@@ -49,7 +51,7 @@ public class SavedCarActivity extends AppCompatActivity {
 
     ListView listView;
 
-    ProductListAdapter listAdapter;
+    SavedCarAdapter listAdapter;
 
     String Saved_Car_url;
 
@@ -368,8 +370,11 @@ public class SavedCarActivity extends AppCompatActivity {
             super.onPostExecute(result);
 
 
-            listAdapter = new ProductListAdapter(SavedCarActivity.this, getData());
+            listAdapter = new SavedCarAdapter(SavedCarActivity.this, getData());
+            listAdapter.notifyDataSetChanged();
             listView.setAdapter(listAdapter);
+            listView.invalidateViews();
+            reloadAllData();
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                     SingleProductModel item = (SingleProductModel) parent.getItemAtPosition(position);
@@ -380,6 +385,16 @@ public class SavedCarActivity extends AppCompatActivity {
             });
 
         }
+    }
+
+    private void reloadAllData(){
+        // get new modified random data
+        List<SingleProductModel> objects = getData();
+        // update data in our adapter
+        listAdapter.getData().clear();
+        listAdapter.getData().addAll(objects);
+        // fire the event
+        listAdapter.notifyDataSetChanged();
     }
 
 }

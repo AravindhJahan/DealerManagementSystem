@@ -12,8 +12,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.falconnect.dealermanagementsystem.Adapter.SellFooterCustomAdapter;
+import com.falconnect.dealermanagementsystem.Model.LoanModel;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
 
 import java.util.ArrayList;
@@ -27,6 +29,10 @@ public class LoanViewActivity extends AppCompatActivity {
     private static RecyclerView.Adapter selladapter;
 
     ImageView loan_view_back_btn;
+
+    ListView contact;
+    LoanModel loanModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public class LoanViewActivity extends AppCompatActivity {
         } else {
 
         }
+        contact = (ListView)findViewById(R.id.contact_details_loan);
 
         loan_view_back_btn = (ImageView) findViewById(R.id.loan_view_back_btn);
         loan_view_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +81,7 @@ public class LoanViewActivity extends AppCompatActivity {
         }
         selladapter = new SellFooterCustomAdapter(LoanViewActivity.this, sellfooterdata);
         loanrecycleview.setAdapter(selladapter);
+
 
     }
 

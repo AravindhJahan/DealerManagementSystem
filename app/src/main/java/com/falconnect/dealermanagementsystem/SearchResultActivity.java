@@ -308,6 +308,7 @@ public class SearchResultActivity extends AppCompatActivity {
             listView.setAdapter(listAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
                     SingleProductModel item = (SingleProductModel) parent.getItemAtPosition(position);
 
                     Toast.makeText(SearchResultActivity.this, "Selected Car Name :" + item.getMake(), Toast.LENGTH_SHORT).show();
