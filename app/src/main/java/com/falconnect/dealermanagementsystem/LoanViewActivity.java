@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class LoanViewActivity extends AppCompatActivity {
 
     ImageView loan_view_back_btn, loan_apply_profile;
 
+    Button revoke;
 
     TextView custname, tokenid, amount, email, date, phone, loan_status;
 
@@ -110,6 +112,7 @@ public class LoanViewActivity extends AppCompatActivity {
         phone.setText(number);
         date.setText(time);
 
+        revoke = (Button) findViewById(R.id.revoke_button);
 
         Glide.with(getApplicationContext())
                 .load(image)
@@ -121,10 +124,17 @@ public class LoanViewActivity extends AppCompatActivity {
         } else if (status.equals("COMPLETED")) {
             loan_status.setText(status);
             loan_status.setTextColor(Color.GREEN);
+            revoke.setVisibility(View.GONE);
+        } else if (status.equals("PENDING")) {
+            loan_status.setText(status);
+            loan_status.setTextColor(Color.RED);
         } else {
             loan_status.setText(status);
             loan_status.setTextColor(Color.RED);
+            revoke.setVisibility(View.GONE);
         }
+
+
     }
 
 

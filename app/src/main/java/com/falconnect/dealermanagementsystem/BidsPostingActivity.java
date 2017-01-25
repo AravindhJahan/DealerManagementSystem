@@ -158,7 +158,6 @@ public class BidsPostingActivity extends AppCompatActivity {
         });
         new BidsPosting_Data().execute();
     }
-
     private ArrayList<BidsPostingListModel> getbidspostingdata() {
         final ArrayList<BidsPostingListModel> bidposteddata = new ArrayList<>();
         for (int i = 0; i < bids_posting_list.size(); i++) {
@@ -271,6 +270,7 @@ public class BidsPostingActivity extends AppCompatActivity {
 
     }
 
+
     private class Bid_Amount_new extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
@@ -370,7 +370,6 @@ public class BidsPostingActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         BidsPostingListModel bidsPostingListModelnew = (BidsPostingListModel) parent.getItemAtPosition(position);
-
                         Toast.makeText(BidsPostingActivity.this, bidsPostingListModelnew.getAmount(), Toast.LENGTH_SHORT).show();
 
                     }

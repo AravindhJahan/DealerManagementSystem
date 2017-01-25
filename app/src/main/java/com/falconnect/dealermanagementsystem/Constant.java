@@ -22,5 +22,6 @@ public class Constant {
     //Sell Page
 
     public static final String APPLY_LOAN = "http://52.220.105.165/dealerdev/public/viewapplyloan_list?";
+    public static final String MY_POSTING = "http://52.220.105.165/dealerdev/public/view_mypost_list?";
 }
 

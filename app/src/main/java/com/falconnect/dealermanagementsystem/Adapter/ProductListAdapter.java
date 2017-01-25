@@ -196,6 +196,8 @@ public class ProductListAdapter extends ArrayAdapter<SingleProductModel> {
         protected void onPostExecute(String s) {
             Toast.makeText(getContext(), savemap.get("Message"), Toast.LENGTH_SHORT).show();
             Log.e("CarId", product.getCar_id());
+
+            notifyDataSetChanged();
         }
     }
 

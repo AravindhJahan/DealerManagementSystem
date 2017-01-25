@@ -43,6 +43,7 @@
 
     </LinearLayout>
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,8 +52,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="65dp">
+            android:orientation="vertical">
 
             <!--Body1-->
             <android.support.v7.widget.CardView
@@ -316,9 +316,25 @@
 
             </android.support.v7.widget.CardView>
 
+            <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
+                android:id="@+id/revoke_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="65dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_submit"
+                android:text="Revoke"
+                android:textColor="#FFF"
+                android:textSize="15dp"
+                app:font="sanz.ttf" />
+
         </LinearLayout>
 
     </ScrollView>
+
 
     <!--Footer-->
     <android.support.v7.widget.RecyclerView
