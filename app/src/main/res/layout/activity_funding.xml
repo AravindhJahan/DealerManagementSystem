@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:background="@drawable/titlebar"
+            android:background="#173E84"
             android:orientation="horizontal">
 
             <ImageView
