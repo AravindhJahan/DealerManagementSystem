@@ -289,6 +289,14 @@ public class LoanActivity extends AppCompatActivity {
                     LoanModel loanModel = (LoanModel)parent.getItemAtPosition(position);
 
                     Intent intent = new Intent(LoanActivity.this, LoanViewActivity.class);
+                    intent.putExtra("customername", loanModel.getCustname());
+                    intent.putExtra("tokenid", loanModel.getToken());
+                    intent.putExtra("amount", loanModel.getAmount());
+                    intent.putExtra("customermobileno", loanModel.getCustomermobileno());
+                    intent.putExtra("status", loanModel.getStatus());
+                    intent.putExtra("date", loanModel.getDate());
+                    intent.putExtra("bankimage", loanModel.getBankimage());
+                    intent.putExtra("customermailid", loanModel.getEmail());
                     startActivity(intent);
                     Toast.makeText(LoanActivity.this, loanModel.getCustname(), Toast.LENGTH_SHORT).show();
 

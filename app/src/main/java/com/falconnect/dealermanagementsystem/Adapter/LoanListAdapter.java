@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Model.ApplyFundingListModel;
 import com.falconnect.dealermanagementsystem.Model.LoanModel;
 import com.falconnect.dealermanagementsystem.R;
@@ -73,35 +74,20 @@ public class LoanListAdapter extends ArrayAdapter<LoanModel> {
         holder.loan_cust_email.setText(loanModel.getAmount());
         holder.loan_cust_personal.setText(loanModel.getDate());
 
-        if(holder.loan_cust_approved.getText().toString().equals("0"))
-        {
-            holder.loan_cust_approved.setText("PENDING");
-            holder.loan_cust_approved.setTextColor(Color.RED);
-        }
-        else if(holder.loan_cust_approved.getText().toString().equals("1"))
-        {
-            holder.loan_cust_approved.setText("INPROGRESS");
-            holder.loan_cust_approved.setTextColor(Color.YELLOW);
-        }
-        else if(holder.loan_cust_approved.getText().toString().equals("2"))
-        {
-            holder.loan_cust_approved.setText("COMPLETED");
+        if (loanModel.getStatus().equals("INPROGRESS")) {
+            holder.loan_cust_approved.setText(loanModel.getStatus());
+            holder.loan_cust_approved.setTextColor(Color.GRAY);
+        } else if (loanModel.getStatus().equals("COMPLETED")) {
+            holder.loan_cust_approved.setText(loanModel.getStatus());
             holder.loan_cust_approved.setTextColor(Color.GREEN);
-        }
-        else if(holder.loan_cust_approved.getText().toString().equals("3"))
-        {
-            holder.loan_cust_approved.setText("DISMISS");
+        } else {
+            holder.loan_cust_approved.setText(loanModel.getStatus());
             holder.loan_cust_approved.setTextColor(Color.RED);
         }
-        else if(holder.loan_cust_approved.getText().toString().equals("4"))
-        {
-            holder.loan_cust_approved.setText("REVOKE");
-            holder.loan_cust_approved.setTextColor(Color.RED);
-        }
-        else {
 
-        }
-
+        Glide.with(context)
+                .load(loanModel.getBankimage())
+                .into(holder.loan_list_image);
 
 
         return convertView;

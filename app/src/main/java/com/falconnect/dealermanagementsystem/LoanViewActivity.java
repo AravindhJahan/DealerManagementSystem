@@ -3,6 +3,7 @@ package com.falconnect.dealermanagementsystem;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.SellFooterCustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.LoanModel;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
@@ -28,11 +31,12 @@ public class LoanViewActivity extends AppCompatActivity {
     private static ArrayList<SellFooterDataModel> sellfooterdata;
     private static RecyclerView.Adapter selladapter;
 
-    ImageView loan_view_back_btn;
+    ImageView loan_view_back_btn, loan_apply_profile;
 
-    ListView contact;
-    LoanModel loanModel;
 
+    TextView custname, tokenid, amount, email, date, phone, loan_status;
+
+    String cust_name, token_id, price, mail, time, number, status, image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,14 @@ public class LoanViewActivity extends AppCompatActivity {
         } else {
 
         }
-        contact = (ListView)findViewById(R.id.contact_details_loan);
+        custname = (TextView) findViewById(R.id.loan_apply_owner_name);
+        tokenid = (TextView) findViewById(R.id.loan_apply_token_num);
+        amount = (TextView) findViewById(R.id.loan_apply_amount);
+        email = (TextView) findViewById(R.id.loan_apply_email);
+        date = (TextView) findViewById(R.id.loan_apply_date);
+        phone = (TextView) findViewById(R.id.loan_apply_phone);
+        loan_status = (TextView) findViewById(R.id.loan_status);
+        loan_apply_profile = (ImageView) findViewById(R.id.loan_apply_profile);
 
         loan_view_back_btn = (ImageView) findViewById(R.id.loan_view_back_btn);
         loan_view_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +93,38 @@ public class LoanViewActivity extends AppCompatActivity {
         selladapter = new SellFooterCustomAdapter(LoanViewActivity.this, sellfooterdata);
         loanrecycleview.setAdapter(selladapter);
 
+        cust_name = getIntent().getStringExtra("customername");
+        token_id = getIntent().getStringExtra("tokenid");
+        price = getIntent().getStringExtra("amount");
+        mail = getIntent().getStringExtra("customermailid");
+        time = getIntent().getStringExtra("date");
+        number = getIntent().getStringExtra("customermobileno");
+        image = getIntent().getStringExtra("bankimage");
+        status = getIntent().getStringExtra("status");
 
+
+        custname.setText(cust_name);
+        tokenid.setText(token_id);
+        amount.setText(price);
+        email.setText(mail);
+        phone.setText(number);
+        date.setText(time);
+
+
+        Glide.with(getApplicationContext())
+                .load(image)
+                .into(loan_apply_profile);
+
+        if (status.equals("INPROGRESS")) {
+            loan_status.setText(status);
+            loan_status.setTextColor(Color.GRAY);
+        } else if (status.equals("COMPLETED")) {
+            loan_status.setText(status);
+            loan_status.setTextColor(Color.GREEN);
+        } else {
+            loan_status.setText(status);
+            loan_status.setTextColor(Color.RED);
+        }
     }
 
 
