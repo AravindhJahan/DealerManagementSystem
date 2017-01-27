@@ -63,7 +63,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
                     android:layout_weight="0"
-                    android:background="@drawable/titlebar"
+                    android:background="#173E84"
                     android:orientation="horizontal" />
 
                 <FrameLayout

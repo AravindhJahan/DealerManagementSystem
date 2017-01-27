@@ -20,8 +20,9 @@ public class Constant {
     public static final String ADD_ALERT_API = "http://52.220.105.165/dealerdev/public/api_alert_car?";
 
     //Sell Page
-
     public static final String APPLY_LOAN = "http://52.220.105.165/dealerdev/public/viewapplyloan_list?";
     public static final String MY_POSTING = "http://52.220.105.165/dealerdev/public/view_mypost_list?";
+    public static final String REVOKE_SELL = "http://52.220.105.165/dealerdev/public/api_revoke_loan?";
+
 }
 

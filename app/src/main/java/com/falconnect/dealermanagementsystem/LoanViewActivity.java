@@ -3,12 +3,15 @@ package com.falconnect.dealermanagementsystem;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,13 +19,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.falconnect.dealermanagementsystem.Adapter.SellFooterCustomAdapter;
 import com.falconnect.dealermanagementsystem.Model.LoanModel;
 import com.falconnect.dealermanagementsystem.Model.SellFooterDataModel;
+import com.falconnect.dealermanagementsystem.SharedPreference.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoanViewActivity extends AppCompatActivity {
 
@@ -35,6 +44,14 @@ public class LoanViewActivity extends AppCompatActivity {
     ImageView loan_view_back_btn, loan_apply_profile;
 
     Button revoke;
+
+    SessionManager session;
+    HashMap<String, String> user;
+
+    public ArrayList<HashMap<String, String>> revoke_list;
+    HashMap<String, String> revokelist;
+
+    String result, message;
 
     TextView custname, tokenid, amount, email, date, phone, loan_status;
 
@@ -63,6 +80,10 @@ public class LoanViewActivity extends AppCompatActivity {
         } else {
 
         }
+
+        session = new SessionManager(LoanViewActivity.this);
+        user = session.getUserDetails();
+
         custname = (TextView) findViewById(R.id.loan_apply_owner_name);
         tokenid = (TextView) findViewById(R.id.loan_apply_token_num);
         amount = (TextView) findViewById(R.id.loan_apply_amount);
@@ -134,6 +155,92 @@ public class LoanViewActivity extends AppCompatActivity {
             revoke.setVisibility(View.GONE);
         }
 
+        revoke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new revoke_sell().execute();
+            }
+        });
+
+
+    }
+
+    private class revoke_sell extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            ServiceHandler sh = new ServiceHandler();
+
+            String newqueriesurl = Constant.REVOKE_SELL
+                    + "session_user_id=" + user.get("user_id")
+                    + "&ticketid=" + token_id;
+
+            Log.e("Queriesurl" , newqueriesurl);
+
+            String json = sh.makeServiceCall(newqueriesurl, ServiceHandler.POST);
+
+            if (json != null) {
+
+                revoke_list = new ArrayList<>();
+
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+
+                    for (int k = 0; k <= jsonObj.length(); k++) {
+
+                        result = jsonObj.getString("Result");
+                        message = jsonObj.getString("message");
+
+                        revokelist = new HashMap<>();
+
+                        revokelist.put("Result", result);
+                        revokelist.put("message", message);
+
+                        revoke_list.add(revokelist);
+
+                    }
+
+                } catch (final JSONException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            if (revokelist.get("Result").equals("1")) {
+                Toast.makeText(LoanViewActivity.this, revokelist.get("message"), Toast.LENGTH_SHORT).show();
+                LoanViewActivity.this.finish();
+
+            } else {
+                Toast.makeText(LoanViewActivity.this, revokelist.get("message"), Toast.LENGTH_SHORT).show();
+
+            }
+        }
 
     }
 
