@@ -46,6 +46,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -315,6 +316,21 @@
         </android.support.v7.widget.CardView>
 
     </RelativeLayout>
+
+    <com.falconnect.dealermanagementsystem.FontAdapter.ButtonPlus
+        android:id="@+id/revoke_funing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="65dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_submit"
+        android:text="Revoke"
+        android:textColor="#FFF"
+        android:textSize="15dp"
+        app:font="sanz.ttf" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/funding_view_my_recycler"

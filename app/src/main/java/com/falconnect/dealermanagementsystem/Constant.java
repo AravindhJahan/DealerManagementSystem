@@ -18,6 +18,8 @@ public class Constant {
     public static final String APPLY_FUNDING_APT = "http://52.220.105.165/dealerdev/public/api_apply_funding?";
     public static final String ADD_APPLY_FUNDING = "http://52.220.105.165/dealerdev/public/api_add_funding?";
     public static final String ADD_ALERT_API = "http://52.220.105.165/dealerdev/public/api_alert_car?";
+    public static final String REVOKE_FUNDING_BUY = "http://52.220.105.165/dealerdev/public/api_revoke_funding?";
+
 
     //Sell Page
     public static final String APPLY_LOAN = "http://52.220.105.165/dealerdev/public/viewapplyloan_list?";

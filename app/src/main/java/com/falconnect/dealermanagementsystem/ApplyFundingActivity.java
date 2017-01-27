@@ -52,8 +52,6 @@ public class ApplyFundingActivity extends AppCompatActivity {
     public ArrayList<HashMap<String, String>> applyfundactivity_list;
     HashMap<String, String> applyfundactivitylist;
 
-    ApplyFundingListAdapter applyFundingListAdapter;
-
     String s1,s2,s3,s4,s5,s6,s7;
 
     @Override
@@ -106,7 +104,6 @@ public class ApplyFundingActivity extends AppCompatActivity {
         dealer_email = (EditText) findViewById(R.id.email);
         dealer_city = (EditText) findViewById(R.id.city);
         dealer_area = (EditText) findViewById(R.id.area);
-
 
         //back button
         applyfundingback = (ImageView) findViewById(R.id.apply_funding_back);
@@ -222,4 +219,6 @@ public class ApplyFundingActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
