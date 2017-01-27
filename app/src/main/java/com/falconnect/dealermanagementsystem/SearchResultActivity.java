@@ -52,7 +52,8 @@ public class SearchResultActivity extends AppCompatActivity {
     public ArrayList<HashMap<String, String>> city_search_list;
     HashMap<String, String> citysearchlist;
 
-    ArrayList<HashMap<String, String>> top_notes_array;
+    public ArrayList<HashMap<String, String>> topnote_list;
+    HashMap<String, String> topnotelist;
 
     ImageView return_btn;
 
@@ -61,8 +62,6 @@ public class SearchResultActivity extends AppCompatActivity {
     private static RecyclerView recyclerView_search;
     private static ArrayList<DataModel> data;
 
-
-    public static final String TOP_NOTE = "top_note";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +94,7 @@ public class SearchResultActivity extends AppCompatActivity {
         } else {
         }
 
+        topnotelist = new HashMap<>();
         //Back Arrow
         return_btn = (ImageView) findViewById(R.id.nav_back_drawer);
         return_btn.setOnClickListener(new View.OnClickListener() {
@@ -188,10 +188,10 @@ public class SearchResultActivity extends AppCompatActivity {
             String site_id = city_search_list.get(i).get("site_id");
             String site_image = city_search_list.get(i).get("site_image");
 
-            imageItems.add(new SingleProductModel(make,make_id,model,variant,car_locality,registration_year,
-                    kilometer_run,fuel_type,owner_type,price,daysstmt,car_id,
-                    dealer_id,bid_image,no_images,imagelinks,saved_car,compare_car,
-                    notify_car,view_car,auction,site_id,site_image));
+            imageItems.add(new SingleProductModel(make, make_id, model, variant, car_locality, registration_year,
+                    kilometer_run, fuel_type, owner_type, price, daysstmt, car_id,
+                    dealer_id, bid_image, no_images, imagelinks, saved_car, compare_car,
+                    notify_car, view_car, auction, site_id, site_image));
         }
         return imageItems;
     }

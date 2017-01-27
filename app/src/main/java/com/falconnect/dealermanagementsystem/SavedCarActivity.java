@@ -145,6 +145,7 @@ public class SavedCarActivity extends AppCompatActivity {
         saved_name_savedcar = user.get("dealer_name");
         saved_address_savedcar = user.get("dealer_address");
         profile_name_savedcar.setText(saved_name_savedcar);
+
         if (user.get("dealer_img").isEmpty()) {
             Glide.with(getApplicationContext()).load(R.drawable.default_avatar)
                     .transform(new RoundImageTransform(SavedCarActivity.this))
