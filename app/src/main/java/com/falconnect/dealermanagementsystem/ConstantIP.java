@@ -1,8 +1,6 @@
 package com.falconnect.dealermanagementsystem;
 
-/**
- * Created by User on 1/27/2017.
- */
+
 
 public class ConstantIP {
 

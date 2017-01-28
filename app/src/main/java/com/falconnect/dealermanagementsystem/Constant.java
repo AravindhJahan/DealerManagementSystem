@@ -19,12 +19,15 @@ public class Constant {
     public static final String APPLY_FUNDING_APT = ConstantIP.IP + "api_apply_funding?";
     public static final String ADD_APPLY_FUNDING = ConstantIP.IP + "api_add_funding?";
     public static final String REVOKE_FUNDING_BUY = ConstantIP.IP + "api_revoke_funding?";
+
     public static final String ADD_ALERT_API = ConstantIP.IP + "api_alert_car?";
 
     //Sell Page API
     public static final String APPLY_LOAN = ConstantIP.IP + "viewapplyloan_list?";
     public static final String MY_POSTING = ConstantIP.IP + "view_mypost_list?";
     public static final String REVOKE_SELL = ConstantIP.IP + "api_revoke_loan?";
+
+    public static final String QUERIES_RECEIVED = ConstantIP.IP + "api_queries_received?";
 
 }
 
